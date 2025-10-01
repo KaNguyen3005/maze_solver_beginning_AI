@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Maze Solver</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Maze Solver Web</h1>
+    <canvas id="mazeCanvas" width="600" height="600"></canvas>
+    <div>
+        <button id="generateBtn">Tạo Maze</button>
+        <button id="solveBtn">Giải Maze</button>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
