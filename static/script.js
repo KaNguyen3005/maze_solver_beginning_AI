@@ -24,6 +24,7 @@ function drawMaze() {
 
     // Vẽ đường đi
     ctx.fillStyle = 'yellow';
+    console.log("PATH: ", path)
     for (const [r, c] of path) {
         ctx.fillRect(c*CELL_SIZE, r*CELL_SIZE, CELL_SIZE, CELL_SIZE);
     }
@@ -46,12 +47,14 @@ async function generateMaze() {
 }
 
 async function solveMaze() {
+    // console.log(maze)
     const res = await fetch('/api/solve', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({maze, start, end})
     });
     const data = await res.json();
+    console.log(data)
     path = data.path;
     drawMaze();
 }

@@ -25,12 +25,24 @@ def generate():
 def solve():
     global maze_data, path_data
     data = request.json
+    maze_data = data['maze']
     start = tuple(data['start'])
     end = tuple(data['end'])
+
     path_data = solve_maze(maze_data, start, end)
+    
     return jsonify({
-        'path': path_data
+        'path': path_data,
     })
+
+@app.route('/api/solve_dfs')
+def dfs():
+    pass
+
+@app.route('/api/solve_bfs')
+def bfs():
+    pass
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -34,6 +34,7 @@ def solve_maze(maze, start, end):
     queue = [start]
     came_from = {start: None}
     visited = set()
+    visited.add(start)
     while queue:
         x, y = queue.pop(0)
         if (x, y) == end:
@@ -41,17 +42,19 @@ def solve_maze(maze, start, end):
         for dx, dy in [(-1,0),(1,0),(0,-1),(0,1)]:
             nx, ny = x + dx, y + dy
             if 0 <= nx < len(maze) and 0 <= ny < len(maze[0]) and maze[nx][ny] == 0 and (nx, ny) not in visited:
-                queue.append((nx, ny))
                 visited.add((nx, ny))
+                queue.append((nx, ny))
                 came_from[(nx, ny)] = (x, y)
-    else:
-        return []  # Không tìm được đường
-
+    if end not in came_from:
+        return []
     # Tạo đường đi từ end về start
     path = []
     cur = end
+    visited_in_trace = set()  # để tránh vòng lặp
+
     while cur is not None:
         path.append(cur)
         cur = came_from.get(cur)
+
     path.reverse()
     return path
