@@ -58,5 +58,3 @@ def solve_maze(maze, start, end):
 
     path.reverse()
     return path
-
-prin(1)

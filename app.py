@@ -14,7 +14,7 @@ def index():
 @app.route('/<page>')
 def render_page(page):
     try:
-        return render_template(f"{page}.html")
+        return render_template(f"{page}")
     except:
         return "<h1>404 - Page not found</h1>", 404
 
