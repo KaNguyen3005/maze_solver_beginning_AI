@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VISUALIZATION</title>
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="algorithm.css">
+        <link rel="stylesheet" href="frame.css">
+        <script src="main.js" defer></script>
+        <!-- Google Font: Montserrat for logo text -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header class="tool1">
+            <div class = "frame-logo1">
+                <span class="secondtext-tool1">KaTiLa</span>
+                <span class="maintext-tool1">VISUALIZATION</span>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <li><a href="../Home/indexhome.html">Home</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li class="dropdown">
+                        <a href="#">Algorithms ▼</a>
+                        <div class="dropdown-content">
+                            <a href="../Algorithm/overviewbfs.html">BFS</a>
+                            <a href="../Algorithm/overviewdfs.html">DFS</a>
+                            <a href="../Algorithm/overviewdij.html">Dijkstra</a>
+                            <a href="../Algorithm/overviewa.html">A*</a>
+                            <a href="../Algorithm/overviewfc.html">Foward Chaining</a>
+                            <a href="../Algorithm/overviewminimax.html">Mini Max</a>
+                            <a href="../Algorithm/overviewffill.html">Flood Fill</a>
+                        </div>
+                    </li>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Docs</a></li>
+                    <li><a href="#">Member</a></li>
+                </ul>
+            </nav>
+
+        
+            <div class="frame-icon">
+                <span class = "menu_icon">&#9776;</span>
+            </div>
+        </header>
+
+        <header class="tool2">
+            <a href="../Algorithm/overviewdfs.html" class="overview"><span>Overview</span></a>
+            <a href="../Algorithm/theorydfs.html" class="theory"><span>Theory</span></a>
+            <a href="../Algorithm/simulationdfs.html" class="simulation"><span>Simulation</span></a>
+            <a href="../Algorithm/stepbystepdfs.html" class="stepbystep"><span>Step by Step</span></a>
+            <a href="../Algorithm/quizdfs.html" class="quiz"><span>Quiz</span></a>
+        </header>
+
+        <div class="container">
+            <h1>BFS - Breadth-First Search</h1>
+            <p>
+            BFS (Breadth-First Search) là thuật toán duyệt (hay tìm kiếm) đồ thị hoặc cây theo cấp độ, nghĩa là từ một nút gốc (source), nó thăm tất cả các nút kề (neighbors) ở cấp gần trước khi mở rộng ra xa hơn. 
+            </p>
+            <p>
+            BFS thường được dùng để:  
+            </p>
+            <ul>
+                <li>Tìm đường đi ngắn nhất (về số cạnh) trong đồ thị vô trọng số (unweighted graph).</li>
+                <li>Khám phá toàn bộ các nút có thể tiếp cận từ một nút nguồn.</li>
+                <li>Là bước quan trọng trong nhiều thuật toán đồ thị khác (ví dụ: các thuật toán luồng cực đại, kiểm tra liên thông, kiểm tra đồ thị hai phân (bipartite), v.v.).</li>
+            </ul>
+
+
+
+            <img src="https://f.howkteam.vn/Upload/cke/images/2_IMAGE%20TUTORIAL/8_CTDL%26GT/Bai19/1_BFS%20v%C3%A0%20DFS_Howkteam_vn.png" alt="Thứ tự thăm các đỉnh của BFS">
+
+            <h2>Ý tưởng (Idea)</h2>
+            <ul>
+                <li>Bắt đầu từ nút nguồn (source), đánh dấu nó là đã thăm (visited) và đưa vào hàng đợi (queue).</li>
+                <li>Lặp cho đến khi hàng đợi rỗng
+                    <ol>
+                        <li>Lấy một nút u từ đầu queue (dequeue) — đây là nút hiện tại.</li>
+                        <li>Với mỗi nút kề v của u mà chưa được thăm:
+                            <ul>
+                                <li>Đánh dấu v là đã thăm,</li>
+                                <li>Gắn cha (parent) của v = u (nếu muốn lưu đường đi),</li>
+                                <li>Đưa v vào queue (enqueue).</li>
+                            </ul>
+                    </ol>
+                </li>
+                <li>Khi queue rỗng, tất cả các nút có thể tiếp cận từ nguồn đã được duyệt.</li>
+            </ul>
+            <p>Một phiên bản mở rộng có thể giữ thêm mảng dist[] (khoảng cách từ nguồn đến mỗi nút, theo số cạnh), và mảng parent[] để truy vết đường đi ngắn nhất (nếu cần).</p>
+            <p>Có thể hiểu thuật toán như một ngọn lửa lan rộng trên đồ thị: </p>
+            <ul>
+                <li>Ở bước đầu, chỉ có đỉnh nguồn đang cháy.</li>
+                <li>Ở mỗi bước tiếp theo, ngọn lửa cháy ở đỉnh hiện tại lan sang tất cả các đỉnh kề với nó.</li>
+                <li>Thuật toán lặp lại quá trình cho tới khi tất cả đỉnh đã được thăm.</li>
+            </ul>
+            <h2>Thuật toán (Algorithm)</h2>
+            <pre>
+            BFS(graph, start):
+                create a queue Q
+                mark start as visited
+                enqueue start into Q
+
+                while Q is not empty:
+                    node = dequeue Q
+                    for each neighbor of node:
+                        if neighbor not visited:
+                            mark neighbor as visited
+                            enqueue neighbor
+            </pre>
+
+            <h2>Mã giả (Pseudocode)</h2>
+            <pre>
+            BFS(Graph G, node s):
+                for each vertex v in G:
+                    visited[v] = false
+                    dist[v] = ∞
+                    parent[v] = null
+
+                visited[s] = true
+                dist[s] = 0
+                parent[s] = null
+                create queue Q
+                enqueue(Q, s)
+
+                while Q not empty do:
+                    u = dequeue(Q)
+                    for each v in neighbors(u) do:
+                    if not visited[v]:
+                        visited[v] = true
+                        dist[v] = dist[u] + 1
+                        parent[v] = u
+                        enqueue(Q, v)
+            </pre>
+            <ul>
+                <li><b>neighbors(u)</b> là các nút kề (adjacent) của <b>u</b>.</li>
+                <li>Sau khi BFS kết thúc, <b>dist[v]</b> lưu số cạnh ngắn nhất từ <b>s</b> đến <b>v</b> (nếu v có thể tiếp cận).</li>
+                <li><b>parent[v] </b> lưu nút liền trước <b>v</b> trong đường đi ngắn nhất, giúp truy vết lại đường đi nếu cần.</li>
+            </ul>
+
+            <h2>Triển khai bằng các ngôn ngữ phổ biến</h2>
+            <b>Code C++</b>
+            <pre>
+            #include<bits/stdc++.h>
+            using namespace std;
+            vector<int>adj[1001];
+            bool visited[1001];
+
+            void Input()
+            {
+                cout <<"Nhập số đỉnh, số cạnh: ";
+                int n, m;
+                cin >>n >>m;
+                for(int i =0; i < m; i++)
+                {
+                    int x, y;
+                    cin >>x >>y;
+                    adj[x].push_back(y);
+                    adj[y].push_back(x);
+                }
+                memset(visited, false, sizeof(visited));
+            }
+
+            void BFS(int u)
+            {
+                queue<int>q;    //khởi tạo hàng đợi
+                q.push(u);      //đẩy đỉnh u vào trong hàng đợi
+                visited[u]=true;
+                while(q.empty()!=true)
+                {
+                    int v= q.front();       //lấy đỉnh ở đầu hàng đợi;
+                    q.pop();            //xóa đỉnh ra khỏi hàng đợi
+                    cout << v <<" ";
+                    for(int x : adj[v])
+                    {
+                        if(visited[x]==false)
+                        {
+                            q.push(x);
+                            visited[x]=true;
+                        }
+                    }
+                }
+            }
+
+            int main()
+            {
+                Input();
+                BFS(1);
+            }
+            </pre>
+
+            <b>Code Java</b>
+            <pre> </pre>
+            <b>Code Python</b>
+            <pre>   </pre>
+            
+            <h2>Phân tích độ phức tạp (Complexity Analysis)</h2>
+            <ul>
+                <li>Thời gian (Time Complexity): O(V + E)</li>
+                    <ul>
+                        <li>V là số nút (vertices)</li>
+                        <li>E là số cạnh (edges)</li>
+                        Vì mỗi nút được thăm (enqueue/dequeue) một lần, và mỗi cạnh được duyệt tối đa một lần khi xem các nút kề.
+                    </ul>
+                <li>Không gian (Space Complexity): O(V)</li>
+                    <ul>
+                        <li>Dùng để lưu visited / dist / parent / queue, trong trường hợp tệ nhất queue có thể chứa O(V) phần tử.</li>
+                    </ul>
+            </ul>
+            <p><b>Chú ý: </b> nếu đồ thị rất rộng ở một cấp độ nào đó (nhiều nút ở cùng khoảng cách), queue có thể lớn — đó là điểm mà BFS tốn bộ nhớ.</p>
+            <h2>Tính chất, đặc điểm & những lưu ý (Properties, Characteristic, Notes)</h2>
+            <p>BFS là duyệt theo cấp độ (level order).</p>
+            <p>Khi bạn lần đầu “thấy” một nút v (chưa visited), thì đường đi đến nó theo BFS chắc chắn là ngắn nhất (về số cạnh) từ nguồn.</p>
+            <p>BFS sử dụng cấu trúc hàng đợi (queue), khác với DFS dùng ngăn xếp (stack) hoặc đệ quy.</p>
+            <p>Với đồ thị không liên thông (disconnected graph), bạn có thể chạy BFS từ nhiều nguồn hoặc lặp qua các nút chưa visited để đảm bảo duyệt hết toàn bộ.</p>
+            <p>BFS chỉ đúng để tìm đường đi ngắn nhất nếu mọi cạnh có trọng số bằng nhau (hoặc không có trọng số). Nếu cạnh có trọng số khác nhau, cần dùng thuật toán như Dijkstra.</p>
+
+
+            <h2>Ứng dụng (Applications)</h2>
+            <p>Một số ứng dụng nổi bật</p>
+                <ul>
+                    <li>Tìm đường đi ngắn nhất trong đồ thị vô trọng số.</li>
+                    <li>Kiểm tra liên thông / nhóm kết nối trong đồ thị.</li>
+                    <li>Kiểm tra đồ thị hai phân (bipartiteness): dùng BFS với việc gán màu (2 màu) cho các nút khi duyệt.</li>
+                    <li>Web crawling (trình thu thập thông tin web): bắt đầu từ một URL, lấy các link trong trang, rồi tiếp tục theo lớp link kế tiếp, v.v.</li>
+                    <li>Trò chơi / mê cung / bản đồ ô vuông: tìm bước đi tối thiểu từ điểm A tới B.</li>
+                    <li>Trong các thuật toán luồng cực đại (max-flow): BFS được dùng để xây dựng “level graph” như trong thuật toán Dinic.</li>
+                    <li>Trong AI / tìm kiếm trạng thái: BFS là thuật toán “blind search” (không dùng heuristic) — dùng khi chi phí các bước bằng nhau.</li>
+                    <li>Song song (Parallel BFS): khi đồ thị rất lớn, người ta phát triển các phiên bản BFS song song để chạy trên nhiều máy hoặc trên GPU để tăng hiệu năng.</li>
+                </ul>
+            <ul> 
+        </div>
+    </body>
+</html>

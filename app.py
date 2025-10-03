@@ -8,7 +8,16 @@ path_data = []
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('indexlogo.html')
+
+# Render HTML cho các trang khác (tổng quát)
+@app.route('/<page>')
+def render_page(page):
+    try:
+        return render_template(f"{page}.html")
+    except:
+        return "<h1>404 - Page not found</h1>", 404
+
 
 @app.route('/api/generate')
 def generate():

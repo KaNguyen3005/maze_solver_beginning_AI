@@ -1,0 +1,55 @@
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: auto;
+        }
+
+        /* ly thuyet cua thuat toan */
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 80px;
+            /* bằng chiều cao .tool1 */
+            margin-bottom: 80px;
+            /* bằng chiều cao .tool2 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 2rem;
+            color: #0077b6;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #0096c7;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        pre {
+            background: #f5f5f5;
+            padding: 12px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }

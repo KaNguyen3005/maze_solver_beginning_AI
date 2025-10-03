@@ -1,0 +1,182 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 1),
+      rgba(212, 241, 255, 1),
+      rgba(174, 227, 255, 1));
+}
+
+.tool1/* narbar */
+{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 5%;
+  width: 100%;
+  position: fixed;/* cố định */
+  top: 0;/* nằm trên cùng */
+  left: 0;
+  z-index: 1000;
+  background: linear-gradient(to right,
+      rgba(210, 203, 203, 0.4),
+      rgba(108, 104, 104, 0.4));
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box
+}
+
+.tool2/* navbar dưới */
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5%;
+  width: 100%;
+  position: fixed;/* cố định */
+  bottom: 0;/* nằm dưới cùng */
+  left: 0;
+  z-index: 1000;
+  background: linear-gradient(to right,
+      rgba(210, 203, 203, 0.28));
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box
+}
+
+.tool2 a {
+  display: flex;
+  gap: 20px;
+  padding: 5px 15px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.33);
+  text-decoration: none;
+  color: black;
+  transition: 0.3s;
+}
+
+.tool2 a:hover {
+  background: rgba(0, 150, 255, 0.2);
+  color: #0096ff;
+  font-weight: bold;
+}
+
+.frame-logo1 {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  color: black;
+  margin-left: -50px;
+
+}
+
+.maintext-tool1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 550;
+  font-size: 24px;
+  color: black
+}
+
+.secondtext-tool1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 550;
+  font-size: 16px;
+  margin-left: 139px;
+  color: black;
+  position: relative;
+  top: 7px;
+
+}
+
+.menu/* khung menu */
+{
+  display: flex;
+  gap: 20px;
+  padding: 10px 15px;
+  border: 1px solid #aaa;
+  border-radius: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.menu a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 16px;
+}
+
+.frame-icon {
+  display: flex;
+  gap: 20px;
+  padding: 5px 15px;
+  border: 0;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.33);
+  margin-right: -50px;
+}
+
+.menu_icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.overview {
+  display: flex;
+  gap: 20px;
+  padding: 5px 15px;
+  border: 0;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.33);
+
+}
+
+.theory {
+  display: flex;
+  gap: 20px;
+  padding: 5px 15px;
+  border: 0;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.33);
+}
+
+.simulation {
+  display: flex;
+  gap: 20px;
+  padding: 5px 15px;
+  border: 0;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.33);
+
+}
+
+.stepbystep {
+  display: flex;
+  gap: 20px;
+  padding: 5px 15px;
+  border: 0;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.33);
+
+}
+.quiz {
+  display: flex;
+  gap: 20px;
+  padding: 5px 15px;
+  border: 0;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.33);
+
+}
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+}

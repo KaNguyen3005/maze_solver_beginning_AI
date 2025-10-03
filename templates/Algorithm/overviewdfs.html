@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VISUALAZITION</title>
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="algorithm.css">
+        <link rel="stylesheet" href="frame.css">
+        <script src="main.js" defer></script>
+        <!-- Google Font: Montserrat for logo text -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header class="tool1">
+            <div class = "frame-logo1">
+                <span class="secondtext-tool1">KaTiLa</span>
+                <span class="maintext-tool1">VISUALIZATION</span>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <li><a href="../Home/indexhome.html">Home</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li class="dropdown">
+                        <a href="#">Algorithms ▼</a>
+                        <div class="dropdown-content">
+                            <a href="../Algorithm/overviewbfs.html">BFS</a>
+                            <a href="../Algorithm/overviewdfs.html">DFS</a>
+                            <a href="../Algorithm/overviewdij.html">Dijkstra</a>
+                            <a href="../Algorithm/overviewa.html">A*</a>
+                            <a href="../Algorithm/overviewfc.html">Foward Chaining</a>
+                            <a href="../Algorithm/overviewminimax.html">Mini Max</a>
+                            <a href="../Algorithm/overviewffill.html">Flood Fill</a>
+                        </div>
+                    </li>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Docs</a></li>
+                    <li><a href="#">Member</a></li>
+                </ul>
+            </nav>
+            <div class="frame-icon">
+                <span class = "menu_icon">&#9776;</span>
+            </div>
+        </header>
+        <header class="tool2">
+            <a href="../Algorithm/overviewdfs.html" class="overview"><span>Overview</span></a>
+            <a href="../Algorithm/theorydfs.html" class="theory"><span>Theory</span></a>
+            <a href="../Algorithm/simulationdfs.html" class="simulation"><span>Simulation</span></a>
+            <a href="../Algorithm/stepbystepdfs.html" class="stepbystep"><span>Step by Step</span></a>
+            <a href="../Algorithm/quizdfs.html" class="quiz"><span>Quiz</span></a>
+        </header>
+
+        <div class="container"> 
+            <h1>Quá trình phát triển và phân tích ứng dụng của thuật toán DFS (Depth-First Search)</h1>
+            <p>Thuật toán DFS (Depth-First Search – Tìm kiếm theo chiều sâu) là một trong những thuật toán cơ bản và lâu đời nhất trong khoa học máy tính, xuất hiện từ những năm 1950–1960 khi lý thuyết đồ thị được ứng dụng mạnh mẽ trong lập trình và trí tuệ nhân tạo.</p>
+            <b>Giai đoạn hình thành ý tưởng (thế kỷ 18 – giữa thế kỷ 20)</b>
+                <ul>
+                    <li>Thuật toán DFS (Depth-First Search – Tìm kiếm theo chiều sâu) có gốc rễ từ lý thuyết đồ thị do Leonhard Euler đặt nền móng năm 1736 với bài toán "Seven Bridges of Königsberg"..</li>
+                    <li>Trong suốt thế kỷ 19 và đầu thế kỷ 20, nhiều nhà toán học như Hamilton, Cayley đã mở rộng khái niệm đồ thị, nhưng DFS khi đó chỉ tồn tại dưới dạng ý tưởng toán học, chưa có thuật toán chính thức.</li>
+                </ul>
+            <b>Giai đoạn Chuẩn hóa trong khoa học máy tính (1950–1970)</b>    
+                    <li>Năm 1959, Edward F. Moore đã mô tả các kỹ thuật tìm kiếm trên tự động hữu hạn, đưa DFS gần hơn với việc áp dụng vào xử lý dữ liệu.</li>
+                    <li>Năm 1960–1965, cùng với sự phát triển của ngôn ngữ lập trình bậc cao (FORTRAN, ALGOL), DFS được trình bày rõ ràng hơn dưới dạng thủ tục đệ quy.</li>
+                    <li>Năm 1969, Robert Tarjan công bố việc sử dụng DFS trong tìm thành phần liên thông mạnh (SCC), đánh dấu bước ngoặt: từ một phương pháp duyệt đơn giản, DFS trở thành nền tảng cho hàng loạt thuật toán đồ thị.</li>
+            <b>Giai đoạn mở rộng và ứng dụng (1970–1990)</b>
+                <p>DFS nhanh chóng trở thành công cụ trung tâm trong nhiều nghiên cứu:</p>
+                        <ul>
+                            <li>Tarjan (1972): thuật toán tìm SCC trong O(V+E).</li>
+                            <li>Hopcroft & Tarjan (1973): thuật toán kiểm tra đồ thị phẳng dựa trên DFS.</li>
+                            <li>Ứng dụng trong AI cổ điển: giải bài toán mê cung, trò chơi, không gian trạng thái.</li>
+                            <li>Trong kỹ thuật phần mềm, DFS được dùng trong phân tích cú pháp ngôn ngữ lập trình và phát hiện lỗi phụ thuộc.</li>
+                        </ul>
+                </ul>
+            <b>Giai đoạn hiện đại (1990–nay)</b>
+                <ul>
+                    <li>DFS được tích hợp như một thuật toán chuẩn trong mọi giáo trình thuật toán (ví dụ: Introduction to Algorithms của Cormen–Leiserson–Rivest–Stein, 1990).</li>
+                    <li>Các ngôn ngữ lập trình hiện đại (Java, Python, C++) đều minh họa DFS như ví dụ điển hình của đệ quy và ngăn xếp.</li>
+                    <li>Xuất hiện nhiều biến thể để khắc phục hạn chế (ví dụ: Depth-Limited Search, Iterative Deepening DFS).</li>
+                    <li>Trong khoa học dữ liệu và AI, DFS vẫn giữ vai trò nền tảng:</li>
+                        <ul>
+                            <li>Phân tích đồ thị web (Google PageRank cần DFS/BFS để crawl dữ liệu).</li>
+                            <li>Phân tích mạng xã hội: phát hiện cộng đồng, kiểm tra kết nối.</li>
+                            <Li>Trí tuệ nhân tạo: DFS là bước khởi đầu cho các biến thể nâng cao như Iterative Deepening DFS, Depth-Limited Search.</Li>
+                        </ul>
+                    <li>Ngày nay, DFS không chỉ là công cụ học thuật mà còn được ứng dụng trong lập trình cạnh tranh (competitive programming) và công nghiệp phần mềm (kiểm tra dependency graph, phân tích cú pháp, compiler).</li>
+                </ul>
+        </div>
+
+    </body>
+</html>
