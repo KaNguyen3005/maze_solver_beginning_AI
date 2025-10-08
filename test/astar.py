@@ -6,7 +6,7 @@ def heuristic(a, b):
 
 def solve_astar(maze, start, end):
     start_time = time.time()
-    nodes_visited = 0
+    nodes_visited = [start]
     
     open_set = []
     heapq.heappush(open_set, (0, 0, start))
@@ -17,8 +17,7 @@ def solve_astar(maze, start, end):
 
     while open_set:
         _, g, current = heapq.heappop(open_set)
-        nodes_visited += 1
-
+        nodes_visited.append(current)
         if current == end:
             break
 

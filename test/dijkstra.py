@@ -3,7 +3,7 @@ import time
 
 def solve_dijkstra(maze, start, end):
     start_time = time.time()
-    nodes_visited = 0
+    nodes_visited = [start]
 
     rows, cols = len(maze), len(maze[0])
 
@@ -21,7 +21,6 @@ def solve_dijkstra(maze, start, end):
 
     while pq:
         current_dist, current = heapq.heappop(pq)
-        nodes_visited += 1
 
         if current == end:
             break
@@ -40,6 +39,7 @@ def solve_dijkstra(maze, start, end):
                 new_dist = current_dist + 1  # mỗi bước = 1
                 if neighbor not in dist or new_dist < dist[neighbor]:
                     dist[neighbor] = new_dist
+                    nodes_visited.append(neighbor)
                     heapq.heappush(pq, (new_dist, neighbor))
                     came_from[neighbor] = current
 
