@@ -180,3 +180,15 @@ button {
   margin-top: 20px;
   cursor: pointer;
 }
+
+@media (max-width: 600px) {
+  .menu {
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .maintext-tool1 {
+    font-size: 18px;
+  }
+}

@@ -13,8 +13,17 @@ def index():
 # Render HTML cho các trang khác (tổng quát)
 @app.route('/<page>')
 def render_page(page):
+    print(page)
     try:
         return render_template(f"{page}")
+    except:
+        return "<h1>404 - Page not found</h1>", 404
+
+@app.route('/Algorithm/<page>')
+def render_algo_page(page):
+    print(page)
+    try:
+        return render_template(f"Algorithm/{page}")
     except:
         return "<h1>404 - Page not found</h1>", 404
 

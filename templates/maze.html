@@ -1,17 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <title>Maze Solver</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <h1>Maze Solver Web</h1>
-    <canvas id="mazeCanvas" width="600" height="600"></canvas>
-    <div>
-        <button id="generateBtn">Tạo Maze</button>
-        <button id="solveBtn">Giải Maze</button>
-    </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/frameal.css">
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="tool1">
+        <div class="frame-logo1">
+            <span class="secondtext-tool1">KaTiLa</span>
+            <span class="maintext-tool1">VISUALIZATION</span>
+        </div>
+
+        <nav class="menu">
+            <a href="../indexhome.html">Home</a>
+            <a href="#">Community</a>
+            <a href="#">Algorithms</a>
+            <a href="#">History</a>
+            <a href="#">Docs</a>
+            <a href="#">Member</a>
+
+        </nav>
+
+        <div class="frame-icon">
+            <span class="menu_icon">&#9776;</span>
+        </div>
+    </header>
+
+    <header class="tool2">
+        <a href="../Algorithm/overviewbfs.html" class="overview"><span>Overview</span></a>
+        <a href="../Algorithm/theorybfs.html" class="theory"><span>Theory</span></a>
+        <a href="/maze/bfs" class="simulation"><span>Simulation</span></a>
+        <a href="../Algorithm/stepbystepbfs.html" class="stepbystep"><span>Step by Step</span></a>
+        <a href="../Algorithm/quizbfs.html" class="quiz"><span>Quiz</span></a>
+    </header>
+    <div class="frame_al">
+        <h2 style="text-align:center;">Maze Solver</h2>
+        <div class="canvas-container">
+            <canvas id="mazeCanvas" width="500" height="500"></canvas>
+        </div>
+
+        <div class="buttons">
+            <button id="generateBtn" class="btn">Generate Maze</button>
+            <button id="solveBtn" class="btn">Solve Maze</button>
+        </div>
+
+
+
+    </div>
+
 </body>
+
 </html>

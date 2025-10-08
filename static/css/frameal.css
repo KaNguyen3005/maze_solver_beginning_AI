@@ -1,0 +1,41 @@
+.frame_al {
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;  /*thêm dòng này để xếp dọc */ 
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    border: 0;
+    border-radius: 12px;
+    background: rgba(253, 253, 253, 0.33);
+    margin-top: 80px;
+    margin-bottom: 80px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Giữ canvas nằm gọn trong khung */
+.canvas-container {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+/* Canh giữa và viền đẹp cho canvas */
+#mazeCanvas {
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #333;
+    border-radius: 8px;
+}
+
+body {
+  padding-top: 80px;   /* khoảng bằng chiều cao tool1 */
+  padding-bottom: 70px; /* khoảng bằng chiều cao tool2 */
+  height: auto;         /* tránh bị giới hạn bởi 100vh */
+}
+
+
+
+
