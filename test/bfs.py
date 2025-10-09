@@ -8,10 +8,9 @@ def solve_bfs(maze, start, end):
     visited = set()
     visited.add(start)
     start_time =time.time()
-    nodes_visited = 0
+    nodes_visited = [start]
     while queue:
         x, y = queue.pop(0)
-        nodes_visited += 1
         if (x, y) == end:
             end_time =time.time()
             break
@@ -19,6 +18,7 @@ def solve_bfs(maze, start, end):
             nx, ny = x + dx, y + dy
             if 0 <= nx < len(maze) and 0 <= ny < len(maze[0]) and maze[nx][ny] == 0 and (nx, ny) not in visited:
                 visited.add((nx, ny))
+                nodes_visited.append((nx, ny))
                 queue.append((nx, ny))
                 came_from[(nx, ny)] = (x, y)
     if end not in came_from:
