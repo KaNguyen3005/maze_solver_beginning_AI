@@ -1,41 +1,142 @@
-.frame_al {
-    max-width: 500px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;  /*thêm dòng này để xếp dọc */ 
-    align-items: center;
-    gap: 20px;
-    padding: 25px;
-    border: 0;
-    border-radius: 12px;
-    background: rgba(253, 253, 253, 0.33);
-    margin-top: 80px;
-    margin-bottom: 80px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Giữ canvas nằm gọn trong khung */
-.canvas-container {
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-}
-
-/* Canh giữa và viền đẹp cho canvas */
-#mazeCanvas {
-    display: block;
-    margin: 0 auto;
-    border: 2px solid #333;
-    border-radius: 8px;
-}
-
 body {
-  padding-top: 80px;   /* khoảng bằng chiều cao tool1 */
-  padding-bottom: 70px; /* khoảng bằng chiều cao tool2 */
-  height: auto;         /* tránh bị giới hạn bởi 100vh */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #e3f2fd, #bbdefb);
+  min-height: calc(100vh - 150px); /* trừ tool1 + tool2 */
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* khung cen */
+.frame_al {
+  max-width: 900px;      
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(253, 253, 253, 0.4);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  margin: 0;
+}
+
+/* canvas */
+.canvas-container {
+  background: white;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+}
+
+#mazeCanvas {
+  display: block;
+  margin: 0 auto;
+  border: 2px solid #333;
+  border-radius: 6px;
+  width: 400px;   
+  height: 400px;   
+}
+
+/* nút đ khiển */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background-color: #0277bd;
+}
+
+.frame-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* bảng thông tin bên phải */
+.info-panel {
+  width: 400px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 10px;
+  padding: 10px 15px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+
+.info-panel h3 {
+  text-align: center;
+  color: #000000;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.info-box {
+  margin-bottom: 6px;
+}
+
+.info-box strong 
+{
+  color: #000000;
+}
+
+.algo-status {
+  margin-top: 12px;
+  background: rgba(240, 248, 255, 0.9);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 13px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.algo-status h4 {
+  text-align: center;
+  margin-bottom: 8px;
+  color: #0277bd;
+  font-weight: 700;
+}
+
+.algo-status p {
+  margin: 4px 0;
+  color: #333;
 }
 
 
+/* table thống kê */
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+}
 
+.stats-table td {
+  padding: 6px 4px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
 
+.stats-table td:first-child {
+  color: #333;
+}
+
+.stats-table td:last-child {
+  text-align: right;
+  font-weight: 600;
+  color: #000000;
+}

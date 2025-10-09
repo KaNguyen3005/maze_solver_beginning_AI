@@ -15,15 +15,15 @@
 <body>
 
     <header class="tool1">
-        <div  class="frame-logo1">
+        <div class="frame-logo1">
             <span class="secondtext-tool1">KaTiLa</span>
             <span class="maintext-tool1">VISUALIZATION</span>
         </div>
 
         <nav class="menu">
             <ul>
-            <a href="../indexhome.html">Home</a>
-            <li class="dropdown">
+                <a href="../indexhome.html">Home</a>
+                <li class="dropdown">
                     <a href="#">Algorithms ▼</a>
                     <div class="dropdown-content">
                         <a href="Algorithm/simulationbfs.html">BFS</a>
@@ -53,20 +53,54 @@
     </header>
     <div class="frame_al">
         <h2 style="text-align:center;">Maze Solver</h2>
-        <div class="canvas-container">
-            <canvas id="mazeCanvas" width="500" height="500"></canvas>
+
+        <div class="frame-wrapper">
+            <div class="canvas-container">
+                <canvas id="mazeCanvas" width="400" height="400"></canvas>
+            </div>
+
+            <div class="info-panel">
+                <div class="algo-status">
+                    <h3>Algorithm Status</h3>
+                    <p><b> Current node:</b> <span id="currentNode">None</span></p>
+                    <p><b> Queue/Stack:</b> <span id="queueContent">[]</span></p>
+                    <p><b> Visited:</b> <span id="visitedList">[]</span></p>
+                    <p><b> Phase:</b> <span id="phase">Idle</span></p>
+                </div>
+
+                <h4>Statistics</h4>
+                <table class="stats-table">
+                    <tr>
+                        <td> <b>Runtime</b></td>
+                        <td id="runtime">0 ms</td>
+                    </tr>
+                    <tr>
+                        <td> <b>Path length</b></td>
+                        <td id="pathLength">0</td>
+                    </tr>
+                    <tr>
+                        <td> <b>Visited nodes</b></td>
+                        <td id="visitedCount">0</td>
+                    </tr>
+                    <tr>
+                        <td> <b>Updates</b></td>
+                        <td id="updates">0</td>
+                    </tr>
+                    <tr>
+                        <td> <b>Status</b></td>
+                        <td id="status">Idle</td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
         <div class="buttons">
             <button id="generateBtn" class="btn">Generate Maze</button>
             <button id="solveBtn" class="btn">Solve Maze</button>
         </div>
-
-
-
     </div>
 
 </body>
-    <script src="/static/js/script.js"></script>
+<script src="/static/js/script.js"></script>
 
 </html>

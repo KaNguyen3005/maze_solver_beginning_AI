@@ -79,62 +79,89 @@ async function generateMaze() {
 }
 
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// kham pha duong di
 async function animateVisited() {
-    for (const [r, c] of visited) {
-        // Skip start and end
-        if ((r === start[0] && c === start[1]) || (r === end[0] && c === end[1])) continue;
+  for (const [r, c] of visited) {
+    if ((r === start[0] && c === start[1]) || (r === end[0] && c === end[1])) continue;
 
-        ctx.fillStyle = 'lightblue'; // color for visited
-        ctx.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-        ctx.strokeRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    ctx.fillStyle = '#b3e5fc';
+    ctx.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    ctx.strokeRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
 
-        await sleep(20); // delay for animation
-    }
-}
-
-async function animatePath() {
-    // Optionally clear visited
-    drawMaze(); // Redraw maze to remove visited highlights
-
-    for (const [r, c] of path) {
-        ctx.fillStyle = 'yellow'; // path color
-        ctx.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-        ctx.strokeRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-        await sleep(50); // slower animation for path
-    }
-
-    // Draw start and end again
-    ctx.fillStyle = 'red';
-    ctx.fillRect(start[1]*CELL_SIZE, start[0]*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    // danh dau da di
     ctx.fillStyle = 'green';
-    ctx.fillRect(end[1]*CELL_SIZE, end[0]*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    ctx.font = `${CELL_SIZE * 0.6}px Arial`;
+    ctx.fillText('✓', c * CELL_SIZE + CELL_SIZE / 4, r * CELL_SIZE + CELL_SIZE * 0.7);
+
+    await sleep(100); 
+  }
 }
 
+//tô đậm đường đi
+async function animatePath() {
+  await sleep(300); 
+  for (const [r, c] of path) {
+    ctx.fillStyle = '#0288d1'; 
+    ctx.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    ctx.strokeRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    await sleep(50);
+  }
+
+  // ve start/end
+  ctx.fillStyle = 'red';
+  ctx.fillRect(start[1] * CELL_SIZE, start[0] * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+  ctx.fillStyle = 'green';
+  ctx.fillRect(end[1] * CELL_SIZE, end[0] * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+}
+
+async function generateMaze() {
+  drawMaze();
+}
 
 async function solveMaze() {
-    const res = await fetch('/api/solve', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ maze, start, end })
-    });
-
-    // const data = await res.json();
-    // visited = data.nodes_visited; // assume server returns visited nodes
-    // path = data.path;
-
-    // Animate visited nodes first
-    await animateVisited();
-
-    // Then show the path
-    await animatePath();
+  await animateVisited();
+  await animatePath();
 }
-
 
 document.getElementById('generateBtn').addEventListener('click', generateMaze);
 document.getElementById('solveBtn').addEventListener('click', solveMaze);
 
-// Khởi tạo lần đầu
+
+// hien thi thuc te chay thuan toan
+function updateAlgorithmStatus(current, queue, visited, phase) {
+    document.getElementById("currentNode").textContent = current || "None";
+    document.getElementById("queueContent").textContent = "[" + queue.join(", ") + "]";
+    document.getElementById("visitedList").textContent = "[" + visited.slice(-5).join(", ") + (visited.length > 5 ? ", ..." : "") + "]";
+    document.getElementById("phase").textContent = phase;
+}
+
+//hien thi trang thai thuat toan thuat toan khi end
+function updateStats(runtime, pathLength, visitedCount, updates, status) {
+    document.getElementById("runtime").textContent = runtime + " ms";
+    document.getElementById("pathLength").textContent = pathLength;
+    document.getElementById("visitedCount").textContent = visitedCount;
+    document.getElementById("updates").textContent = updates;
+    document.getElementById("status").textContent = status;
+}
+
+// chay solveMaze()
+async function solveMaze() {
+    const startTime = performance.now();
+
+    updateStats(0, 0, 0, 0, "Running...");
+
+    await animateVisited();
+    await animatePath();
+
+    const endTime = performance.now();
+    const runtime = Math.round(endTime - startTime);
+
+    // ket qua
+    updateStats(runtime, path.length, visited.length, visited.length + path.length, "✅ Found path");
+}
+
+// Khởi tạo
 generateMaze();
