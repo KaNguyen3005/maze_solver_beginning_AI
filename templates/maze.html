@@ -1,106 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>Maze Solver</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/main.css">
-    <link rel="stylesheet" href="../static/css/frameal.css">
-    <link rel="stylesheet" href="../static/css/algorithm.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/frameal.css" />
+    <link rel="stylesheet" href="../static/css/algorithm.css" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-</head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-
+  <body>
     <header class="tool1">
-        <div class="frame-logo1">
-            <span class="secondtext-tool1">KaTiLa</span>
-            <span class="maintext-tool1">VISUALIZATION</span>
-        </div>
+      <div class="frame-logo1">
+        <span class="secondtext-tool1">KaTiLa</span>
+        <span class="maintext-tool1">VISUALIZATION</span>
+      </div>
 
-        <nav class="menu">
-            <ul>
-                <a href="../indexhome.html">Home</a>
-                <li class="dropdown">
-                    <a href="#">Algorithms ▼</a>
-                    <div class="dropdown-content">
-                        <a href="Algorithm/simulationbfs.html">BFS</a>
-                        <a href="Algorithm/simulationadfs.html">DFS</a>
-                        <a href="Algorithm/simulationdij.html">Dijkstra</a>
-                        <a href="Algorithm/simulationa.html">A*</a>
-                        <a href="Algorithm/simulationfc.html">Foward Chaining</a>
-                        <a href="Algorithm/simulationminimax.html">Mini Max</a>
-                        <a href="Algorithm/simulationffill.html">Flood Fill</a>
-                    </div>
-                </li>
-            </ul>
+      <nav class="menu">
+        <ul>
+          <a href="../indexhome.html">Home</a>
+          <li class="dropdown">
+            <a href="#">Algorithms ▼</a>
+            <div class="dropdown-content">
+              <a href="Algorithm/overview.html?algo=bfs">BFS</a>
+              <a href="Algorithm/overview.html?algo=dfs">DFS</a>
+              <a href="Algorithm/overview.html?algo=dijkstra">Dijkstra</a>
+              <a href="Algorithm/overview.html?algo=a_star">A*</a>
+              <a href="Algorithm/overview.html?algo=forward_chaining"
+                >Forward Chaining</a
+              >
+              <a href="Algorithm/overview.html?algo=minimax">Mini Max</a>
+              <a href="Algorithm/overview.html?algo=flood_fill">Flood Fill</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
 
-        </nav>
-
-        <div class="frame-icon">
-            <span class="menu_icon">&#9776;</span>
-        </div>
+      <div class="frame-icon">
+        <span class="menu_icon">&#9776;</span>
+      </div>
     </header>
 
     <header class="tool2">
-        <a href="../Algorithm/overviewbfs.html" class="overview"><span>Overview</span></a>
-        <a href="../Algorithm/theorybfs.html" class="theory"><span>Theory</span></a>
-        <a href="/maze/bfs" class="simulation"><span>Simulation</span></a>
-        <a href="../Algorithm/stepbystepbfs.html" class="stepbystep"><span>Step by Step</span></a>
-        <a href="../Algorithm/quizbfs.html" class="quiz"><span>Quiz</span></a>
+      <a id="overview-tab" class="overview active"><span>Overview</span></a>
+      <a id="theory-tab" class="theory"><span>Theory</span></a>
+      <a id="simulation-tab" class="simulation"><span>Simulation</span></a>
+      <a id="stepbystep-tab" class="stepbystep"><span>Step by Step</span></a>
+      <a id="quiz-tab" class="quiz"><span>Quiz</span></a>
     </header>
     <div class="frame_al">
-        <h2 style="text-align:center;">Maze Solver</h2>
+      <h2 style="text-align: center">Maze Solver</h2>
 
-        <div class="frame-wrapper">
-            <div class="canvas-container">
-                <canvas id="mazeCanvas" width="400" height="400"></canvas>
-            </div>
-
-            <div class="info-panel">
-                <div class="algo-status">
-                    <h3>Algorithm Status</h3>
-                    <p><b> Current node:</b> <span id="currentNode">None</span></p>
-                    <p><b> Queue/Stack:</b> <span id="queueContent">[]</span></p>
-                    <p><b> Visited:</b> <span id="visitedList">[]</span></p>
-                    <p><b> Phase:</b> <span id="phase">Idle</span></p>
-                </div>
-
-                <h4>Statistics</h4>
-                <table class="stats-table">
-                    <tr>
-                        <td> <b>Runtime</b></td>
-                        <td id="runtime">0 ms</td>
-                    </tr>
-                    <tr>
-                        <td> <b>Path length</b></td>
-                        <td id="pathLength">0</td>
-                    </tr>
-                    <tr>
-                        <td> <b>Visited nodes</b></td>
-                        <td id="visitedCount">0</td>
-                    </tr>
-                    <tr>
-                        <td> <b>Updates</b></td>
-                        <td id="updates">0</td>
-                    </tr>
-                    <tr>
-                        <td> <b>Status</b></td>
-                        <td id="status">Idle</td>
-                    </tr>
-                </table>
-            </div>
+      <div class="frame-wrapper">
+        <div class="canvas-container">
+          <canvas id="mazeCanvas" width="400" height="400"></canvas>
         </div>
 
-        <div class="buttons">
-            <button id="generateBtn" class="btn">Generate Maze</button>
-            <button id="solveBtn" class="btn">Solve Maze</button>
+        <div class="info-panel">
+          <div class="algo-status">
+            <h3>Algorithm Status</h3>
+            <p><b> Current node:</b> <span id="currentNode">None</span></p>
+            <p><b> Queue/Stack:</b> <span id="queueContent">[]</span></p>
+            <p><b> Visited:</b> <span id="visitedList">[]</span></p>
+            <p><b> Phase:</b> <span id="phase">Idle</span></p>
+          </div>
+
+          <h4>Statistics</h4>
+          <table class="stats-table">
+            <tr>
+              <td><b>Runtime</b></td>
+              <td id="runtime">0 ms</td>
+            </tr>
+            <tr>
+              <td><b>Path length</b></td>
+              <td id="pathLength">0</td>
+            </tr>
+            <tr>
+              <td><b>Visited nodes</b></td>
+              <td id="visitedCount">0</td>
+            </tr>
+           
+            <tr>
+              <td><b>Status</b></td>
+              <td id="status">Idle</td>
+            </tr>
+          </table>
         </div>
+      </div>
+
+      <div class="buttons">
+        <button id="generateBtn" class="btn">Generate Maze</button>
+        <button id="solveBtn" class="btn">Solve Maze</button>
+        <!-- Nút đổi thuật toán -->
+        <select id="algoSelect" class="btn">
+          <option value="bfs">BFS</option>
+          <option value="dfs">DFS</option>
+          <option value="astar">A*</option>
+          <option value="dijkstra">Dijkstra</option>
+          <option value="minimax">Mini Max</option>
+          <option value="fc">Forward Chaining</option>
+          <option value="ffill">Flood Fill</option>
+        </select>
+      </div>
     </div>
-
-</body>
-<script src="/static/js/script.js"></script>
-
+  </body>
+  <script src="/static/js/script.js"></script>
+  <script src="/static/js/overview.js"></script>
 </html>

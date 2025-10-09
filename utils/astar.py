@@ -4,7 +4,7 @@ import time
 def heuristic(a, b):
     return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
-def solve_astar(maze, start, end):
+def solve_maze(maze, start, end):
     start_time = time.time()
     nodes_visited = [start]
     

@@ -1,6 +1,6 @@
 import time
 
-def solve_dfs(maze,start,end):
+def solve_maze(maze,start,end):
     print(start)
     stack=[start]
     came_from ={start:None}
@@ -50,4 +50,4 @@ maze = [
 start = (0,0)
 end   = (4,4)
 
-print("DFS:", solve_dfs(maze, start, end))
+# print("DFS:", solve_dfs(maze, start, end))

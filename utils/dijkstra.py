@@ -1,7 +1,7 @@
 import heapq
 import time
 
-def solve_dijkstra(maze, start, end):
+def solve_maze(maze, start, end):
     start_time = time.time()
     nodes_visited = [start]
 
@@ -78,5 +78,4 @@ if __name__ == "__main__":
     start = (0,0)
     end   = (4,4)
 
-    result = solve_dijkstra(maze, start, end)
-    print(result)
+    # result = solve_dijkstra(maze, start, end)

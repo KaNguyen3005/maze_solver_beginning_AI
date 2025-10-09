@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Maze Solver</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #mazeCanvas { border: 1px solid #333; display: block; margin-bottom: 20px; }
+        .controls { margin-bottom: 10px; }
+        .status { margin-top: 20px; }
+        .status span { display: inline-block; min-width: 100px; }
+    </style>
+</head>
+<body>
+    <h1>Maze Solver Visualization</h1>
+    <canvas id="mazeCanvas" width="600" height="600"></canvas>
+    <div class="controls">
+        <button id="generateBtn">Generate Maze</button>
+        <button id="solveBtn">Solve Maze</button>
+    </div>
+    <div class="status">
+        <div><b>Current Node:</b> <span id="currentNode">None</span></div>
+        <div><b>Queue:</b> <span id="queueContent">[]</span></div>
+        <div><b>Visited:</b> <span id="visitedList">[]</span></div>
+        <div><b>Phase:</b> <span id="phase">Idle</span></div>
+        <div><b>Runtime:</b> <span id="runtime">0 ms</span></div>
+        <div><b>Path Length:</b> <span id="pathLength">0</span></div>
+        <div><b>Visited Count:</b> <span id="visitedCount">0</span></div>
+        <div><b>Updates:</b> <span id="updates">0</span></div>
+        <div><b>Status:</b> <span id="status">Ready</span></div>
+    </div>
+    <script src="static/js/script.js"></script>
+</body>
+</html>

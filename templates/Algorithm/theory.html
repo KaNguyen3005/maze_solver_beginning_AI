@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visualization</title>
+
+    <!-- Base path giúp chuyển đường dẫn href thành tuyệt đối -->
+    <base href="/" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="static/css/main.css" />
+    <link rel="stylesheet" href="static/css/algorithm.css" />
+    <link rel="stylesheet" href="static/css/frame.css" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JS -->
+    <script src="static/js/theory.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Header chính -->
+    <header class="tool1">
+      <div class="frame-logo1">
+        <span class="secondtext-tool1">KaTiLa</span>
+        <span class="maintext-tool1">VISUALIZATION</span>
+      </div>
+
+      <nav class="menu">
+        <ul>
+          <li><a href="templates/indexhome.html">Home</a></li>
+          <li><a href="#">Community</a></li>
+          <li class="dropdown">
+            <a href="#">Algorithms ▼</a>
+            <div class="dropdown-content">
+              <a href="Algorithm/overview.html?algo=bfs">BFS</a>
+              <a href="Algorithm/overview.html?algo=dfs">DFS</a>
+              <a href="Algorithm/overview.html?algo=dijkstra"
+                >Dijkstra</a
+              >
+              <a href="Algorithm/overview.html?algo=a_star">A*</a>
+              <a href="Algorithm/overview.html?algo=forward_chaining"
+                >Forward Chaining</a
+              >
+              <a href="Algorithm/overview.html?algo=minimax"
+                >Mini Max</a
+              >
+              <a href="Algorithm/overview.html?algo=flood_fill"
+                >Flood Fill</a
+              >
+            </div>
+          </li>
+          <li><a href="#">History</a></li>
+          <li><a href="#">Docs</a></li>
+          <li><a href="#">Member</a></li>
+        </ul>
+      </nav>
+
+      <div class="frame-icon">
+        <span class="menu_icon">&#9776;</span>
+      </div>
+    </header>
+
+    <!-- Thanh điều hướng thứ 2 -->
+    <header class="tool2">
+      <a href="templates/Algorithm/overviewa.html" class="overview"
+        ><span>Overview</span></a
+      >
+      <a href="templates/Algorithm/theorya.html" class="theory"
+        ><span>Theory</span></a
+      >
+      <a href="templates/Algorithm/simulationa.html" class="simulation"
+        ><span>Simulation</span></a
+      >
+      <a href="templates/Algorithm/stepbystepa.html" class="stepbystep"
+        ><span>Step by Step</span></a
+      >
+      <a href="templates/Algorithm/quiza.html" class="quiz"
+        ><span>Quiz</span></a
+      >
+    </header>
+
+    <!-- Container nội dung -->
+    <main class="container">
+      <h1 id="algo-title">Algorithm Title</h1>
+      <div id="algo-content">
+        <!-- Nội dung thuật toán sẽ được render vào đây bằng fetch -->
+      </div>
+    </main>
+  </body>
+</html>

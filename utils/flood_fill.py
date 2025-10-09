@@ -1,7 +1,7 @@
 from collections import deque
 import time
 
-def flood_fill(maze, start, end):
+def solve_maze(maze, start, end):
     start_time = time.time()
     nodes_visited = 0
 
@@ -62,5 +62,5 @@ if __name__ == "__main__":
     start = (0,0)
     end   = (4,4)
 
-    result = flood_fill(maze, start, end)
-    print(result)
+    # result = flood_fill(maze, start, end)
+    # print(result)

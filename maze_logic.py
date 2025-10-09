@@ -1,7 +1,15 @@
 import random
 import heapq
-
+from utils import bfs, dfs, astar, dijkstra
 ROWS, COLS = 20, 20
+
+
+SOLVERS = {
+    "bfs": bfs.solve_maze,
+    "dfs": dfs.solve_maze,
+    "astar": astar.solve_maze,
+    "dijkstra": dijkstra.solve_maze,
+}
 
 def generate_solvable_maze(rows=ROWS, cols=COLS):
     # Hàm tạo maze đơn giản, chỉ dùng 0 là đường, 1 là tường
@@ -29,32 +37,13 @@ def generate_solvable_maze(rows=ROWS, cols=COLS):
         if is_solvable(maze, start, end):
             return maze, start, end
 
-def solve_maze(maze, start, end):
-    # Dùng BFS để đơn giản
-    queue = [start]
-    came_from = {start: None}
-    visited = set()
-    visited.add(start)
-    while queue:
-        x, y = queue.pop(0)
-        if (x, y) == end:
-            break
-        for dx, dy in [(-1,0),(1,0),(0,-1),(0,1)]:
-            nx, ny = x + dx, y + dy
-            if 0 <= nx < len(maze) and 0 <= ny < len(maze[0]) and maze[nx][ny] == 0 and (nx, ny) not in visited:
-                visited.add((nx, ny))
-                queue.append((nx, ny))
-                came_from[(nx, ny)] = (x, y)
-    if end not in came_from:
-        return []
-    # Tạo đường đi từ end về start
-    path = []
-    cur = end
-    visited_in_trace = set()  # để tránh vòng lặp
+def solve_maze(maze, start, end, algo):
+    """
+    Giải maze bằng thuật toán chỉ định.
+    algo có thể là: 'bfs', 'dfs', 'dijkstra', 'astar'
+    """
+    algo = algo.lower()
 
-    while cur is not None:
-        path.append(cur)
-        cur = came_from.get(cur)
-
-    path.reverse()
-    return path
+    if algo not in SOLVERS:
+        raise Exception(f"Thuật toán {algo} không tồn tại")
+    return SOLVERS[algo](maze, start, end)

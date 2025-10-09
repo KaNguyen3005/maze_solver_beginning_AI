@@ -1,7 +1,8 @@
 import random
 import heapq
 import time
-def solve_bfs(maze, start, end):
+
+def solve_maze(maze, start, end):
     # Dùng BFS để đơn giản
     queue = [start]
     came_from = {start: None}
@@ -56,5 +57,4 @@ maze = [
 start = (0,0)
 end   = (4,4)
 
-dic = solve_bfs(maze, start, end)
-print(dic)
+# dic = solve_bfs(maze, start, end)
