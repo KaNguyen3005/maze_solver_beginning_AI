@@ -2,6 +2,8 @@
 const urlParams = new URLSearchParams(window.location.search);
 const algo = urlParams.get("algo");
 
+console.log(algo)
+
 // Gán link cho menu phụ để chuyển trang vẫn giữ algo
 const mazeSimulationUrl = new URL(`/maze.html?algo=${algo}&mode=simulation`, window.location.origin);
 const mazeStepByStepUrl = new URL(`/maze.html?algo=${algo}&mode=stepbystep`, window.location.origin);

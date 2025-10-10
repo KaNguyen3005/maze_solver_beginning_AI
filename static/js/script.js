@@ -4,111 +4,8 @@ const ROWS = 20;
 const COLS = 20;
 const CELL_SIZE = canvas.width / COLS;
 let solving = false; // đang chạy Solve
+let runningDotsInterval = null;
 
-let maze = [
-  [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
-];
-let visited = [
-  [0, 0],
-  [1, 0],
-  [1, 1],
-  [1, 2],
-  [1, 3],
-  [1, 4],
-  [1, 5],
-  [1, 6],
-  [1, 7],
-  [1, 8],
-  [1, 9],
-  [1, 10],
-  [1, 11],
-  [1, 12],
-  [1, 13],
-  [1, 14],
-  [1, 15],
-  [1, 16],
-  [1, 17],
-  [1, 18],
-  [2, 18],
-  [3, 18],
-  [4, 18],
-  [5, 18],
-  [6, 18],
-  [7, 18],
-  [8, 18],
-  [9, 18],
-  [10, 18],
-  [11, 18],
-  [12, 18],
-  [13, 18],
-  [14, 18],
-  [15, 18],
-  [16, 18],
-  [17, 18],
-  [18, 18],
-  [19, 18],
-  [19, 19],
-];
-let path = [
-  [0, 0],
-  [1, 0],
-  [1, 1],
-  [1, 2],
-  [1, 3],
-  [1, 4],
-  [1, 5],
-  [1, 6],
-  [1, 7],
-  [1, 8],
-  [1, 9],
-  [1, 10],
-  [1, 11],
-  [1, 12],
-  [1, 13],
-  [1, 14],
-  [1, 15],
-  [1, 16],
-  [1, 17],
-  [1, 18],
-  [2, 18],
-  [3, 18],
-  [4, 18],
-  [5, 18],
-  [6, 18],
-  [7, 18],
-  [8, 18],
-  [9, 18],
-  [10, 18],
-  [11, 18],
-  [12, 18],
-  [13, 18],
-  [14, 18],
-  [15, 18],
-  [16, 18],
-  [17, 18],
-  [18, 18],
-  [19, 18],
-  [19, 19],
-];
 let start = [0, 0];
 let end = [ROWS - 1, COLS - 1];
 
@@ -227,12 +124,35 @@ function updateAlgorithmStatus(current, queue, visited, phase) {
 }
 
 //hien thi trang thai thuat toan thuat toan khi end
-function updateStats(runtime, pathLength, visitedCount, updates, status) {
+function updateStats(runtime, pathLength, visitedCount, status) {
   document.getElementById("runtime").textContent = runtime + " ms";
   document.getElementById("pathLength").textContent = pathLength;
   document.getElementById("visitedCount").textContent = visitedCount;
   document.getElementById("status").textContent = status;
 }
+
+function startRunningDots() {
+  const statusEl = document.getElementById("status"); // element hiển thị trạng thái
+  let dotCount = 0;
+
+  // Xóa interval cũ nếu có
+  if (runningDotsInterval) clearInterval(runningDotsInterval);
+
+  runningDotsInterval = setInterval(() => {
+    dotCount = (dotCount + 1) % 4; // 0,1,2,3
+    const dots = '.'.repeat(dotCount);
+    statusEl.textContent = `Running${dots}`;
+  }, 500); // mỗi 0.5s đổi dấu
+}
+
+function stopRunningDots(finalText) {
+  if (runningDotsInterval) {
+    clearInterval(runningDotsInterval);
+    runningDotsInterval = null;
+  }
+  document.getElementById("status").textContent = finalText;
+}
+
 async function solveMaze() {
   if (solving) {
     console.log("Đang chạy solve trước đó, hủy animation cũ...");
@@ -249,7 +169,7 @@ async function solveMaze() {
   visited = [];
   drawMaze();
 
-  updateStats(0, 0, 0, 0, "Running...");
+  startRunningDots(); // ✅ bật hiệu ứng "Running..."
 
   // Gửi maze, start, end, algo lên server
   const res = await fetch(`/api/solve?algo=${algo}`, {
@@ -264,7 +184,7 @@ async function solveMaze() {
   const run_time = data.time_taken; // Animate kết quả
   await animateVisited();
   await animatePath(); // Hiển thị kết quả
-  console.log("Path:", path);
+  stopRunningDots((path.length > 0) ? "✅ Found path" : "❌ No path found"); 
   updateStats(
     run_time,
     path.length,
@@ -310,4 +230,3 @@ window.onload = () => {
   // Sau đó generate maze
   generateMaze();
 };
-// Khởi tạo
