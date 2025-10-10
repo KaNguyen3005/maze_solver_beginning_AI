@@ -57,143 +57,292 @@
         <div class="container">
             <h1>Dijkstra</h1>
             <p>
-            DFS (Depth-First Search) là thuật toán duyệt (hay tìm kiếm) đồ thị hoặc cây theo chiều sâu, nghĩa là từ một nút gốc (source), nó đi sâu theo một nhánh cho đến khi không còn nút nào để đi tiếp, sau đó quay lui (backtrack) để tiếp tục với các nhánh còn lại. 
-            </p>
-            <p>
-            DFS thường được dùng để:  
-            </p>
             <ul>
-                <li>Khám phá toàn bộ các nút trong đồ thị hoặc cây.</li>
-                <li>Phát hiện chu trình (cycle detection).</li>
-                <li>Tìm thành phần liên thông trong đồ thị.</li>
-                <li>Là bước quan trọng trong nhiều thuật toán khác:</li>
-                <ul>
-                    <li>Topological Sort (sắp xếp topo).</li>
-                    <li>Tìm Strongly Connected Components (SCC – thành phần liên thông mạnh).</li>
-                    <li>Tìm cầu (bridge), đỉnh khớp (articulation point).</li>
-                </ul>
+                <li>Duyệt theo độ dài đường đi ngắn nhất (chi phí nhỏ nhất), không theo chiều sâu hay rộng.</li>
+                <li>Sử dụng chiến lược tham lam (greedy): luôn chọn đỉnh có khoảng cách tạm thời nhỏ nhất chưa được xử lý.</li>
+                <li>Chỉ hoạt động đúng khi trọng số cạnh không âm.</li>
+                <li>Mục tiêu: tìm đường đi ngắn nhất từ nguồn đến tất cả các đỉnh (hoặc một đích cụ thể).</li>
+                <li>Cách hoạt động: giống BFS có trọng số — thay vì duyệt tầng theo số bước, nó duyệt theo tổng trọng số nhỏ nhất.</li>
             </ul>
-            <img src="https://f.howkteam.vn/Upload/cke/images/2_IMAGE%20TUTORIAL/8_CTDL%26GT/Bai19/1_BFS%20v%C3%A0%20DFS_Howkteam_vn.png" alt="Thứ tự thăm các đỉnh của BFS">
-
+            </p>
             <h2>Ý tưởng (Idea)</h2>
-            <ul>
-                <li>Bắt đầu từ nút nguồn (source), đánh dấu nó là đã thăm (visited).</li>
-                <li>Với mỗi nút kề (neighbor) của nó:
+                <p>Bắt đầu từ đỉnh nguồn (source):</p>
                     <ul>
-                        <li>Nếu nút kề chưa được thăm, đệ quy gọi DFS trên nút đó.</li>
+                        <li>Gán cho nó khoảng cách bằng 0.</li>
+                        <li>Gán khoảng cách vô hạn (∞) cho tất cả các đỉnh khác.</li>
                     </ul>
-                </li>
-                <li>Khi đi hết nhánh thì quay lui (backtrack) để thăm các nhánh khác.</li>
-            </ul>
-            <p>DFS có thể triển khai theo 2 cách: </p>
+                <p>Chọn đỉnh gần nhất chưa xét:</p>
+                    <ul>
+                        <li>Trong mỗi vòng lặp, chọn đỉnh có khoảng cách nhỏ nhất trong số các đỉnh chưa được duyệt.</li>
+                        <li>Đỉnh này được xem là đã tìm được đường đi ngắn nhất từ nguồn → nó sẽ không thay đổi nữa.</li>
+                    </ui>
+            <p>Cập nhật các đỉnh kề:</p>
             <ul>
-                <li>Đệ quy (recursive).</li>
-                <li>Ngăn xếp (stack) thay cho đệ quy.</li>
+                <li>Với mỗi đỉnh kề v của đỉnh đang xét u, nếu đi qua u giúp đường đi đến v ngắn hơn thì cập nhập lại khoảng cách của v:
+                    <li>dist[v]>dist[u] +w(u,v) thì dist[v] =dist[u]+ w(u,v) trong đó w(u,v)là trọng số cạnh.)
+                    </li>
+                </li>
             </ul>
-            <h2>Thuật toán (Algorithm)</h2>
-            <pre>
-            DFS(graph, start):
-                mark start as visited
-                for each neighbor of start:
-                    if neighbor not visited:
-                        DFS(graph, neighbor)
-            </pre>
-
+            <p>Lặp lại quá trình:</p>
+            <ul>
+                <li>Tiếp tục chọn đỉnh gần nhất chưa xét và cập nhật các đỉnh kề cho đến khi tất cả các đỉnh được duyệt hoặc đích được xử lý.</li>
+            </ul>
             <h2>Mã giả (Pseudocode)</h2>
             <pre>
-            DFS(Graph G, node u):
-                visited[u] = true
-                for each v in neighbors(u):
-                    if not visited[v]:
-                        parent[v] = u
-                        DFS(G, v)
-
+            Dijkstra(Graph G, node s):
+                for each vertex v in G:
+                    dist[v] ← ∞
+                    parent[v] ← null
+                 dist[s] ← 0
+                 Q ← all vertices in G     // hàng đợi ưu tiên
+                 while Q is not empty:
+                    u ← vertex in Q with smallest dist[u]
+                    remove u from Q
+                    for each neighbor v of u:
+                        alt ← dist[u] + weight(u, v)
+                        if alt < dist[v]:
+                            dist[v] ← alt
+                            parent[v] ← u
             </pre>
             <ul>
-                <li><b>neighbors(u)</b> là các đỉnh kề của của <b>u</b>.</li>
-                <li><b>parent[v] </b> lưu lại cha của <b>v</b> để tái tạo đường đi.</li>
+                <li><b>dist[v]:</b> khoảng cách ngắn nhất từ đỉnh nguồn <b>s </b>đến đỉnh <b>v</b>.</li>
+                <li><b>parent[v] :</b> lưu lại đỉnh trước đó để dựng lại đường đi.</li>
+                <li><b>w(u, v)</b>hoặc <b>w(u, v):</b> trọng số cạnh từ đỉnh <b>u</b> đến đỉnh <b>v</b>.</li>
+                <li>Hàng đợi ưu tiên<b>(priority queue)</b> giúp chọn đỉnh có <b>dist</b> nhỏ nhất nhanh hơn.</li>
             </ul>
 
             <h2>Triển khai bằng các ngôn ngữ phổ biến</h2>
             <b>Code C++</b>
             <pre>
-            #include<bits/stdc++.h>
-            using namespace std;
-            bool visited[1001];
-            vector<int>adj[1001];
-            void Intput()
-            {
-                int n, m;
-                cin >>n >>m;
-                for(int i = 0; i<m; i++)
-                {
-                    int x, y; cin >>x >>y;
-                    adj[x].push_back(y);
-                    adj[y].push_back(x);
-                }
-                memset(visited, false, sizeof(visited));
-            }
-            void DFS(int u)
-            {
-                cout<< u<<" ";
+                #include <bits/stdc++.h>
+                using namespace std;
 
-                // thăm đỉnh u đã xét
-                visited[u]=true;
-                
-                // duyệt tất cả các đỉnh kề với đỉnh u
-                for(int v:adj[u]
-                ){
-                    if(visited[v]!=true)
-                    {
-                        DFS(v);
+                const int INF = 1e9; // Giá trị vô cùng (rất lớn)
+                vector<pair<int,int>> adj[1001]; // adj[u] = danh sách (đỉnh kề, trọng số)
+                int dist[1001];  // Lưu khoảng cách ngắn nhất
+                bool visited[1001];
+                int parent[1001]; // Dùng để truy vết đường đi (nếu cần)
+
+                void Input() {
+                    int n, m; // n: số đỉnh, m: số cạnh
+                    cin >> n >> m;
+                    for (int i = 0; i < m; i++) {
+                        int u, v, w;
+                        cin >> u >> v >> w; // cạnh từ u đến v có trọng số w
+                        adj[u].push_back({v, w});
+                        adj[v].push_back({u, w}); // nếu là đồ thị vô hướng
+                     }
+                    for (int i = 1; i <= n; i++) {
+                         dist[i] = INF;
+                         visited[i] = false;
+                         parent[i] = -1;
+                     }
+                }
+                void Dijkstra(int start) {
+                     priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+                    dist[start] = 0;
+                    pq.push({0, start});
+                    while (!pq.empty()) {
+                         int u = pq.top().second;
+                         pq.pop();
+                         if (visited[u]) continue;
+                         visited[u] = true;
+                        // Duyệt tất cả đỉnh kề của u
+                         for (auto edge : adj[u]) {
+                             int v = edge.first;
+                             int w = edge.second;
+                         // Nếu tìm được đường đi ngắn hơn
+                         if (dist[v] > dist[u] + w) {
+                            dist[v] = dist[u] + w;
+                            parent[v] = u;
+                            pq.push({dist[v], v});
+                         }
+                     }
+                 }
+            }
+            int main() {
+                Input();
+                int start;
+                cout << "Nhap dinh bat dau: ";
+                cin >> start;
+                Dijkstra(start);
+                cout << "Khoang cach ngan nhat tu dinh " << start << ":\n";
+                for (int i = 1; i <= 1000; i++) {
+                     if (dist[i] != INF)
+                     cout << " -> " << i << ": " << dist[i] << endl;
                     }
-                }
-            }    
-            int main()
-            {
-                Intput();
-                DFS(1);
+                return 0;
             }
-
         </pre>
 
             <b>Code Java</b>
-            <pre> </pre>
+            <pre>
+                import java.util.*;
+                // Lớp mô tả cạnh (đỉnh kề, trọng số)
+                class Edge {
+                    int to;
+                    int weight;
+
+                    Edge(int to, int weight) {
+                        this.to = to;
+                        this.weight = weight;
+                    }
+                }
+                public class DijkstraExample {
+                    static final int INF = 1000000000; // Giá trị vô cùng lớn
+                    static ArrayList<Edge>[] adj; // Danh sách kề
+                    static int[] dist;            // Khoảng cách ngắn nhất
+                    static boolean[] visited;     // Đánh dấu đỉnh đã thăm
+                    static int[] parent;          // Dùng để lưu đường đi (nếu cần)
+
+                    @SuppressWarnings("unchecked")
+                    public static void input() {
+                        Scanner sc = new Scanner(System.in);
+                        System.out.print("Nhap so dinh n va so canh m: ");
+                        int n = sc.nextInt();
+                        int m = sc.nextInt();
+                        // Khởi tạo danh sách kề
+                        adj = new ArrayList[n + 1];
+                        for (int i = 1; i <= n; i++) {
+                            adj[i] = new ArrayList<>();
+                        }
+                        System.out.println("Nhap cac canh (u v w): ");
+                        for (int i = 0; i < m; i++) {
+                            int u = sc.nextInt();
+                            int v = sc.nextInt();
+                            int w = sc.nextInt();
+                            adj[u].add(new Edge(v, w));
+                            adj[v].add(new Edge(u, w)); // Nếu đồ thị vô hướng
+                        }
+                        dist = new int[n + 1];
+                        visited = new boolean[n + 1];
+                        parent = new int[n + 1];
+
+                        Arrays.fill(dist, INF);
+                        Arrays.fill(parent, -1);
+                    }
+                    public static void dijkstra(int start) {
+                        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+                        dist[start] = 0;
+                        pq.add(new int[]{0, start}); // {khoảng cách, đỉnh}
+                        while (!pq.isEmpty()) {
+                            int[] node = pq.poll();
+                            int u = node[1];
+                            if (visited[u]) continue;
+                            visited[u] = true;
+                            for (Edge e : adj[u]) {
+                                int v = e.to;
+                                int w = e.weight;
+                                if (dist[v] > dist[u] + w) {
+                                    dist[v] = dist[u] + w;
+                                    parent[v] = u;
+                                    pq.add(new int[]{dist[v], v});
+                                }
+                            }
+                        }
+                    }
+                    public static void main(String[] args) {
+                        input();
+                        Scanner sc = new Scanner(System.in);
+                        System.out.print("Nhap dinh bat dau: ");
+                        int start = sc.nextInt();
+                        dijkstra(start);
+                        System.out.println("Khoang cach ngan nhat tu dinh " + start + ":");
+                        for (int i = 1; i < dist.length; i++) {
+                            if (dist[i] != INF)
+                                System.out.println(" -> " + i + ": " + dist[i]);
+                        }
+                    }
+                }
+            </pre>
             <b>Code Python</b>
-            <pre>   </pre>
+            <pre>
+                import heapq
+                def input_graph():
+                    n, m = map(int, input("Nhập số đỉnh n và số cạnh m: ").split())
+                    # Tạo danh sách kề (adjacency list)
+                    adj = [[] for _ in range(n + 1)]
+                    print("Nhập các cạnh (u v w): ")
+                    for _ in range(m):
+                        u, v, w = map(int, input().split())
+                        adj[u].append((v, w))
+                        adj[v].append((u, w))  # Nếu đồ thị vô hướng thì thêm dòng này
+                    return n, adj
+                # Thuật toán Dijkstra
+                def dijkstra(n, adj, start):
+                    INF = 10**9
+                    dist = [INF] * (n + 1)
+                    parent = [-1] * (n + 1)
+                    visited = [False] * (n + 1)
+                    dist[start] = 0
+                    pq = []  # hàng đợi ưu tiên (min-heap)
+                    heapq.heappush(pq, (0, start))  # (khoảng cách, đỉnh)
+                    while pq:
+                        du, u = heapq.heappop(pq)
+                        if visited[u]:
+                            continue
+                        visited[u] = True
+                        # Duyệt tất cả các đỉnh kề của u
+                        for v, w in adj[u]:
+                            if dist[v] > du + w:
+                                dist[v] = du + w
+                                parent[v] = u
+                                heapq.heappush(pq, (dist[v], v))
+                    return dist, parent
+                # Hàm in kết quả
+                def print_result(start, dist):
+                    print(f"\nKhoảng cách ngắn nhất từ đỉnh {start}:")
+                    for i in range(1, len(dist)):
+                        if dist[i] == 10**9:
+                            print(f" -> {i}: không có đường đi")
+                        else:
+                            print(f" -> {i}: {dist[i]}")
+                if __name__ == "__main__":
+                    n, adj = input_graph()
+                    start = int(input("Nhập đỉnh bắt đầu: "))
+                    dist, parent = dijkstra(n, adj, start)
+                    print_result(start, dist)
+            </pre>
             
             <h2>Phân tích độ phức tạp (Complexity Analysis)</h2>
             <ul>
-                <li>Thời gian (Time Complexity): O(V + E)</li>
+                <li>Thời gian (Time Complexity): O((V+E)logV)​</li>
                     <ul>
                         <li>V là số nút (vertices)</li>
                         <li>E là số cạnh (edges)</li>
                         Mỗi đỉnh được thăm 1 lần, mỗi cạnh duyệt tối đa 2 lần (đồ thị vô hướng).
                     </ul>
-                <li>Không gian (Space Complexity): O(V)</li>
+                <li>Không gian (Space Complexity): O(V + E)</li>
                     <ul>
                         <li>Để lưu mảng visited và ngăn xếp đệ quy (trong trường hợp xấu nhất, stack sâu bằng số đỉnh).</li>
                     </ul>
             </ul>
             <h2>Tính chất, đặc điểm & những lưu ý (Properties, Characteristic, Notes)</h2>
+            <p><b>1.Tính chất:</b></p>
             <ul>
-                <li>DFS duyệt theo chiều sâu (depth-first).</li>
-                <pli>DFS duyệt theo chiều sâu (depth-first).</li>
-                <li>Sử dụng stack hoặc đệ quy.</li>
-                <li>Với đồ thị không liên thông → cần lặp DFS cho tất cả các đỉnh chưa thăm để duyệt hết</li>
-                <li>DFS thường đơn giản, tốn ít bộ nhớ hơn BFS trong trường hợp đồ thị “rộng” nhưng không quá sâu.</li>
+                <li>Dijkstra là thuật toán tham lam (Greedy Algorithm) → luôn chọn đỉnh có khoảng cách nhỏ nhất chưa được thăm ở mỗi bước.</li>
+                <li>Mỗi đỉnh chỉ được gán khoảng cách ngắn nhất một lần duy nhất (khi nó được chọn ra khỏi hàng đợi ưu tiên).</li>
+                <li>Bảo đảm tìm được đường đi ngắn nhất từ một đỉnh nguồn (source) đến tất cả các đỉnh còn lại trong đồ thị có trọng số không âm.</li>
             </ul>
 
+            <p><b>2.Đặc điểm:</b></p>
+            <ul>
+                <li>Hoạt động tốt trên đồ thị có trọng số dương hoặc bằng 0.</li>
+                <li>Cho kết quả là:
+                    <ul>
+                        <li>Mảng <b>dist[]</b>: chứa khoảng cách ngắn nhất từ nguồn đến các đỉnh khác.</li>
+                        <li>Mảng <b>parent[]</b>: dùng để truy vết lại đường đi.</li>
+                    </ul>
+                </li>
+            </ul>
             <h2>Ứng dụng (Applications)</h2>
             <p>Một số ứng dụng nổi bật</p>
                 <ul>
-                    <li>Phát hiện chu trình trong đồ thị (có hướng & vô hướng).</li>
-                    <li>Kiểm tra liên thông hoặc đếm số thành phần liên thông.</li>
-                    <li>Topological Sort (sắp xếp topo cho DAG).</li>
-                    <li>Xác định cầu (bridge) và điểm khớp (articulation point) trong mạng.</li>
-                    <li>Backtracking (giải Sudoku, N-Queens, mê cung…).</li>
-                    <li>Trình biên dịch (compiler): phân tích đồ thị phụ thuộc, luồng điều khiển.</li>
-                    <li>AI/game: duyệt trạng thái, sinh cây trò chơi.</li>
+                    <li>Tìm đường đi ngắn nhất trong bản đồ và hệ thống định vị (GPS).</li>
+                    <li>Mạng máy tính (Computer Networks).</li>
+                    <li>Trí tuệ nhân tạo & Game.</li>
+                    <li>Ứng dụng trong hệ thống điều phối taxi, xe tải, giao hàng (Grab, GHTK, GHN, Viettel Post, v.v.)..</li>
+                    <li>Tìm đường tránh vật cản.</li>
                 </ul>
             <ul> 
         </div>
