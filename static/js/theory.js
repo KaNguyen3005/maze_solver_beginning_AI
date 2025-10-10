@@ -10,13 +10,13 @@ const mazeSimulationUrl = new URL(`/maze.html?algo=${algo}&mode=simulation`, win
 const mazeStepByStepUrl = new URL(`/maze.html?algo=${algo}&mode=stepbystep`, window.location.origin);
 const mazeOverviewUrl = new URL(`Algorithm/overview.html?algo=${algo}`, window.location.origin);
 const mazeTheoryUrl = new URL(`Algorithm/theory.html?algo=${algo}`, window.location.origin);
-
+const mazeQuizUrl = new URL(`Algorithm/quiz.html?algo=${algo}`, window.location.origin);
 
 document.querySelector(".overview").href = mazeOverviewUrl;
 document.querySelector(".theory").href = mazeTheoryUrl;
 document.querySelector(".simulation").href = mazeSimulationUrl;
 document.querySelector(".stepbystep").href = mazeStepByStepUrl;
-document.querySelector(".quiz").href = `quiz.html?algo=${algo}`;
+document.querySelector(".quiz").href = mazeQuizUrl;
 
 // Hàm fetch nội dung thuật toán
 function loadAlgorithmContent() {
