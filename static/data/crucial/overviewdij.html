@@ -56,41 +56,26 @@
 
     <div class="container">
         <h1>Quá trình phát triển và phân tích ứng dụng của thuật toán Dijkstra</h1>
-        <p>huật toán Breadth-First Search (BFS – tìm kiếm theo chiều rộng) là một trong những phương pháp tìm kiếm cơ bản nhất trong lĩnh vực khoa học máy tính, đặc biệt trong lý thuyết đồ thị và trí tuệ nhân tạo. Sự phát triển của BFS có thể chia thành các giai đoạn chính:</p>
-        <b>Giai đoạn hình thành ý tưởng (thế kỷ 18 – giữa thế kỷ 20)</b>
+        <p>Thuật toán Dijkstra (do Edsger W. Dijkstra phát minh năm 1956, công bố năm 1959) là một thuật toán tìm đường đi ngắn nhất trong đồ thị có trọng số không âm.Nó được dùng để xác định:
+            <ul>
+                <li>Đường đi ngắn nhất từ một đỉnh nguồn đến tất cả các đỉnh còn lại</li>
+                <li>Đường đi ngắn nhất từ nguồn đến đích cụ thể</li>
+        </p>
+        <b>Giai đoạn hình thành ý tưởng (trước 1950)</b>
         <ul>
-            <li>BFS có gốc rễ từ lý thuyết đồ thị mà Leonhard Euler đặt nền móng với bài toán "Seven Bridges of Königsberg" (1736).</li>
-            <li>Trong thế kỷ 19 – đầu thế kỷ 20, các nhà toán học như Hamilton và Cayley tiếp tục mở rộng lý thuyết đồ thị.</li>
-            <li>Khái niệm duyệt theo tầng (từng lớp đỉnh) đã manh nha từ đây, nhưng BFS chỉ tồn tại dưới dạng ý tưởng toán học, chưa có thuật toán cụ thể.</li>
+            <li>Xuất phát từ các nghiên cứu về lý thuyết đồ thị có trọng số và tối ưu hóa đường đi.</li>
+            <li>Các khái niệm như “độ dài cạnh”, “chi phí đường đi” đã được nghiên cứu nhưng chưa có thuật toán cụ thể để tính đường đi ngắn nhất.</li>
         </ul>
         <b>Giai đoạn Chuẩn hóa trong khoa học máy tính (1950–1970)</b>
         <ul> 
-            <p>BFS được ứng dụng trong nhiều lĩnh vực khác nhau:</p>
-            <li>Lý thuyết đồ thị: tìm đường đi ngắn nhất trên đồ thị vô hướng không trọng số, kiểm tra tính liên thông.</li>
-            <li>AI cổ điển: giải bài toán mê cung, trò chơi (ví dụ: giải Rubik, trò chơi xếp hình).</li>
-            <li>Kỹ thuật phần mềm: phân tích cú pháp, kiểm tra chương trình.</li>
-            <li>Mạng máy tính: tìm đường đi trong mạng, lan truyền thông tin.</li>        
+            <li>Edsger W. Dijkstra phát minh và công bố thuật toán năm 1959, đánh dấu bước ngoặt trong lý thuyết đồ thị.</li>
+            <li>Thuật toán nhanh chóng được ứng dụng trong định tuyến mạng, tối ưu hóa giao thông, và trở thành thuật toán chuẩn trong giáo trình máy tính.</li>   
         </ul>
         <b>Giai đoạn hiện đại (1990 – nay)</b>
         <ul>
-            <p>BFS trở thành thuật toán chuẩn và được tích hợp trong nhiều giáo trình, công cụ:</p>
-            <li>Được trình bày chi tiết trong sách Introduction to Algorithms (CLRS, 1990).</li>
-            <li>Xuất hiện nhiều biến thể và ứng dụng:</li>
+            <li>Dijkstra được cải tiến (dùng heap, chạy song song, trên GPU) và xuất hiện trong các mạng lớn, bản đồ, AI, mạng xã hội.</li>
+            <li>Trở thành thuật toán nền tảng trong nhiều hệ thống và là cơ sở cho các biến thể như A*, Bidirectional Dijkstra, 0–1 BFS.</li>
             <ul>
-                <li>BFS song song: tận dụng đa lõi và GPU để tăng tốc độ xử lý.</li>
-                <li>BFS trên đồ thị lớn: sử dụng trong mạng xã hội, web graph.</li>
-                <li>BFS trong học máy: tìm kiếm không gian trạng thái trong các thuật toán học tăng cường.</li>
-                    <ul>
-                        <li>Bidirectional BFS: tăng tốc tìm đường đi ngắn nhất giữa hai đỉnh.</li>
-                        <li>0–1 BFS: áp dụng cho đồ thị có cạnh trọng số 0 hoặc 1.</li>
-                    </ul>
-                <li>Ứng dụng thực tiễn:</li>   
-                    <ul>
-                        <li>Tìm đường trong bản đồ và GPS: BFS giúp tính toán đường đi ngắn nhất khi không có trọng số.</li>
-                        <li>Mạng xã hội: xác định khoảng cách kết nối giữa người dùng (ví dụ: "friend-of-friend" trong Facebook).</li>
-                        <li>Hệ thống web: BFS được dùng trong web crawler để duyệt trang theo từng lớp.</li>
-                        <li>Xử lý dữ liệu lớn: BFS kết hợp với MapReduce để phân tích mạng đồ thị khổng lồ.</li>
-                    </ul>
         </ul>
     </div>
 </body>
