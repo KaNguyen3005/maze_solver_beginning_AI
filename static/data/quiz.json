@@ -1,0 +1,14 @@
+{
+  "dfs": {
+    "title": "Depth First Search (DFS)",
+    "overview": "<p>DFS hoạt động theo nguyên tắc đi sâu nhất có thể...</p>"
+  },
+  "dijkstra": {
+    "title": "Dijkstra Algorithm",
+    "overview": "<p>Thuật toán Dijkstra dùng để tìm đường đi ngắn nhất có trọng số dương...</p>"
+  },
+  "bfs": {
+    "title": "Breadth-First Search (BFS)",
+    "overview": "<div class=\"container\""
+  }
+}
