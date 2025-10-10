@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VISUALAZITION</title>
+    <link rel="stylesheet" href="../../../static/css/main.css">
+    <link rel="stylesheet" href="../../../static/css/algorithm.css">
+    <link rel="stylesheet" href="../../../static/css/frame.css">
+    <script src="../../scripts/main.js" defer></script>
+    <!-- Google Font: Montserrat for logo text -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="tool1">
+        <div class="frame-logo1">
+            <span class="secondtext-tool1">KaTiLa</span>
+            <span class="maintext-tool1">VISUALIZATION</span>
+        </div>
+
+        <nav class="menu">
+            <ul>
+                <li><a href="../indexhome.html">Home</a></li>
+                <li><a href="#">Community</a></li>
+                <li class="dropdown">
+                    <a href="#">Algorithms ▼</a>
+                    <div class="dropdown-content">
+                        <a href="../Algorithm/overviewbfs.html">BFS</a>
+                        <a href="../Algorithm/overviewdfs.html">DFS</a>
+                        <a href="../Algorithm/overviewdij.html">Dijkstra</a>
+                        <a href="../Algorithm/overviewa.html">A*</a>
+                        <a href="../Algorithm/overviewfc.html">Foward Chaining</a>
+                        <a href="../Algorithm/overviewminimax.html">Mini Max</a>
+                        <a href="../Algorithm/overviewffill.html">Flood Fill</a>
+                    </div>
+                </li>
+                <li><a href="#">History</a></li>
+                <li><a href="#">Docs</a></li>
+                <li><a href="#">Member</a></li>
+            </ul>
+        </nav>
+        <div class="frame-icon">
+            <span class="menu_icon">&#9776;</span>
+        </div>
+    </header>
+    <header class="tool2">
+        <a href="../Algorithm/overviewdij.html" class="overview"><span>Overview</span></a>
+        <a href="../Algorithm/theorydij.html" class="theory"><span>Theory</span></a>
+        <a href="../Algorithm/simulationdij.html" class="simulation"><span>Simulation</span></a>
+        <a href="../Algorithm/stepbystepdij.html" class="stepbystep"><span>Step by Step</span></a>
+        <a href="../Algorithm/quizdij.html" class="quiz"><span>Quiz</span></a>
+    </header>
+
+
+    <div class="container">
+        <h1>Quá trình phát triển và phân tích ứng dụng của thuật toán Dijkstra</h1>
+
+              <p>
+            Thuật toán Flood Fill là một trong những kỹ thuật cơ bản và lâu đời trong lĩnh vực đồ họa máy tính và xử lý ảnh.
+            Mặc dù có nguyên lý đơn giản, thuật toán này đóng vai trò nền tảng trong rất nhiều ứng dụng – từ công cụ tô màu trong phần mềm vẽ
+            cho đến phân đoạn vùng trong thị giác máy tính. Trải qua nhiều thập kỷ, Flood Fill không ngừng được cải tiến và mở rộng để đáp ứng nhu cầu
+            xử lý ảnh và tính toán hiện đại.
+        </p>
+
+        <b>Giai đoạn hình thành và ý tưởng ban đầu (1960 – 1980)</b>
+        <ul>
+            <li>Ý tưởng của Flood Fill xuất hiện từ thời kỳ đầu của đồ họa raster, khi các kỹ sư cần một cách hiệu quả để "tô màu" vùng khép kín trong hình ảnh kỹ thuật số.</li>
+            <li>Trong những năm 1970, thuật toán này được sử dụng trong các hệ thống đồ họa sơ khai và các phần mềm vẽ đơn giản,
+                trở thành nguyên lý cốt lõi của công cụ “bucket fill”.</li>
+            <li>Phiên bản đầu tiên của Flood Fill chủ yếu được viết theo hướng đệ quy, hoạt động dựa trên việc kiểm tra màu hiện tại và lan ra bốn hướng xung quanh.</li>
+        </ul>
+
+        <b>Giai đoạn mở rộng và ứng dụng trong đồ họa (1980 – 2000)</b>
+        <ul>
+            <p>Trong giai đoạn này, Flood Fill được chính thức ghi nhận và đưa vào các tài liệu giáo khoa về đồ họa máy tính:</p>
+            <li>Hai phương pháp chính ra đời: Recursive Flood Fill (DFS-based) và Queue-based Flood Fill (BFS-based), giúp cải thiện hiệu suất và độ ổn định.</li>
+            <li>Được áp dụng rộng rãi trong các phần mềm đồ họa nổi tiếng như <i>MS Paint</i>, <i>Deluxe Paint</i>, và các hệ thống CAD.</li>
+            <li>Các nghiên cứu tập trung vào tối ưu bộ nhớ và tránh tràn ngăn xếp, đặc biệt trong các hình ảnh có vùng lớn cần tô.</li>
+        </ul>
+
+        <b>Giai đoạn hiện đại và tối ưu hoá (2000 – nay)</b>
+        <ul>
+            <p>Với sự phát triển của GPU và xử lý song song, Flood Fill tiếp tục được mở rộng thành nhiều biến thể hiệu quả hơn:</p>
+            <li>Scanline Flood Fill: cải thiện tốc độ bằng cách tô liên tục theo dòng quét ngang, thay vì từng điểm.</li>
+            <li>Parallel Flood Fill: triển khai trên GPU hoặc đa luồng CPU, cho phép xử lý ảnh kích thước lớn theo thời gian thực.</li>
+            <li>Region Growing: phát triển từ ý tưởng Flood Fill để áp dụng trong phân đoạn ảnh và nhận dạng vùng đồng nhất trong thị giác máy tính.</li>
+            <li>Adaptive Flood Fill: tích hợp tiêu chí linh hoạt (ví dụ: ngưỡng độ sáng, biên cạnh) thay vì chỉ dựa vào màu sắc tuyệt đối.</li>
+        </ul>
+
+        <b>Ứng dụng thực tế</b>
+        <ul>
+            <li>Đồ họa và xử lý ảnh: tô vùng khép kín, phân đoạn ảnh, phát hiện biên.</li>
+            <li>Phần mềm vẽ: công cụ “paint bucket” – tô màu tự động trong vùng giới hạn.</li>
+            <li>Trí tuệ nhân tạo: hỗ trợ tìm vùng ảnh hưởng, bản đồ di chuyển trong game, hoặc mô phỏng lan truyền trong không gian.</li>
+            <li>Xử lý video và robot: phát hiện vùng truy cập, xác định khu vực có thể di chuyển hoặc bị chặn.</li>
+        </ul>
+
+        <b>Kết luận</b>
+        <p>
+            Từ một kỹ thuật đồ họa cơ bản, Flood Fill đã trở thành một công cụ quan trọng trong nhiều lĩnh vực công nghệ.
+            Sự đơn giản, hiệu quả và khả năng mở rộng khiến nó vẫn giữ vai trò nền tảng trong các ứng dụng xử lý ảnh hiện đại.
+            Những biến thể như Scanline hay Parallel Flood Fill cho thấy cách một thuật toán cổ điển có thể thích nghi và phát triển mạnh mẽ trong kỷ nguyên GPU và trí tuệ nhân tạo.
+        </p>
+    </div>
+</body>
+
+</html>

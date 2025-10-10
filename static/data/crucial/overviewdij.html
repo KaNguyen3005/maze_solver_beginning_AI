@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VISUALAZITION</title>
-    <link rel="stylesheet" href="../../static/css/main.css">
-    <link rel="stylesheet" href="../../static/css/algorithm.css">
-    <link rel="stylesheet" href="../../static/css/frame.css">
+    <link rel="stylesheet" href="../../../static/css/main.css">
+    <link rel="stylesheet" href="../../../static/css/algorithm.css">
+    <link rel="stylesheet" href="../../../static/css/frame.css">
     <script src="../../scripts/main.js" defer></script>
     <!-- Google Font: Montserrat for logo text -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -56,27 +56,76 @@
 
     <div class="container">
         <h1>Quá trình phát triển và phân tích ứng dụng của thuật toán Dijkstra</h1>
-        <p>Thuật toán Dijkstra (do Edsger W. Dijkstra phát minh năm 1956, công bố năm 1959) là một thuật toán tìm đường đi ngắn nhất trong đồ thị có trọng số không âm.Nó được dùng để xác định:
-            <ul>
-                <li>Đường đi ngắn nhất từ một đỉnh nguồn đến tất cả các đỉnh còn lại</li>
-                <li>Đường đi ngắn nhất từ nguồn đến đích cụ thể</li>
+
+        <p>
+            Thuật toán Dijkstra là một trong những thuật toán cổ điển và quan trọng nhất trong lĩnh vực lý thuyết
+            đồ thị và tối ưu hóa đường đi.
+            Được phát minh bởi Edsger W. Dijkstra vào năm 1956 và công bố năm 1959, thuật toán này giúp tìm đường
+            đi ngắn nhất từ một đỉnh nguồn đến tất cả các đỉnh còn lại trong đồ thị có trọng số không âm.
+            Nhờ tính hiệu quả và khả năng mở rộng, Dijkstra trở thành nền tảng cho nhiều thuật toán tìm kiếm hiện đại,
+            bao gồm cả A*.
         </p>
-        <b>Giai đoạn hình thành ý tưởng (trước 1950)</b>
+
+        <b>Giai đoạn hình thành và công bố (1950 – 1960)</b>
         <ul>
-            <li>Xuất phát từ các nghiên cứu về lý thuyết đồ thị có trọng số và tối ưu hóa đường đi.</li>
-            <li>Các khái niệm như “độ dài cạnh”, “chi phí đường đi” đã được nghiên cứu nhưng chưa có thuật toán cụ thể để tính đường đi ngắn nhất.</li>
+            <li>Năm 1956, khi đang làm việc tại Mathematisch Centrum (Hà Lan), Edsger W. Dijkstra phát triển
+                thuật toán này để giải quyết bài toán tìm tuyến đường ngắn nhất giữa hai thành phố.</li>
+            <li>Năm 1959, ông công bố bài báo “A note on two problems in connexion with graphs”, đánh dấu sự ra đời
+                chính thức của thuật toán Dijkstra.</li>
+            <li>Thuật toán sử dụng mô hình đồ thị có trọng số dương và hoạt động dựa trên việc lần lượt chọn đỉnh có
+                khoảng cách nhỏ nhất để mở rộng, đảm bảo tìm được đường đi tối ưu.</li>
         </ul>
-        <b>Giai đoạn Chuẩn hóa trong khoa học máy tính (1950–1970)</b>
-        <ul> 
-            <li>Edsger W. Dijkstra phát minh và công bố thuật toán năm 1959, đánh dấu bước ngoặt trong lý thuyết đồ thị.</li>
-            <li>Thuật toán nhanh chóng được ứng dụng trong định tuyến mạng, tối ưu hóa giao thông, và trở thành thuật toán chuẩn trong giáo trình máy tính.</li>   
-        </ul>
-        <b>Giai đoạn hiện đại (1990 – nay)</b>
+
+        <b>Giai đoạn mở rộng và ứng dụng (1970 – 1990)</b>
         <ul>
-            <li>Dijkstra được cải tiến (dùng heap, chạy song song, trên GPU) và xuất hiện trong các mạng lớn, bản đồ, AI, mạng xã hội.</li>
-            <li>Trở thành thuật toán nền tảng trong nhiều hệ thống và là cơ sở cho các biến thể như A*, Bidirectional Dijkstra, 0–1 BFS.</li>
-            <ul>
+            <p>Trong giai đoạn này, Dijkstra trở thành thuật toán chuẩn trong nhiều lĩnh vực của khoa học máy tính:</p>
+            <li>Lý thuyết đồ thị: Dijkstra là cơ sở cho các thuật toán tìm đường khác như Bellman-Ford,
+                Floyd-Warshall và A*.</li>
+            <li>Mạng máy tính: được ứng dụng trong các giao thức định tuyến như OSPF (Open Shortest Path First)
+                và IS-IS.</li>
+            <li>Hệ thống điều khiển: tính toán tuyến đường hoặc chi phí thấp nhất trong sơ đồ điều khiển và vận
+                hành.</li>
+            <li>AI cổ điển: là công cụ cơ bản cho các bài toán tìm kiếm trong không gian trạng thái có trọng số.
+            </li>
         </ul>
+
+        <b>Giai đoạn hiện đại và cải tiến (1990 – nay)</b>
+        <ul>
+            <p>Trong thời kỳ máy tính phát triển mạnh, Dijkstra tiếp tục được tối ưu hóa và ứng dụng rộng rãi:</p>
+            <li>Cải tiến về hiệu năng:
+                <ul>
+                    <li>Sử dụng hàng đợi ưu tiên (priority queue) hoặc heap để giảm độ phức tạp từ O(V²) xuống O(E log
+                        V).</li>
+                    <li>Áp dụng các cấu trúc dữ liệu hiện đại như Fibonacci heap, binary heap, và pairing heap.</li>
+                </ul>
+            </li>
+            <li><b>Ứng dụng thực tế</b>:
+                <ul>
+                    <li><Hệ thống GPS: tìm tuyến đường ngắn nhất giữa hai địa điểm.</li>
+                    <li><Game và mô phỏng: tìm đường di chuyển tối ưu cho nhân vật (pathfinding).</li>
+                    <li>Mạng máy tính: định tuyến gói tin hiệu quả, đảm bảo cân bằng tải.</li>
+                    <li>Robot di động: lập kế hoạch chuyển động trong không gian có trọng số (distance hoặc năng
+                        lượng).</li>
+                </ul>
+            </li>
+            <li><b>Thuật toán mở rộng</b>:
+                <ul>
+                    <li>Bidirectional Dijkstra: tìm kiếm đồng thời từ hai đầu để tăng tốc độ.</li>
+                    <li>Dynamic Dijkstra: xử lý đồ thị thay đổi theo thời gian (thêm/xóa cạnh).</li>
+                    <li>Parallel Dijkstra: khai thác đa lõi, GPU cho bài toán quy mô lớn.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <b>Kết luận</b>
+        <p>
+            Thuật toán Dijkstra là một trong những nền tảng quan trọng nhất của lĩnh vực tìm kiếm và tối ưu hóa trên đồ
+            thị.
+            Từ hơn nửa thế kỷ qua, nó không chỉ là công cụ lý thuyết trong nghiên cứu khoa học máy tính mà còn được ứng
+            dụng thực tế trong mạng, robot, giao thông và trí tuệ nhân tạo.
+            Nhiều thuật toán hiện đại như A* và D* đều được phát triển dựa trên tư tưởng cốt lõi của Dijkstra.
+        </p>
+
     </div>
 </body>
 
