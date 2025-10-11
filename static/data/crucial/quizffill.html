@@ -56,30 +56,47 @@
     </header>
 
     <div class="container">
-            <h1>Dijkstra's algorithm exercises</h1>
+        <h1>A* algorithm exercises</h1>
 
-            <div class="quiz-box">
-                <p class="question">
-                    Áp dụng thuật toán <strong>Dijkstra</strong> để tìm đường đi ngắn nhất từ đỉnh số 1 đến các đỉnh còn
-                    lại của đồ thị.
-                </p>
-                <!-- <img src="https://ibb.co/673bR9vK" alt="Đồ thị Dijkstra"> -->
-                <img src="https://i.ibb.co/0RgZj4B0/nh-ch-p-m-n-h-nh-2025-10-10-155651.png" alt="Đồ thị Dijkstra"
-                    width="200">
+        <div class="quiz-box">
+            <p class="question">
+                Cho ma trận 2D đại diện cho một hình ảnh với các giá trị màu khác nhau (0–9). Áp dụng **thuật toán Flood
+                Fill** để tô lại vùng liên thông bắt đầu từ điểm (x = 1, y = 1) có cùng màu với ô ban đầu bằng màu mới
+                `9`.
+            </p>
+            <pre>
+                Input:
+                    image = [
+                    [1, 1, 1, 2, 2],
+                    [1, 1, 0, 2, 2],
+                    [1, 0, 0, 2, 2],
+                    [2, 2, 2, 2, 2]
+                    ]
+                    start = (1, 1)
+                    newColor = 9
+                </pre>
+            <!-- <img src="https://ibb.co/673bR9vK" alt="Đồ thị Dijkstra"> -->
+            <button class="answer-btn" onclick="toggleAnswer('answer1')">Answer</button>
 
-                <button class="answer-btn" onclick="toggleAnswer('answer1')">Answer</button>
-
-                <div class="answer" id="answer1">
-                    <p><strong>Kết quả:</strong></p>
-                    <ul>
-                        <li>Khoảng cách ngắn nhất từ đỉnh 1 đến 2: 1</li>
-                        <li>Khoảng cách ngắn nhất từ đỉnh 1 đến 3: 3</li>
-                        <li>Khoảng cách ngắn nhất từ đỉnh 1 đến 4: 2</li>
-                        <li>Khoảng cách ngắn nhất từ đỉnh 1 đến 5: 5</li>
-                        <li>Khoảng cách ngắn nhất từ đỉnh 1 đến 6: 4</li>
-                    </ul>
-                </div>
-
+            <div class="answer" id="answer1">
+                <p><strong>Kết quả:</strong></p>
+                <ul>
+                    <li>Bắt đầu từ điểm (x, y).</li>
+                    <li>Nếu ô hiện tại có cùng màu với màu gốc ban đầu → đổi thành màu mới.</li>
+                    <li>Tiếp tục gọi đệ quy hoặc duyệt BFS/DFS cho 4 ô lân cận (trên, dưới, trái, phải).</li>
+                    <li>Dừng khi không còn ô nào cùng màu ban đầu nữa.</li>
+                    <pre>
+                        Output:
+                        [
+                        [9, 9, 9, 2, 2],
+                        [9, 9, 0, 2, 2],
+                        [9, 0, 0, 2, 2],
+                        [2, 2, 2, 2, 2]
+                        ]
+                     </pre>
+                </ul>
+            </div>
+            <!-- 
                 <p class="question">
                     Áp dụng thuật toán Dijkstra tìm đường đi ngắn nhất từ đỉnh số 1 tới các đỉnh còn lại của đồ thị được
                     biểu diễn dưới dạng ma trận trọng số như hình.
@@ -92,22 +109,9 @@
                 <div class="answer" id="answer2">
                     <p><strong>Kết quả:</strong></p>
                     <ul>
-                        <li>Đường đi ngắn nhất từ đỉnh 1 đến đỉnh 2: <b>2</b>. Đường đi: 1 → 2.</li>
-                        <li>Đường đi ngắn nhất từ đỉnh 1 đến đỉnh 3: <b>4</b>. Đường đi: 1 → 2 → 3.</li>
-                        <li>Đường đi ngắn nhất từ đỉnh 1 đến đỉnh 4: <b>10</b>. Đường đi: 1 → 2 → 3 → 4.</li>
-                        <li>Đường đi ngắn nhất từ đỉnh 1 đến đỉnh 5: <b>8</b>. Đường đi: 1 → 2 → 3 → 7 → 6 → 5.</li>
-                        <li>Đường đi ngắn nhất từ đỉnh 1 đến đỉnh 6: <b>7</b>. Đường đi: 1 → 2 → 3 → 7 → 6.</li>
-                        <li>Đường đi ngắn nhất từ đỉnh 1 đến đỉnh 7: <b>5</b>. Đường đi: 1 → 2 → 3 → 7.</li>
-                        <li>Đường đi ngắn nhất từ đỉnh 1 đến đỉnh 8: <b>7</b>. Đường đi: 1 → 2 → 3 → 7 → 8.</li>
-                        <li>Đường đi ngắn nhất từ đỉnh 1 đến đỉnh 9: <b>15</b>. Đường đi: 1 → 2 → 3 → 7 → 6 → 9.</li>
-                        <li>Đường đi ngắn nhất từ đỉnh 1 đến đỉnh 10: <b>21</b>. Đường đi: 1 → 2 → 3 → 7 → 6 → 9 → 10.</li>
-                        <li>Đường đi ngắn nhất từ đỉnh 1 đến đỉnh 11: <b>18</b>. Đường đi: 1 → 2 → 3 → 7 → 8 → 12 → 13 →11.</li>
-                        <li>Đường đi ngắn nhất từ đỉnh 1 đến đỉnh 12: <b>18</b>. Đường đi: 1 → 2 → 3 → 7 → 8 → 12.</li>
-                        <li>Đường đi ngắn nhất từ đỉnh 1 đến đỉnh 13: <b>11</b>. Đường đi: 1 → 2 → 3 → 7 → 8 → 12 → 1.
-                        </li>
                     </ul>
-                </div>
-            </div>
+                </div> -->
+        </div>
 
         <script>
             function toggleAnswer(id) {

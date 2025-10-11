@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VISUALAZITION</title>
-    <link rel="stylesheet" href="../../static/css/main.css">
-    <link rel="stylesheet" href="../../static/css/algorithm.css">
-    <link rel="stylesheet" href="../../static/css/frame.css">
+    <link rel="stylesheet" href="../../../static/css/main.css">
+    <link rel="stylesheet" href="../../../static/css/algorithm.css">
+    <link rel="stylesheet" href="../../../static/css/frame.css">
     <script src="../../scripts/main.js" defer></script>
     <!-- Google Font: Montserrat for logo text -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -56,42 +56,76 @@
 
     <div class="container">
         <h1>Quá trình phát triển và phân tích ứng dụng của thuật toán Dijkstra</h1>
-        <p>huật toán Breadth-First Search (BFS – tìm kiếm theo chiều rộng) là một trong những phương pháp tìm kiếm cơ bản nhất trong lĩnh vực khoa học máy tính, đặc biệt trong lý thuyết đồ thị và trí tuệ nhân tạo. Sự phát triển của BFS có thể chia thành các giai đoạn chính:</p>
-        <b>Giai đoạn hình thành ý tưởng (thế kỷ 18 – giữa thế kỷ 20)</b>
+
+        <p>
+            Thuật toán Dijkstra là một trong những thuật toán cổ điển và quan trọng nhất trong lĩnh vực lý thuyết
+            đồ thị và tối ưu hóa đường đi.
+            Được phát minh bởi Edsger W. Dijkstra vào năm 1956 và công bố năm 1959, thuật toán này giúp tìm đường
+            đi ngắn nhất từ một đỉnh nguồn đến tất cả các đỉnh còn lại trong đồ thị có trọng số không âm.
+            Nhờ tính hiệu quả và khả năng mở rộng, Dijkstra trở thành nền tảng cho nhiều thuật toán tìm kiếm hiện đại,
+            bao gồm cả A*.
+        </p>
+
+        <b>Giai đoạn hình thành và công bố (1950 – 1960)</b>
         <ul>
-            <li>BFS có gốc rễ từ lý thuyết đồ thị mà Leonhard Euler đặt nền móng với bài toán "Seven Bridges of Königsberg" (1736).</li>
-            <li>Trong thế kỷ 19 – đầu thế kỷ 20, các nhà toán học như Hamilton và Cayley tiếp tục mở rộng lý thuyết đồ thị.</li>
-            <li>Khái niệm duyệt theo tầng (từng lớp đỉnh) đã manh nha từ đây, nhưng BFS chỉ tồn tại dưới dạng ý tưởng toán học, chưa có thuật toán cụ thể.</li>
+            <li>Năm 1956, khi đang làm việc tại Mathematisch Centrum (Hà Lan), Edsger W. Dijkstra phát triển
+                thuật toán này để giải quyết bài toán tìm tuyến đường ngắn nhất giữa hai thành phố.</li>
+            <li>Năm 1959, ông công bố bài báo “A note on two problems in connexion with graphs”, đánh dấu sự ra đời
+                chính thức của thuật toán Dijkstra.</li>
+            <li>Thuật toán sử dụng mô hình đồ thị có trọng số dương và hoạt động dựa trên việc lần lượt chọn đỉnh có
+                khoảng cách nhỏ nhất để mở rộng, đảm bảo tìm được đường đi tối ưu.</li>
         </ul>
-        <b>Giai đoạn Chuẩn hóa trong khoa học máy tính (1950–1970)</b>
-        <ul> 
-            <p>BFS được ứng dụng trong nhiều lĩnh vực khác nhau:</p>
-            <li>Lý thuyết đồ thị: tìm đường đi ngắn nhất trên đồ thị vô hướng không trọng số, kiểm tra tính liên thông.</li>
-            <li>AI cổ điển: giải bài toán mê cung, trò chơi (ví dụ: giải Rubik, trò chơi xếp hình).</li>
-            <li>Kỹ thuật phần mềm: phân tích cú pháp, kiểm tra chương trình.</li>
-            <li>Mạng máy tính: tìm đường đi trong mạng, lan truyền thông tin.</li>        
-        </ul>
-        <b>Giai đoạn hiện đại (1990 – nay)</b>
+
+        <b>Giai đoạn mở rộng và ứng dụng (1970 – 1990)</b>
         <ul>
-            <p>BFS trở thành thuật toán chuẩn và được tích hợp trong nhiều giáo trình, công cụ:</p>
-            <li>Được trình bày chi tiết trong sách Introduction to Algorithms (CLRS, 1990).</li>
-            <li>Xuất hiện nhiều biến thể và ứng dụng:</li>
-            <ul>
-                <li>BFS song song: tận dụng đa lõi và GPU để tăng tốc độ xử lý.</li>
-                <li>BFS trên đồ thị lớn: sử dụng trong mạng xã hội, web graph.</li>
-                <li>BFS trong học máy: tìm kiếm không gian trạng thái trong các thuật toán học tăng cường.</li>
-                    <ul>
-                        <li>Bidirectional BFS: tăng tốc tìm đường đi ngắn nhất giữa hai đỉnh.</li>
-                        <li>0–1 BFS: áp dụng cho đồ thị có cạnh trọng số 0 hoặc 1.</li>
-                    </ul>
-                <li>Ứng dụng thực tiễn:</li>   
-                    <ul>
-                        <li>Tìm đường trong bản đồ và GPS: BFS giúp tính toán đường đi ngắn nhất khi không có trọng số.</li>
-                        <li>Mạng xã hội: xác định khoảng cách kết nối giữa người dùng (ví dụ: "friend-of-friend" trong Facebook).</li>
-                        <li>Hệ thống web: BFS được dùng trong web crawler để duyệt trang theo từng lớp.</li>
-                        <li>Xử lý dữ liệu lớn: BFS kết hợp với MapReduce để phân tích mạng đồ thị khổng lồ.</li>
-                    </ul>
+            <p>Trong giai đoạn này, Dijkstra trở thành thuật toán chuẩn trong nhiều lĩnh vực của khoa học máy tính:</p>
+            <li>Lý thuyết đồ thị: Dijkstra là cơ sở cho các thuật toán tìm đường khác như Bellman-Ford,
+                Floyd-Warshall và A*.</li>
+            <li>Mạng máy tính: được ứng dụng trong các giao thức định tuyến như OSPF (Open Shortest Path First)
+                và IS-IS.</li>
+            <li>Hệ thống điều khiển: tính toán tuyến đường hoặc chi phí thấp nhất trong sơ đồ điều khiển và vận
+                hành.</li>
+            <li>AI cổ điển: là công cụ cơ bản cho các bài toán tìm kiếm trong không gian trạng thái có trọng số.
+            </li>
         </ul>
+
+        <b>Giai đoạn hiện đại và cải tiến (1990 – nay)</b>
+        <ul>
+            <p>Trong thời kỳ máy tính phát triển mạnh, Dijkstra tiếp tục được tối ưu hóa và ứng dụng rộng rãi:</p>
+            <li>Cải tiến về hiệu năng:
+                <ul>
+                    <li>Sử dụng hàng đợi ưu tiên (priority queue) hoặc heap để giảm độ phức tạp từ O(V²) xuống O(E log
+                        V).</li>
+                    <li>Áp dụng các cấu trúc dữ liệu hiện đại như Fibonacci heap, binary heap, và pairing heap.</li>
+                </ul>
+            </li>
+            <li><b>Ứng dụng thực tế</b>:
+                <ul>
+                    <li><Hệ thống GPS: tìm tuyến đường ngắn nhất giữa hai địa điểm.</li>
+                    <li><Game và mô phỏng: tìm đường di chuyển tối ưu cho nhân vật (pathfinding).</li>
+                    <li>Mạng máy tính: định tuyến gói tin hiệu quả, đảm bảo cân bằng tải.</li>
+                    <li>Robot di động: lập kế hoạch chuyển động trong không gian có trọng số (distance hoặc năng
+                        lượng).</li>
+                </ul>
+            </li>
+            <li><b>Thuật toán mở rộng</b>:
+                <ul>
+                    <li>Bidirectional Dijkstra: tìm kiếm đồng thời từ hai đầu để tăng tốc độ.</li>
+                    <li>Dynamic Dijkstra: xử lý đồ thị thay đổi theo thời gian (thêm/xóa cạnh).</li>
+                    <li>Parallel Dijkstra: khai thác đa lõi, GPU cho bài toán quy mô lớn.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <b>Kết luận</b>
+        <p>
+            Thuật toán Dijkstra là một trong những nền tảng quan trọng nhất của lĩnh vực tìm kiếm và tối ưu hóa trên đồ
+            thị.
+            Từ hơn nửa thế kỷ qua, nó không chỉ là công cụ lý thuyết trong nghiên cứu khoa học máy tính mà còn được ứng
+            dụng thực tế trong mạng, robot, giao thông và trí tuệ nhân tạo.
+            Nhiều thuật toán hiện đại như A* và D* đều được phát triển dựa trên tư tưởng cốt lõi của Dijkstra.
+        </p>
+
     </div>
 </body>
 

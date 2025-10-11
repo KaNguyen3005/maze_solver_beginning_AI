@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VISUALAZITION</title>
-    <link rel="stylesheet" href="../../static/css/main.css">
-    <link rel="stylesheet" href="../../static/css/algorithm.css">
-    <link rel="stylesheet" href="../../static/css/frame.css">
+    <link rel="stylesheet" href="../../../static/css/main.css">
+    <link rel="stylesheet" href="../../../static/css/algorithm.css">
+    <link rel="stylesheet" href="../../../static/css/frame.css">
     <script src="../../scripts/main.js" defer></script>
     <!-- Google Font: Montserrat for logo text -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -55,43 +55,69 @@
 
 
     <div class="container">
-        <h1>Quá trình phát triển và phân tích ứng dụng của thuật toán A* Search Algorithm</h1>
-        <p>huật toán Breadth-First Search (BFS – tìm kiếm theo chiều rộng) là một trong những phương pháp tìm kiếm cơ bản nhất trong lĩnh vực khoa học máy tính, đặc biệt trong lý thuyết đồ thị và trí tuệ nhân tạo. Sự phát triển của BFS có thể chia thành các giai đoạn chính:</p>
-        <b>Giai đoạn hình thành ý tưởng (thế kỷ 18 – giữa thế kỷ 20)</b>
+        <h1>Quá trình phát triển và phân tích ứng dụng của thuật toán A* (A-star Search)</h1>
+
+        <p>
+            Thuật toán A* (A-star Search) là một trong những thuật toán tìm kiếm theo chi phí hiệu quả và phổ
+            biến nhất trong lĩnh vực trí tuệ nhân tạo (AI),
+            đặc biệt trong bài toán tìm đường, lập kế hoạch chuyển động và tối ưu hóa đồ thị.
+            Thuật toán này kết hợp ưu điểm của Dijkstra (tìm kiếm theo chi phí tối ưu) và Greedy Best-First Search (tìm kiếm theo hướng ước lượng),
+            tạo nên cơ chế tìm kiếm thông minh, hiệu quả và có thể chứng minh được tính tối ưu nếu hàm heuristic được
+            chọn đúng.
+        </p>
+
+        <b>Giai đoạn hình thành (1950 – cuối thập niên 1960)</b>
         <ul>
-            <li>BFS có gốc rễ từ lý thuyết đồ thị mà Leonhard Euler đặt nền móng với bài toán "Seven Bridges of Königsberg" (1736).</li>
-            <li>Trong thế kỷ 19 – đầu thế kỷ 20, các nhà toán học như Hamilton và Cayley tiếp tục mở rộng lý thuyết đồ thị.</li>
-            <li>Khái niệm duyệt theo tầng (từng lớp đỉnh) đã manh nha từ đây, nhưng BFS chỉ tồn tại dưới dạng ý tưởng toán học, chưa có thuật toán cụ thể.</li>
+            <li>Ý tưởng kết hợp chi phí thực tế và chi phí ước lượng xuất hiện trong nghiên cứu về trí tuệ nhân tạo sơ
+                khai.</li>
+            <li>Năm 1968, Peter Hart, Nils Nilsson và Bertram Raphael (tại SRI International) giới
+                thiệu thuật toán A*, đánh dấu bước ngoặt quan trọng trong lĩnh vực tìm kiếm trạng thái.</li>
+            <li>Mục tiêu ban đầu của A* là xây dựng một thuật toán có khả năng tìm được đường đi ngắn nhất với ít bước
+                mở rộng nhất có thể, bằng cách sử dụng hàm đánh giá <code>f(n) = g(n) + h(n)</code>.</li>
         </ul>
-        <b>Giai đoạn Chuẩn hóa trong khoa học máy tính (1950–1970)</b>
-        <ul> 
-            <p>BFS được ứng dụng trong nhiều lĩnh vực khác nhau:</p>
-            <li>Lý thuyết đồ thị: tìm đường đi ngắn nhất trên đồ thị vô hướng không trọng số, kiểm tra tính liên thông.</li>
-            <li>AI cổ điển: giải bài toán mê cung, trò chơi (ví dụ: giải Rubik, trò chơi xếp hình).</li>
-            <li>Kỹ thuật phần mềm: phân tích cú pháp, kiểm tra chương trình.</li>
-            <li>Mạng máy tính: tìm đường đi trong mạng, lan truyền thông tin.</li>        
-        </ul>
-        <b>Giai đoạn hiện đại (1990 – nay)</b>
+
+        <b>Giai đoạn chuẩn hóa và ứng dụng ban đầu (1970 – 1990)</b>
         <ul>
-            <p>BFS trở thành thuật toán chuẩn và được tích hợp trong nhiều giáo trình, công cụ:</p>
-            <li>Được trình bày chi tiết trong sách Introduction to Algorithms (CLRS, 1990).</li>
-            <li>Xuất hiện nhiều biến thể và ứng dụng:</li>
-            <ul>
-                <li>BFS song song: tận dụng đa lõi và GPU để tăng tốc độ xử lý.</li>
-                <li>BFS trên đồ thị lớn: sử dụng trong mạng xã hội, web graph.</li>
-                <li>BFS trong học máy: tìm kiếm không gian trạng thái trong các thuật toán học tăng cường.</li>
-                    <ul>
-                        <li>Bidirectional BFS: tăng tốc tìm đường đi ngắn nhất giữa hai đỉnh.</li>
-                        <li>0–1 BFS: áp dụng cho đồ thị có cạnh trọng số 0 hoặc 1.</li>
-                    </ul>
-                <li>Ứng dụng thực tiễn:</li>   
-                    <ul>
-                        <li>Tìm đường trong bản đồ và GPS: BFS giúp tính toán đường đi ngắn nhất khi không có trọng số.</li>
-                        <li>Mạng xã hội: xác định khoảng cách kết nối giữa người dùng (ví dụ: "friend-of-friend" trong Facebook).</li>
-                        <li>Hệ thống web: BFS được dùng trong web crawler để duyệt trang theo từng lớp.</li>
-                        <li>Xử lý dữ liệu lớn: BFS kết hợp với MapReduce để phân tích mạng đồ thị khổng lồ.</li>
-                    </ul>
+            <li>A* nhanh chóng được công nhận là thuật toán tìm kiếm tối ưu và đầy đủ, được đưa vào nhiều tài liệu AI
+                kinh điển.</li>
+            <li>Ứng dụng trong:
+                <ul>
+                    <li>Bài toán mê cung và tìm đường đi ngắn nhất trong đồ thị có trọng số.</li>
+                    <li>Bài toán trò chơi (8-puzzle, trò chơi logic, giải đố).</li>
+                    <li>Lập kế hoạch đường đi cho robot trong không gian có chướng ngại vật.</li>
+                </ul>
+            </li>
+            <li>Thời kỳ này cũng chứng kiến sự xuất hiện của nhiều biến thể nhằm tối ưu bộ nhớ hoặc tốc độ, như
+                Iterative Deepening A* và Memory-Bounded A*.</li>
         </ul>
+
+        <b>Giai đoạn hiện đại và mở rộng (1990 – nay)</b>
+        <ul>
+            <li>A* trở thành thuật toán chuẩn trong nhiều giáo trình về trí tuệ nhân tạo, lập kế hoạch và khoa học máy
+                tính.</li>
+            <li>Ứng dụng mở rộng trong:
+                <ul>
+                    <li>Game development: điều hướng nhân vật (NPC pathfinding) và lập kế hoạch chiến thuật.</li>
+                    <li>Robot di động: dẫn đường và tránh vật cản thời gian thực.</li>
+                    <li>Hệ thống GPS: tính toán tuyến đường tối ưu dựa trên dữ liệu bản đồ và thời gian di
+                        chuyển.</li>
+                    <li>Dữ liệu lớn & mạng xã hội: tìm đường tối ưu trên đồ thị mạng, web graph, hoặc hệ thống
+                        khuyến nghị.</li>
+                </ul>
+            </li>
+            <li>Sự ra đời của các biến thể như D*, D*-Lite, Weighted A* giúp A* thích ứng với môi
+                trường động và ứng dụng thời gian thực.</li>
+        </ul>
+
+        <b>Kết luận</b>
+        <p>
+            Từ khi ra đời đến nay, A* không chỉ là một thuật toán tìm kiếm đường đi, mà còn là nền tảng cho nhiều nghiên
+            cứu và ứng dụng trong trí tuệ nhân tạo hiện đại.
+            Với tính hiệu quả, tối ưu và khả năng mở rộng cao, A* vẫn giữ vai trò trung tâm trong các hệ thống tìm kiếm
+            thông minh, robot và game.
+        </p>
+
+
     </div>
 </body>
 

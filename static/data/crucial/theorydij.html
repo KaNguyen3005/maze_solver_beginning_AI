@@ -1,201 +1,209 @@
 <!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>VISUALIZATION</title>
-        <link rel="stylesheet" href="../../static/css/main.css">
-        <link rel="stylesheet" href="../../static/css/algorithm.css">
-        <link rel="stylesheet" href="../../static/css/frame.css">
-        <script src="main.js" defer></script>
-        <!-- Google Font: Montserrat for logo text -->
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <header class="tool1">
-            <div class = "frame-logo1">
-                <span class="secondtext-tool1">KaTiLa</span>
-                <span class="maintext-tool1">VISUALIZATION</span>
-            </div>
+<html lang="en">
 
-            <nav class="menu">
-                <ul>
-                    <li><a href="../indexhome.html">Home</a></li>
-                    <li><a href="#">Community</a></li>
-                    <li class="dropdown">
-                        <a href="#">Algorithms ▼</a>
-                        <div class="dropdown-content">
-                            <a href="../Algorithm/overviewbfs.html">BFS</a>
-                            <a href="../Algorithm/overviewdfs.html">DFS</a>
-                            <a href="../Algorithm/overviewdij.html">Dijkstra</a>
-                            <a href="../Algorithm/overviewa.html">A*</a>
-                            <a href="../Algorithm/overviewfc.html">Foward Chaining</a>
-                            <a href="../Algorithm/overviewminimax.html">Mini Max</a>
-                            <a href="../Algorithm/overviewffill.html">Flood Fill</a>
-                        </div>
-                    </li>
-                    <li><a href="#">History</a></li>
-                    <li><a href="#">Docs</a></li>
-                    <li><a href="#">Member</a></li>
-                </ul>
-            </nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VISUALIZATION</title>
+    <link rel="stylesheet" href="../../../static/css/main.css">
+    <link rel="stylesheet" href="../../../static/css/algorithm.css">
+    <link rel="stylesheet" href="../../../static/css/frame.css">
+    <script src="main.js" defer></script>
+    <!-- Google Font: Montserrat for logo text -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
 
-        
-            <div class="frame-icon">
-                <span class = "menu_icon">&#9776;</span>
-            </div>
-        </header>
+<body>
+    <header class="tool1">
+        <div class="frame-logo1">
+            <span class="secondtext-tool1">KaTiLa</span>
+            <span class="maintext-tool1">VISUALIZATION</span>
+        </div>
 
-        <header class="tool2">
-            <a href="../Algorithm/overviewdij.html" class="overview"><span>Overview</span></a>
-            <a href="../Algorithm/theorydij.html" class="theory"><span>Theory</span></a>
-            <a href="../Algorithm/simulationdij.html" class="simulation"><span>Simulation</span></a>
-            <a href="../Algorithm/stepbystepdij.html" class="stepbystep"><span>Step by Step</span></a>
-            <a href="../Algorithm/quizdij.html" class="quiz"><span>Quiz</span></a>
-        </header>
-
-        <div class="container">
-            <h1>Dijkstra</h1>
-            <p>
-            DFS (Depth-First Search) là thuật toán duyệt (hay tìm kiếm) đồ thị hoặc cây theo chiều sâu, nghĩa là từ một nút gốc (source), nó đi sâu theo một nhánh cho đến khi không còn nút nào để đi tiếp, sau đó quay lui (backtrack) để tiếp tục với các nhánh còn lại. 
-            </p>
-            <p>
-            DFS thường được dùng để:  
-            </p>
+        <nav class="menu">
             <ul>
-                <li>Khám phá toàn bộ các nút trong đồ thị hoặc cây.</li>
-                <li>Phát hiện chu trình (cycle detection).</li>
-                <li>Tìm thành phần liên thông trong đồ thị.</li>
-                <li>Là bước quan trọng trong nhiều thuật toán khác:</li>
-                <ul>
-                    <li>Topological Sort (sắp xếp topo).</li>
-                    <li>Tìm Strongly Connected Components (SCC – thành phần liên thông mạnh).</li>
-                    <li>Tìm cầu (bridge), đỉnh khớp (articulation point).</li>
-                </ul>
-            </ul>
-            <img src="https://f.howkteam.vn/Upload/cke/images/2_IMAGE%20TUTORIAL/8_CTDL%26GT/Bai19/1_BFS%20v%C3%A0%20DFS_Howkteam_vn.png" alt="Thứ tự thăm các đỉnh của BFS">
-
-            <h2>Ý tưởng (Idea)</h2>
-            <ul>
-                <li>Bắt đầu từ nút nguồn (source), đánh dấu nó là đã thăm (visited).</li>
-                <li>Với mỗi nút kề (neighbor) của nó:
-                    <ul>
-                        <li>Nếu nút kề chưa được thăm, đệ quy gọi DFS trên nút đó.</li>
-                    </ul>
+                <li><a href="../indexhome.html">Home</a></li>
+                <li><a href="#">Community</a></li>
+                <li class="dropdown">
+                    <a href="#">Algorithms ▼</a>
+                    <div class="dropdown-content">
+                        <a href="../Algorithm/overviewbfs.html">BFS</a>
+                        <a href="../Algorithm/overviewdfs.html">DFS</a>
+                        <a href="../Algorithm/overviewdij.html">Dijkstra</a>
+                        <a href="../Algorithm/overviewa.html">A*</a>
+                        <a href="../Algorithm/overviewfc.html">Foward Chaining</a>
+                        <a href="../Algorithm/overviewminimax.html">Mini Max</a>
+                        <a href="../Algorithm/overviewffill.html">Flood Fill</a>
+                    </div>
                 </li>
-                <li>Khi đi hết nhánh thì quay lui (backtrack) để thăm các nhánh khác.</li>
+                <li><a href="#">History</a></li>
+                <li><a href="#">Docs</a></li>
+                <li><a href="#">Member</a></li>
             </ul>
-            <p>DFS có thể triển khai theo 2 cách: </p>
-            <ul>
-                <li>Đệ quy (recursive).</li>
-                <li>Ngăn xếp (stack) thay cho đệ quy.</li>
-            </ul>
-            <h2>Thuật toán (Algorithm)</h2>
-            <pre>
-            DFS(graph, start):
-                mark start as visited
-                for each neighbor of start:
-                    if neighbor not visited:
-                        DFS(graph, neighbor)
-            </pre>
+        </nav>
 
-            <h2>Mã giả (Pseudocode)</h2>
-            <pre>
-            DFS(Graph G, node u):
-                visited[u] = true
-                for each v in neighbors(u):
-                    if not visited[v]:
-                        parent[v] = u
-                        DFS(G, v)
 
-            </pre>
-            <ul>
-                <li><b>neighbors(u)</b> là các đỉnh kề của của <b>u</b>.</li>
-                <li><b>parent[v] </b> lưu lại cha của <b>v</b> để tái tạo đường đi.</li>
-            </ul>
+        <div class="frame-icon">
+            <span class="menu_icon">&#9776;</span>
+        </div>
+    </header>
 
-            <h2>Triển khai bằng các ngôn ngữ phổ biến</h2>
-            <b>Code C++</b>
-            <pre>
-            #include<bits/stdc++.h>
-            using namespace std;
-            bool visited[1001];
-            vector<int>adj[1001];
-            void Intput()
-            {
-                int n, m;
-                cin >>n >>m;
-                for(int i = 0; i<m; i++)
-                {
-                    int x, y; cin >>x >>y;
-                    adj[x].push_back(y);
-                    adj[y].push_back(x);
-                }
-                memset(visited, false, sizeof(visited));
-            }
-            void DFS(int u)
-            {
-                cout<< u<<" ";
+    <header class="tool2">
+        <a href="../Algorithm/overviewdij.html" class="overview"><span>Overview</span></a>
+        <a href="../Algorithm/theorydij.html" class="theory"><span>Theory</span></a>
+        <a href="../Algorithm/simulationdij.html" class="simulation"><span>Simulation</span></a>
+        <a href="../Algorithm/stepbystepdij.html" class="stepbystep"><span>Step by Step</span></a>
+        <a href="../Algorithm/quizdij.html" class="quiz"><span>Quiz</span></a>
+    </header>
 
-                // thăm đỉnh u đã xét
-                visited[u]=true;
-                
-                // duyệt tất cả các đỉnh kề với đỉnh u
-                for(int v:adj[u]
-                ){
-                    if(visited[v]!=true)
-                    {
-                        DFS(v);
-                    }
-                }
-            }    
-            int main()
-            {
-                Intput();
-                DFS(1);
-            }
+    <div class="container">
+        <h1>Dijkstra</h1>
+        <p>
+            Thuật toán Dijkstra là thuật toán cổ điển để tìm đường đi ngắn nhất từ một đỉnh nguồn đến mọi đỉnh khác
+            trong đồ thị có trọng số không âm.
+            Được phát minh bởi Edsger W. Dijkstra vào những năm 1950, thuật toán này là nền tảng cho nhiều ứng dụng như
+            định tuyến mạng, hệ thống bản đồ và các bài toán tối ưu hóa.
+        </p>
 
+        <h2>Ý tưởng (Idea)</h2>
+        <ul>
+            <li>Mỗi đỉnh giữ một giá trị <code>dist[v]</code> biểu diễn khoảng cách nhỏ nhất ước tính từ nguồn đến v.
+            </li>
+            <li>Ban đầu đặt <code>dist[source] = 0</code> và <code>dist[others] = ∞</code>.</li>
+            <li>Lặp: chọn đỉnh chưa được cố định (finalized) có <code>dist</code> nhỏ nhất, cập nhật khoảng cách của các
+                nút kề bằng thao tác "relaxation".</li>
+            <li>Tiếp tục cho đến khi tất cả đỉnh được cố định hoặc không còn đỉnh có thể tiếp cận.</li>
+        </ul>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Dijkstra_Animation.gif" alt="Minh họa Dijkstra" />
+
+        <h2>Thuật toán (Algorithm)</h2>
+        <pre>
+Dijkstra(graph, source):
+    for each vertex v in graph:
+        dist[v] = infinity
+        previous[v] = undefined
+    dist[source] = 0
+
+    Q = all vertices in graph (min-priority queue ordered by dist)
+
+    while Q not empty:
+        u = extract-min(Q)
+        for each neighbor v of u:
+            alt = dist[u] + weight(u, v)
+            if alt < dist[v]:
+                dist[v] = alt
+                previous[v] = u
+                decrease-key(Q, v, alt)
+    return dist[], previous[]
         </pre>
 
-            <b>Code Java</b>
-            <pre> </pre>
-            <b>Code Python</b>
-            <pre>   </pre>
-            
-            <h2>Phân tích độ phức tạp (Complexity Analysis)</h2>
-            <ul>
-                <li>Thời gian (Time Complexity): O(V + E)</li>
-                    <ul>
-                        <li>V là số nút (vertices)</li>
-                        <li>E là số cạnh (edges)</li>
-                        Mỗi đỉnh được thăm 1 lần, mỗi cạnh duyệt tối đa 2 lần (đồ thị vô hướng).
-                    </ul>
-                <li>Không gian (Space Complexity): O(V)</li>
-                    <ul>
-                        <li>Để lưu mảng visited và ngăn xếp đệ quy (trong trường hợp xấu nhất, stack sâu bằng số đỉnh).</li>
-                    </ul>
-            </ul>
-            <h2>Tính chất, đặc điểm & những lưu ý (Properties, Characteristic, Notes)</h2>
-            <ul>
-                <li>DFS duyệt theo chiều sâu (depth-first).</li>
-                <pli>DFS duyệt theo chiều sâu (depth-first).</li>
-                <li>Sử dụng stack hoặc đệ quy.</li>
-                <li>Với đồ thị không liên thông → cần lặp DFS cho tất cả các đỉnh chưa thăm để duyệt hết</li>
-                <li>DFS thường đơn giản, tốn ít bộ nhớ hơn BFS trong trường hợp đồ thị “rộng” nhưng không quá sâu.</li>
-            </ul>
+        <h2>Mã giả (Pseudocode)</h2>
+        <pre>
+function Dijkstra(Graph, source):
+    for each vertex v in Graph:
+        dist[v] := infinity
+        prev[v] := null
+    dist[source] := 0
+    Q := min-priority-queue containing all vertices keyed by dist[]
 
-            <h2>Ứng dụng (Applications)</h2>
-            <p>Một số ứng dụng nổi bật</p>
-                <ul>
-                    <li>Phát hiện chu trình trong đồ thị (có hướng & vô hướng).</li>
-                    <li>Kiểm tra liên thông hoặc đếm số thành phần liên thông.</li>
-                    <li>Topological Sort (sắp xếp topo cho DAG).</li>
-                    <li>Xác định cầu (bridge) và điểm khớp (articulation point) trong mạng.</li>
-                    <li>Backtracking (giải Sudoku, N-Queens, mê cung…).</li>
-                    <li>Trình biên dịch (compiler): phân tích đồ thị phụ thuộc, luồng điều khiển.</li>
-                    <li>AI/game: duyệt trạng thái, sinh cây trò chơi.</li>
-                </ul>
-            <ul> 
-        </div>
-    </body>
+    while Q is not empty:
+        u := Extract-Min(Q)
+        for each neighbor v of u:
+            alt := dist[u] + length(u, v)
+            if alt < dist[v]:
+                dist[v] := alt
+                prev[v] := u
+                Decrease-Key(Q, v, alt)
+    return dist, prev
+        </pre>
+
+        <h2>Triển khai ví dụ</h2>
+
+        <h3>Code C++ (sử dụng priority_queue)</h3>
+        <pre>
+#include <bits/stdc++.h>
+using namespace std;
+using pii = pair<int,int>; // (dist, node)
+
+vector<vector<pair<int,int>>> adj; // adj[u] = {(v, w), ...}
+vector<int> dijkstra(int n, int source) {
+    const int INF = 1e9;
+    vector<int> dist(n+1, INF);
+    priority_queue<pii, vector<pii>, greater<pii>> pq;
+    dist[source] = 0;
+    pq.push({0, source});
+
+    while (!pq.empty()) {
+        auto [du, u] = pq.top(); pq.pop();
+        if (du != dist[u]) continue;
+        for (auto [v, w] : adj[u]) {
+            if (dist[u] + w < dist[v]) {
+                dist[v] = dist[u] + w;
+                pq.push({dist[v], v});
+            }
+        }
+    }
+    return dist;
+}
+        </pre>
+
+        <h3>Code Python (sử dụng heapq)</h3>
+        <pre>
+import heapq
+
+def dijkstra(n, adj, source):
+    INF = 10**18
+    dist = [INF] * (n + 1)
+    dist[source] = 0
+    pq = [(0, source)]
+    while pq:
+        d, u = heapq.heappop(pq)
+        if d != dist[u]:
+            continue
+        for v, w in adj[u]:
+            nd = d + w
+            if nd < dist[v]:
+                dist[v] = nd
+                heapq.heappush(pq, (nd, v))
+    return dist
+        </pre>
+
+        <h2>Phân tích độ phức tạp (Complexity Analysis)</h2>
+        <ul>
+            <li>Trường hợp đơn giản (ma trận khoảng cách hoặc tìm min bằng linear scan): O(V^2).</li>
+            <li>Sử dụng priority queue (binary heap): O((V + E) log V) ≈ O(E log V) cho đồ thị thưa.</li>
+            <li>Sử dụng Fibonacci heap (lý thuyết): O(V log V + E).</li>
+            <li>Không gian: O(V + E) để lưu biểu diễn đồ thị và mảng dist/prev.</li>
+        </ul>
+
+        <h2>Tính chất & lưu ý</h2>
+        <ul>
+            <li>Đòi hỏi: tất cả trọng số cạnh phải không âm. Nếu có cạnh âm, dùng Bellman-Ford.</li>
+            <li>Dijkstra tìm đường ngắn nhất từ một nguồn đến mọi đỉnh khác (single-source shortest path).</li>
+            <li>Nếu bạn chỉ cần đường ngắn nhất giữa hai đỉnh, có thể dùng biến thể bidirectional Dijkstra để tăng tốc.
+            </li>
+            <li>Độ phức tạp thực tế phụ thuộc vào cấu trúc dữ liệu cho hàng đợi ưu tiên và biểu diễn đồ thị (adjacency
+                list hay matrix).</li>
+        </ul>
+
+        <h2>Ứng dụng (Applications)</h2>
+        <ul>
+            <li>Hệ thống định tuyến mạng (ví dụ: OSPF sử dụng cơ chế tương tự).</li>
+            <li>Hệ thống bản đồ và GPS: tính khoảng cách tối thiểu trên đồ thị đường bộ (khi trọng số không âm).</li>
+            <li>Robot path planning trong môi trường có chi phí di chuyển khác nhau.</li>
+            <li>Tối ưu hóa logistics, lập lịch và phân tích đường đi trong sơ đồ vận hành.</li>
+            <li>Là nhân tố cơ bản để phát triển các thuật toán phức tạp hơn (A*, Johnson's algorithm, v.v.).</li>
+        </ul>
+
+        <h2>Kết luận</h2>
+        <p>
+            Dijkstra là một công cụ cực kỳ quan trọng trong khoa học máy tính và kỹ thuật. Với việc lựa chọn đúng cấu
+            trúc dữ liệu (ví dụ: heap), thuật toán có thể xử lý hiệu quả các đồ thị lớn.
+            Tuy nhiên, cần lưu ý trọng số cạnh phải không âm; trong các trường hợp có cạnh âm hoặc yêu cầu tối ưu trên
+            nhiều nguồn/đa tiêu chí, cần cân nhắc các thuật toán khác.
+        </p>
+    </div>
+</body>
+
 </html>
