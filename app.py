@@ -59,8 +59,8 @@ def solve():
     start = tuple(data['start'])
     end = tuple(data['end'])
 
+    print('ket qua', solve_maze(maze_data, start, end, algo))
     res =  jsonify(solve_maze(maze_data, start, end, algo))
-    print(res)
     return res
 
 if __name__ == "__main__":

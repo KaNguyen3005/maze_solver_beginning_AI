@@ -140,7 +140,7 @@ function startRunningDots() {
 
   runningDotsInterval = setInterval(() => {
     dotCount = (dotCount + 1) % 4; // 0,1,2,3
-    const dots = '.'.repeat(dotCount);
+    const dots = ".".repeat(dotCount);
     statusEl.textContent = `Running${dots}`;
   }, 500); // mỗi 0.5s đổi dấu
 }
@@ -184,12 +184,12 @@ async function solveMaze() {
   const run_time = data.time_taken; // Animate kết quả
   await animateVisited();
   await animatePath(); // Hiển thị kết quả
-  stopRunningDots((path.length > 0) ? "✅ Found path" : "❌ No path found"); 
+  stopRunningDots(path.length > 0 ? "✅ Found path" : "❌ No path found");
   updateStats(
     run_time,
     path.length,
     visited.length,
-    (path.length > 0) ? "✅ Found path" : "❌ No path found"
+    path.length > 0 ? "✅ Found path" : "❌ No path found"
   );
   solving = false;
   changeSelect.disabled = false;

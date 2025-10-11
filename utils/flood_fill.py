@@ -3,7 +3,7 @@ import time
 
 def solve_maze(maze, start, end):
     start_time = time.time()
-    nodes_visited = 0
+    nodes_visited = [start]
 
     rows, cols = len(maze), len(maze[0])
     visited = [[False]*cols for _ in range(rows)]
@@ -14,7 +14,7 @@ def solve_maze(maze, start, end):
 
     while queue:
         current = queue.popleft()
-        nodes_visited += 1
+        # nodes_visited += 1
 
         if current == end:
             break
@@ -24,6 +24,7 @@ def solve_maze(maze, start, end):
             nx, ny = x + dx, y + dy
             if 0 <= nx < rows and 0 <= ny < cols and not visited[nx][ny] and maze[nx][ny] == 0:
                 visited[nx][ny] = True
+                nodes_visited.append((nx,ny))
                 parent[(nx, ny)] = current
                 queue.append((nx, ny))
 

@@ -1,6 +1,6 @@
 import random
 import heapq
-from utils import bfs, dfs, astar, dijkstra
+from utils import bfs, dfs, astar, dijkstra, flood_fill
 ROWS, COLS = 20, 20
 
 
@@ -9,6 +9,7 @@ SOLVERS = {
     "dfs": dfs.solve_maze,
     "astar": astar.solve_maze,
     "dijkstra": dijkstra.solve_maze,
+    "ffill": flood_fill.solve_maze,
 }
 
 def generate_solvable_maze(rows=ROWS, cols=COLS):
