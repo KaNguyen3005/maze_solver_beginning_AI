@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    const res = await fetch("static/data/quiz.json");
+    const res = await fetch("../static/data/quiz.json");
     if (!res.ok) throw new Error("Không thể tải file quiz.json");
 
     const data = await res.json();
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       titleEl.textContent = `❌ Không tìm thấy quiz cho "${algo}"`;
       return;
     }
-
+    console.log(quiz)
     titleEl.textContent = quiz.title;
     contentEl.innerHTML = quiz.overview;
   } catch (error) {
