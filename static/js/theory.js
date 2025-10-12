@@ -7,7 +7,7 @@ function getQueryParam(key) {
 const algo = getQueryParam("algo");
 
 const mazeSimulationUrl = new URL(`/maze.html?algo=${algo}&mode=simulation`, window.location.origin);
-const mazeStepByStepUrl = new URL(`/maze.html?algo=${algo}&mode=stepbystep`, window.location.origin);
+const mazeStepByStepUrl = new URL(`/maze.html?algo=${algo}&mode=step_by_step`, window.location.origin);
 const mazeOverviewUrl = new URL(`Algorithm/overview.html?algo=${algo}`, window.location.origin);
 const mazeTheoryUrl = new URL(`Algorithm/theory.html?algo=${algo}`, window.location.origin);
 const mazeQuizUrl = new URL(`Algorithm/quiz.html?algo=${algo}`, window.location.origin);

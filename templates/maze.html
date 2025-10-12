@@ -65,7 +65,7 @@
           <div class="algo-status">
             <h3>Algorithm Status</h3>
             <p><b> Current node:</b> <span id="currentNode">None</span></p>
-            <p><b> Queue/Stack:</b> <span id="queueContent">[]</span></p>
+            <p><b id="dataStructureLabel"> Open set:</b> <span id="queueContent">[]</span></p>
             <p><b> Visited:</b> <span id="visitedList">[]</span></p>
             <p><b> Phase:</b> <span id="phase">Idle</span></p>
           </div>
@@ -84,7 +84,7 @@
               <td><b>Visited nodes</b></td>
               <td id="visitedCount">0</td>
             </tr>
-           
+
             <tr>
               <td><b>Status</b></td>
               <td id="status">Idle</td>
@@ -107,6 +107,9 @@
           <option value="ffill">Flood Fill</option>
         </select>
       </div>
+      <button id="nextStepBtn" onclick="nextStep()" style="display: none">
+        Next Step
+      </button>
     </div>
   </body>
   <script src="/static/js/script.js"></script>

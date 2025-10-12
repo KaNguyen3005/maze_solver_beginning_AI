@@ -3,6 +3,7 @@ import heapq
 from utils import bfs, dfs, astar, dijkstra, flood_fill
 ROWS, COLS = 20, 20
 
+import logging
 
 SOLVERS = {
     "bfs": bfs.solve_maze,
@@ -47,4 +48,5 @@ def solve_maze(maze, start, end, algo):
 
     if algo not in SOLVERS:
         raise Exception(f"Thuật toán {algo} không tồn tại")
+
     return SOLVERS[algo](maze, start, end)

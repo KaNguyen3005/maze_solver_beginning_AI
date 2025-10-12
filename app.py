@@ -40,7 +40,9 @@ def render_algo_page(page):
 @app.route('/api/generate')
 def generate():
     global maze_data, path_data
-    maze_data, start, end = generate_solvable_maze()
+    rows = int(request.args.get('rows', 20))  # mặc định 20 nếu không truyền
+    cols = int(request.args.get('cols', 20))
+    maze_data, start, end = generate_solvable_maze(rows, cols)
     path_data = []
     return jsonify({
         'maze': maze_data,
@@ -51,15 +53,12 @@ def generate():
 @app.route('/api/solve', methods=['POST'])
 def solve():
     algo = request.args.get('algo')  # lấy từ query string
-    print(f"Thuật toán được chọn: {algo}")
     global maze_data, path_data
     data = request.json
-    print(data)
     maze_data = data['maze']
     start = tuple(data['start'])
     end = tuple(data['end'])
 
-    print('ket qua', solve_maze(maze_data, start, end, algo))
     res =  jsonify(solve_maze(maze_data, start, end, algo))
     return res
 

@@ -1,7 +1,7 @@
 
 function updateMenuLinks(algo) {
   const mazeSimulationUrl = new URL(`/maze.html?algo=${algo}&mode=simulation`, window.location.origin);
-  const mazeStepByStepUrl = new URL(`/maze.html?algo=${algo}&mode=stepbystep`, window.location.origin);
+  const mazeStepByStepUrl = new URL(`/maze.html?algo=${algo}&mode=step_by_step`, window.location.origin);
   const mazeOverviewUrl = new URL(`Algorithm/overview.html?algo=${algo}`, window.location.origin);
   const mazeTheoryUrl = new URL(`Algorithm/theory.html?algo=${algo}`, window.location.origin);
   const mazeQuizUrl = new URL(`Algorithm/quiz.html?algo=${algo}`, window.location.origin);
@@ -29,7 +29,7 @@ algoSelect.addEventListener("change", (e) => {
   const newAlgo = e.target.value;
 
   // Cập nhật URL trên thanh địa chỉ mà không reload
-  const newUrl = `${window.location.pathname}?algo=${newAlgo}`;
+  const newUrl = `${window.location.pathname}?algo=${newAlgo}&mode=${urlParams.get("mode")}`;
   window.history.pushState({}, "", newUrl);
 
   // Cập nhật lại menu

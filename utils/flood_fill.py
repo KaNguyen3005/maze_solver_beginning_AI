@@ -1,67 +1,74 @@
-from collections import deque
 import time
+from collections import deque
 
 def solve_maze(maze, start, end):
-    start_time = time.time()
+    target_value = maze[start[0]][start[1]]
+    fill_value = 2
+
+    # Nếu start hoặc end không hợp lệ
+    if target_value == fill_value or maze[end[0]][end[1]] != target_value:
+        return {"time_taken": 0, "path": [], "nodes_visited": [], "states": []}
+
+    print("FLOOD FILL (và tìm đường)")
+    queue = deque([start])
+    visited = set([start])
+    parent = {start: None}
+    states = []
     nodes_visited = [start]
 
-    rows, cols = len(maze), len(maze[0])
-    visited = [[False]*cols for _ in range(rows)]
-    parent = {start: None}
+    start_time = time.time()
 
-    queue = deque([start])
-    visited[start[0]][start[1]] = True
-
+    found = False
     while queue:
-        current = queue.popleft()
-        # nodes_visited += 1
+        x, y = queue.popleft()
+        # maze[x][y] = fill_value  # tô vùng đã đi
 
-        if current == end:
+        new_neighbors = []
+        for dx, dy in [(-1,0), (1,0), (0,-1), (0,1)]:
+            nx, ny = x + dx, y + dy
+            if (
+                0 <= nx < len(maze) and
+                0 <= ny < len(maze[0]) and
+                (nx, ny) not in visited and
+                maze[nx][ny] == target_value
+            ):
+                visited.add((nx, ny))
+                parent[(nx, ny)] = (x, y)  # lưu cha
+                nodes_visited.append((nx, ny))
+                queue.append((nx, ny))
+                new_neighbors.append((nx, ny))
+
+                # nếu gặp end thì dừng
+                if (nx, ny) == end:
+                    found = True
+                    break
+
+        states.append({
+            "current": (x, y),
+            "open_set": list(queue),
+            "visited": list(visited),
+            "new_neighbors": new_neighbors
+        })
+
+        if found:
             break
 
-        x, y = current
-        for dx, dy in [(-1,0),(1,0),(0,-1),(0,1)]:
-            nx, ny = x + dx, y + dy
-            if 0 <= nx < rows and 0 <= ny < cols and not visited[nx][ny] and maze[nx][ny] == 0:
-                visited[nx][ny] = True
-                nodes_visited.append((nx,ny))
-                parent[(nx, ny)] = current
-                queue.append((nx, ny))
+    time_taken = round((time.time() - start_time) * 1000, 3)
 
-    # Nếu không tìm thấy đường
-    if end not in parent:
-        return {
-            'time_taken': round((time.time() - start_time) * 1000, 3),
-            'path': None,
-            'nodes_visited': nodes_visited
-        }
-
-    # reconstruct path
+    # dựng lại đường đi từ end về start nếu tìm thấy
     path = []
-    cur = end
-    while cur is not None:
-        path.append(cur)
-        cur = parent[cur]
-    path.reverse()
+    if found:
+        cur = end
+        while cur is not None:
+            path.append(cur)
+            cur = parent[cur]
+        path.reverse()
+    else:
+        path = []
 
     return {
-        'time_taken': round((time.time() - start_time) * 1000, 3),
-        'path': path,
-        'nodes_visited': nodes_visited
+        "time_taken": time_taken,
+        "path": path,
+        "nodes_visited": nodes_visited,
+        "states": states
     }
-
-
-# --- Test ---
-if __name__ == "__main__":
-    maze = [
-        [0,1,0,0,0],
-        [0,1,0,1,0],
-        [0,0,0,1,0],
-        [0,1,1,1,0],
-        [0,0,0,0,0]
-    ]
-    start = (0,0)
-    end   = (4,4)
-
-    # result = flood_fill(maze, start, end)
-    # print(result)
