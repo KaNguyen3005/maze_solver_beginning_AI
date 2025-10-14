@@ -17,7 +17,7 @@ path_data = []
 
 @app.route('/')
 def index():
-    return render_template('indexlogo.html')
+    return render_template('index.html')
 
 # Render HTML cho các trang khác (tổng quát)
 @app.route('/<page>')
