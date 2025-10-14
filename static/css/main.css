@@ -26,8 +26,8 @@ body {
   left: 0;
   z-index: 1000;
   background: linear-gradient(to right,
-      rgba(210, 203, 203, 1),
-      rgba(108, 104, 104, 1));
+      rgba(210, 203, 203, 0.4),
+      rgba(108, 104, 104, 0.4));
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   box-sizing: border-box
 }
@@ -52,7 +52,7 @@ body {
   left: 0;
   z-index: 1000;
   background: linear-gradient(to right,
-      rgba(210, 203, 203, 1));
+      rgba(210, 203, 203, 0.2));
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   box-sizing: border-box
 }
@@ -62,15 +62,15 @@ body {
   gap: 20px;
   padding: 5px 15px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.33);
+  background: rgb(231, 230, 230);
   text-decoration: none;
   color: black;
   transition: 0.3s;
 }
 
 .tool2 a:hover {
-  background: rgba(0, 150, 255, 0.2);
-  color: #0096ff;
+  background: rgb(167, 208, 247);
+  color: #000000;
   font-weight: bold;
 }
 
@@ -105,13 +105,13 @@ body {
 {
   display: flex;
   gap: 20px;
-  padding: 10px 15px;
+  padding: 7px 13px;
   border: 1px solid #aaa;
   border-radius: 20px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.6);
+  background: rgb(231, 230, 230);
 }
 
 .menu a {
@@ -135,51 +135,18 @@ body {
   cursor: pointer;
 }
 
-.overview {
+.overview,
+.theory,
+.simulation,
+.stepbystep,
+.quiz
+{
   display: flex;
   gap: 20px;
-  padding: 5px 15px;
-  border: 0;
+  padding: 4px 15px;
+  border: 1px solid #aaa;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.33);
-
-}
-
-.theory {
-  display: flex;
-  gap: 20px;
-  padding: 5px 15px;
-  border: 0;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.33);
-}
-
-.simulation {
-  display: flex;
-  gap: 20px;
-  padding: 5px 15px;
-  border: 0;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.33);
-
-}
-
-.stepbystep {
-  display: flex;
-  gap: 20px;
-  padding: 5px 15px;
-  border: 0;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.33);
-
-}
-.quiz {
-  display: flex;
-  gap: 20px;
-  padding: 5px 15px;
-  border: 0;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.33);
+  background: rgb(231, 230, 230);
 
 }
 button {
