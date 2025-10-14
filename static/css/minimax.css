@@ -1,0 +1,10 @@
+  body { font-family: Arial, sans-serif; display:flex; gap:20px; padding:20px; }
+  .left { width: 220px; }
+  .board { display:grid; grid-template-columns: repeat(3, 70px); gap:6px; }
+  .cell { width:70px; height:70px; background:#f3f3f3; display:flex; align-items:center; justify-content:center; font-size:32px; cursor:pointer; border:1px solid #ccc; }
+  .controls { margin-top: 12px; }
+  .right { flex:1; overflow:auto; border:1px solid #ddd; padding:10px; height:520px; }
+  svg { width:100%; height:100%; }
+  .node-circle { fill: #fff; stroke:#333; stroke-width:1; }
+  .node-text { font-size:12px; text-anchor:middle; dominant-baseline:middle; pointer-events:none; }
+  .edge { stroke:#777; stroke-width:1; }

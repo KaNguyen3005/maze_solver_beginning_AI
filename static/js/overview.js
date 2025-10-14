@@ -8,6 +8,9 @@ console.log(algo)
 if(algo === "ffill"){
     mazeSimulationUrl =  new URL(`/flood_fill.html`, window.location.origin);
 }
+else if(algo === "minimax"){
+      mazeSimulationUrl =  new URL(`/minimax.html`, window.location.origin);
+}
 else{
     mazeSimulationUrl = new URL(`/maze.html?algo=${algo}&mode=simulation`, window.location.origin);
 }
