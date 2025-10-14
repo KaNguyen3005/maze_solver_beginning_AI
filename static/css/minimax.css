@@ -5,6 +5,19 @@
   .controls { margin-top: 12px; }
   .right { flex:1; overflow:auto; border:1px solid #ddd; padding:10px; height:520px; }
   svg { width:100%; height:100%; }
-  .node-circle { fill: #fff; stroke:#333; stroke-width:1; }
-  .node-text { font-size:12px; text-anchor:middle; dominant-baseline:middle; pointer-events:none; }
-  .edge { stroke:#777; stroke-width:1; }
+ .node-circle {
+  fill: white;
+  stroke: black;
+  stroke-width: 2px;
+}
+
+.node-text {
+  text-anchor: middle;
+  font-size: 12px;
+  fill: black;
+}
+
+.edge {
+  stroke: #555;
+  stroke-width: 1.5px;
+}
