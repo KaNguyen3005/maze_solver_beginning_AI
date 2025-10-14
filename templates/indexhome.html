@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VISUALIZATION</title>
     <link rel="stylesheet" href="../static/css/home.css" />
+    <link rel="stylesheet" href="../static/css/algorithm.css" />
     <script src="../static/js/home.css" defer></script>
     <!-- Google Font: Montserrat for logo text -->
     <link
@@ -20,12 +21,25 @@
       </div>
 
       <nav class="menu">
-        <a href="#">Home</a>
-        <a href="#">Community</a>
-        <a href="#">Algorithms</a>
-        <a href="#">History</a>
-        <a href="#">Docs</a>
-        <a href="#">Member</a>
+        <ul>
+          <li><a href="../indexhome.html">Home</a></li>
+          <li><a href="#">Community</a></li>
+          <li class="dropdown">
+            <a href="#">Algorithms ▼</a>
+            <div class="dropdown-content algo_name">
+              <a href="Algorithm/overview.html?algo=bfs">BFS</a>
+              <a href="Algorithm/overview.html?algo=dfs">DFS</a>
+              <a href="Algorithm/overview.html?algo=dijkstra">Dijkstra</a>
+              <a href="Algorithm/overview.html?algo=astar">A*</a>
+              <a href="Algorithm/overview.html?algo=fc">Forward Chaining</a>
+              <a href="Algorithm/overview.html?algo=minimax">Mini Max</a>
+              <a href="Algorithm/overview.html?algo=ffill">Flood Fill</a>
+            </div>
+          </li>
+          <li><a href="#">History</a></li>
+          <li><a href="#">Docs</a></li>
+          <li><a href="#">Member</a></li>
+        </ul>
       </nav>
 
       <div class="frame-icon">
@@ -52,22 +66,22 @@
       <a href="Algorithm/overview.html?algo=dijkstra" class="box"
         ><span>Dijkstra</span></a
       >
-      <a href="Algorithm/overview.html?algo=floodfill" class="box"
+      <a href="Algorithm/overview.html?algo=ffill" class="box"
         ><span>Flood Fill</span></a
       >
-      <a href="Algorithm/overview.html?algo=graphcoloring" class="box"
+      <a href="Algorithm/coming_soon.html" class="box"
         ><span>Graph Coloring</span></a
       >
-      <a href="Algorithm/overview.html?algo=bubblesort" class="box"
+      <a href="Algorithm/coming_soon.html" class="box"
         ><span>Bubble Sort</span></a
       >
-      <a href="Algorithm/overview.html?algo=kruskal" class="box"
+      <a href="Algorithm/coming_soon.html" class="box"
         ><span>Kruskal</span></a
       >
-      <a href="Algorithm/overview.html?algo=prim" class="box"
+      <a href="Algorithm/coming_soon.html" class="box"
         ><span>Prim</span></a
       >
-      <a href="Algorithm/overview.html?algo=hashing" class="box"
+      <a href="Algorithm/coming_soon.html" class="box"
         ><span>Hashing</span></a
       >
     </header>

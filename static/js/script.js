@@ -254,38 +254,44 @@ function highlightState(state) {
 }
 
 async function nextStep() {
-  // nếu còn state để xử lý
   if (currentStateIndex < states.length) {
     highlightState(states[currentStateIndex]);
     currentStateIndex++;
 
-    // nếu vừa xử lý xong state cuối cùng -> vẽ path
+    // bật prevStepBtn nếu cần
+    const prevBtn = document.getElementById("prevStepBtn");
+    if (prevBtn) prevBtn.disabled = false;
+
     if (currentStateIndex === states.length) {
-      // Disable nút để tránh bấm tiếp
       const nextBtn = document.getElementById("nextStepBtn");
       if (nextBtn) nextBtn.disabled = true;
 
-      // Nếu bạn muốn animation cho path thì dùng:
-      // await animatePath();
-      // Ngược lại vẽ ngay:
       animatePath();
-
-      // cập nhật thông báo + stats
-      stopRunningDots("✅ Hoàn tất thuật toán");
+      stopRunningDots("✅ Successes");
       updateStats(
         run_time ? run_time : 0,
         path ? path.length : 0,
         visited ? visited.length : 0,
-        path && path.length > 0
-          ? "✅ Hoàn tất thuật toán"
-          : "❌ Không tìm thấy đường đi"
+        path && path.length > 0 ? "✅ Successes" : "❌ Failed"
       );
     }
   } else {
-    // đã hết state rồi
-    document.getElementById("nextStepBtn").disabled = true;
+    const nextBtn = document.getElementById("nextStepBtn");
+    if (nextBtn) nextBtn.disabled = true;
     animatePath();
-    stopRunningDots("✅ Hoàn tất thuật toán");
+    stopRunningDots("✅ Successes");
+  }
+}
+
+
+async function prevStep() {
+  if (currentStateIndex > 0) {
+    currentStateIndex--; // giảm trước
+    highlightState(states[currentStateIndex]);
+
+    // Bật nút nextStepBtn nếu bị disable
+    const nextBtn = document.getElementById("nextStepBtn");
+    if (nextBtn) nextBtn.disabled = false;
   }
 }
 
@@ -317,8 +323,10 @@ async function solveMaze() {
     // ✅ chỉ set states, không animate
     states = data.states || [];
     currentStateIndex = 0;
-    document.getElementById("nextStepBtn").style.display = "inline-block";
+   document.getElementById("prevStepBtn").style.visibility = "visible";
+  document.getElementById("nextStepBtn").style.visibility = "visible";
     document.getElementById("nextStepBtn").disabled = states.length === 0;
+
     stopRunningDots(states.length > 0 ? "Ready to step" : "No state found");
   } else {
     // ✅ như hiện tại
@@ -326,13 +334,13 @@ async function solveMaze() {
     await animateVisited();
     await animatePath();
     stopRunningDots(
-      path.length > 0 ? "✅ Hoàn tất thuật toán" : "❌ Không tìm thấy đường đi"
+      path.length > 0 ? "✅ Successes" : "❌ Failed"
     );
     updateStats(
       run_time,
       path.length,
       visited.length,
-      path.length > 0 ? "✅ Hoàn tất thuật toán" : "❌ Không tìm thấy đường đi"
+      path.length > 0 ? "✅ Successes" : "❌ Failed"
     );
   }
 }

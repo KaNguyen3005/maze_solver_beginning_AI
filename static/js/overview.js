@@ -5,7 +5,12 @@ const algo = urlParams.get("algo");
 console.log(algo)
 
 // Gán link cho menu phụ để chuyển trang vẫn giữ algo
-const mazeSimulationUrl = new URL(`/maze.html?algo=${algo}&mode=simulation`, window.location.origin);
+if(algo === "ffill"){
+    mazeSimulationUrl =  new URL(`/flood_fill.html`, window.location.origin);
+}
+else{
+    mazeSimulationUrl = new URL(`/maze.html?algo=${algo}&mode=simulation`, window.location.origin);
+}
 const mazeStepByStepUrl = new URL(`/maze.html?algo=${algo}&mode=step_by_step`, window.location.origin);
 const mazeOverviewUrl = new URL(`Algorithm/overview.html?algo=${algo}`, window.location.origin);
 const mazeTheoryUrl = new URL(`Algorithm/theory.html?algo=${algo}`, window.location.origin);

@@ -48,8 +48,16 @@ body {
   gap: 10px;
 }
 
+#algoSelect {
+  margin-top: 20px;
+}
+
+#prevStepBtn, #nextStepBtn {
+  visibility: hidden; /* ẩn nhưng vẫn chiếm chỗ */
+}
+
 .btn {
-  padding: 6px 12px;
+  padding: 6px 6px;
   font-size: 14px;
   border: none;
   border-radius: 6px;

@@ -13,7 +13,7 @@ body {
       rgba(174, 227, 255, 1));
 }
 
-.tool1/* narbar */
+.tool1/* navbar */
 {
   position: relative;
   display: flex;
@@ -26,10 +26,18 @@ body {
   left: 0;
   z-index: 1000;
   background: linear-gradient(to right,
-      rgba(210, 203, 203, 0.4),
-      rgba(108, 104, 104, 0.4));
+      rgba(210, 203, 203, 1),
+      rgba(108, 104, 104, 1));
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   box-sizing: border-box
+}
+
+.play-icon {
+    width: 20px;          /* kích thước icon */
+    height: 20px;
+    background-color: #4CAF50; /* xanh lá hoặc đổi sang xanh khác */
+    clip-path: polygon(25% 20%, 25% 80%, 75% 50%); /* hình tam giác Play */
+    cursor: pointer;
 }
 
 .tool2/* navbar dưới */
@@ -44,7 +52,7 @@ body {
   left: 0;
   z-index: 1000;
   background: linear-gradient(to right,
-      rgba(210, 203, 203, 0.28));
+      rgba(210, 203, 203, 1));
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   box-sizing: border-box
 }

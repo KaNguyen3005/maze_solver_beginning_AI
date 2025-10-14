@@ -22,6 +22,12 @@ def solve_maze(maze, start, end):
         nodes_visited.append(current)
 
         if current == end:
+            states.append({
+                "current": current,
+                "open_set": [node[2] for node in open_set],  # lấy phần tử (x,y) thôi
+                "visited": list(visited),
+                "new_neighbors": states[-1]["new_neighbors"]
+            })
             break
 
         if current in visited:

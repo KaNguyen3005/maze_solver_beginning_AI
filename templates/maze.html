@@ -23,21 +23,25 @@
 
       <nav class="menu">
         <ul>
-          <a href="../indexhome.html">Home</a>
+          <li><a href="indexhome.html">Home</a></li>
+          <li><a href="#">Community</a></li>
           <li class="dropdown">
             <a href="#">Algorithms ▼</a>
             <div class="dropdown-content">
               <a href="Algorithm/overview.html?algo=bfs">BFS</a>
               <a href="Algorithm/overview.html?algo=dfs">DFS</a>
               <a href="Algorithm/overview.html?algo=dijkstra">Dijkstra</a>
-              <a href="Algorithm/overview.html?algo=a_star">A*</a>
+              <a href="Algorithm/overview.html?algo=astar">A*</a>
               <a href="Algorithm/overview.html?algo=forward_chaining"
                 >Forward Chaining</a
               >
               <a href="Algorithm/overview.html?algo=minimax">Mini Max</a>
-              <a href="Algorithm/overview.html?algo=flood_fill">Flood Fill</a>
+              <a href="Algorithm/overview.html?algo=ffill">Flood Fill</a>
             </div>
           </li>
+          <li><a href="#">History</a></li>
+          <li><a href="#">Docs</a></li>
+          <li><a href="#">Member</a></li>
         </ul>
       </nav>
 
@@ -65,7 +69,10 @@
           <div class="algo-status">
             <h3>Algorithm Status</h3>
             <p><b> Current node:</b> <span id="currentNode">None</span></p>
-            <p><b id="dataStructureLabel"> Open set:</b> <span id="queueContent">[]</span></p>
+            <p>
+              <b id="dataStructureLabel"> Open set:</b>
+              <span id="queueContent">[]</span>
+            </p>
             <p><b> Visited:</b> <span id="visitedList">[]</span></p>
             <p><b> Phase:</b> <span id="phase">Idle</span></p>
           </div>
@@ -95,21 +102,24 @@
 
       <div class="buttons">
         <button id="generateBtn" class="btn">Generate Maze</button>
-        <button id="solveBtn" class="btn">Solve Maze</button>
+        <button id="solveBtn" class="btn"><div class="play-icon"></div></button>
         <!-- Nút đổi thuật toán -->
         <select id="algoSelect" class="btn">
           <option value="bfs">BFS</option>
           <option value="dfs">DFS</option>
           <option value="astar">A*</option>
           <option value="dijkstra">Dijkstra</option>
-          <option value="minimax">Mini Max</option>
-          <option value="fc">Forward Chaining</option>
-          <option value="ffill">Flood Fill</option>
+          <!-- <option value="minimax">Mini Max</option> -->
+          <!-- <option value="fc">Forward Chaining</option> -->
+          <!-- <option value="ffill">Flood Fill</option> -->
         </select>
+        <button id="prevStepBtn" onclick="prevStep()" class="btn" style="">
+          Prev Step
+        </button>
+        <button id="nextStepBtn" onclick="nextStep()" class="btn" style="">
+          Next Step
+        </button>
       </div>
-      <button id="nextStepBtn" onclick="nextStep()" style="display: none">
-        Next Step
-      </button>
     </div>
   </body>
   <script src="/static/js/script.js"></script>

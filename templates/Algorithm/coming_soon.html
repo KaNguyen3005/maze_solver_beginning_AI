@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Coming Soon — Thuật toán đang cập nhật</title>
+  <meta name="description" content="Trang coming soon: Thuật toán đang được cập nhật. Theo dõi để nhận thông báo khi sẵn sàng." />
+
+  <style>
+    :root{
+      --bg-1: #0f172a;
+      --bg-2: #071129;
+      --accent: #14b8a6;
+      --muted: #94a3b8;
+      --card: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 800px at 10% 10%, rgba(20,184,166,0.08), transparent 8%),
+                  linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:980px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);
+      border-radius:14px;
+      padding:32px;
+      box-shadow: 0 8px 40px rgba(2,6,23,0.6);
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      gap:24px;
+      align-items:center;
+    }
+
+    @media (max-width:880px){
+      .wrap{ grid-template-columns: 1fr; padding:20px; }
+    }
+
+    .left {
+      padding: 8px 12px;
+    }
+    h1{
+      margin:0 0 8px 0;
+      font-size:28px;
+      letter-spacing:-0.4px;
+      color:#fff;
+    }
+    p.lead{
+      margin:0 0 18px 0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.6;
+    }
+
+    /* visual area */
+    .visual{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      background: linear-gradient(90deg, rgba(20,184,166,0.12), rgba(20,184,166,0.06));
+      border-radius:999px;
+      color:var(--accent);
+      font-weight:600;
+      font-size:13px;
+      border:1px solid rgba(20,184,166,0.12);
+      width:max-content;
+    }
+
+    /* animated gears SVG container */
+    .svg-wrap{
+      width:86px;
+      height:86px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    /* progress card */
+    .card{
+      background:var(--card);
+      border-radius:10px;
+      padding:12px;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    .progress-bar{
+      width:100%;
+      height:12px;
+      background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:8px;
+      overflow:hidden;
+      margin-top:10px;
+    }
+    .progress-fill{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,var(--accent), #60a5fa);
+      transition: width 600ms cubic-bezier(.2,.9,.2,1);
+      box-shadow: 0 6px 18px rgba(20,184,166,0.08) inset;
+    }
+
+    /* right column */
+    .right {
+      padding: 8px 12px;
+    }
+    .sub{
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:12px;
+    }
+    .email-form{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .email-form input{
+      flex:1;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.06);
+      background:transparent;
+      color: #e6eef8;
+      outline:none;
+      font-size:14px;
+    }
+    .email-form button{
+      padding:10px 14px;
+      border-radius:10px;
+      border:0;
+      background:var(--accent);
+      color:#042028;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .12s ease;
+    }
+    .email-form button:active{ transform:scale(.98) }
+
+    .meta-list{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .meta-list button{
+      padding:8px 10px;
+      background:transparent;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.03);
+      color:var(--muted);
+      cursor:pointer;
+      font-size:13px;
+    }
+
+    footer.note{
+      margin-top:18px;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    /* small helpers */
+    .muted{ color:var(--muted) }
+
+    /* svg gear animation */
+    .gear{ transform-origin:center; animation:spin 6s linear infinite; opacity:0.95; }
+    .gear.small{ animation-duration:4s; transform-origin:center; }
+    .gear.alt{ animation-direction:reverse; opacity:.9; filter: drop-shadow(0 6px 18px rgba(2,6,23,0.6)); }
+
+    @keyframes spin { from{ transform:rotate(0deg) } to{ transform:rotate(360deg) } }
+  </style>
+</head>
+<body>
+  <div class="wrap" role="main" aria-labelledby="title">
+    <div class="left">
+      <div class="visual">
+        <div class="svg-wrap" aria-hidden="true">
+          <!-- simple gears SVG -->
+          <svg width="72" height="72" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(6,6)">
+              <g class="gear" transform="translate(8,8)">
+                <path d="M18 10a8 8 0 1 0 0 16 8 8 0 0 0 0-16z" fill="rgba(20,184,166,0.14)"/>
+                <path d="M18 10a8 8 0 1 0 0 16 8 8 0 0 0 0-16z" stroke="rgba(20,184,166,0.45)" stroke-width="1"/>
+              </g>
+              <g class="gear alt small" transform="translate(26,24) scale(.7)">
+                <path d="M18 10a8 8 0 1 0 0 16 8 8 0 0 0 0-16z" fill="rgba(96,165,250,0.12)"/>
+                <path d="M18 10a8 8 0 1 0 0 16 8 8 0 0 0 0-16z" stroke="rgba(96,165,250,0.45)" stroke-width="1"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <div>
+          <div class="badge">Đang cập nhật • Thuật toán</div>
+          <h1 id="title">Thuật toán đang được cập nhật</h1>
+          <p class="lead">Chúng tôi đang nâng cấp hệ thống thuật toán và tối ưu hóa trực quan hóa. Theo dõi để nhận thông báo khi tính năng sẵn sàng.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <strong>Tiến độ cập nhật</strong>
+            <div class="muted" style="font-size:13px;margin-top:4px">Cập nhật và kiểm thử các thuật toán cốt lõi</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-weight:700;color:var(--accent);font-size:16px" id="pct">0%</div>
+            <div class="muted" style="font-size:12px">Đã hoàn thành</div>
+          </div>
+        </div>
+
+        <div class="progress-bar" aria-hidden="true">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <footer class="note">
+        <strong>Muốn nhận thông báo?</strong> Nhập email hoặc nhấn nút dưới để gửi email cho chúng tôi.
+      </footer>
+    </div>
+
+    <div class="right">
+      <div class="sub"><strong>Nhận thông báo</strong></div>
+
+      <form class="email-form" id="emailForm" onsubmit="return onSubscribe(event)">
+        <input id="emailInput" type="email" placeholder="Nhập email của bạn" aria-label="Email" required />
+        <button type="submit">Đăng ký</button>
+      </form>
+
+      <div class="meta-list">
+        <button id="contactBtn" onclick="contact()">Liên hệ</button>
+        <button onclick="openGit()">Xem repo</button>
+        <button onclick="share()">Chia sẻ</button>
+      </div>
+
+      <div style="height:16px"></div>
+      <div class="muted" style="font-size:13px">Dự án: <strong>Maze & Algorithm Visualizer</strong></div>
+      <div class="muted" style="font-size:13px;margin-top:6px">Phiên bản: <strong>alpha</strong></div>
+      <div style="height:18px"></div>
+
+      <div class="muted" style="font-size:13px">Bạn có góp ý? Gửi email cho chúng tôi — chúng tôi đọc mọi phản hồi.</div>
+    </div>
+  </div>
+
+  <script>
+    // small progress simulation (non-blocking)
+    (function(){
+      const fill = document.getElementById('progressFill');
+      const pct = document.getElementById('pct');
+      let v = 0;
+      // simulate progress until random near 70-92% then stop (since it's updating)
+      const target = 70 + Math.floor(Math.random()*23);
+      const id = setInterval(() => {
+        v += 1 + Math.random()*4;
+        if (v >= target) {
+          v = target;
+          clearInterval(id);
+        }
+        fill.style.width = Math.round(v) + '%';
+        pct.textContent = Math.round(v) + '%';
+      }, 180);
+    })();
+
+    function onSubscribe(e){
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value.trim();
+      if(!email) return false;
+      // simple client-side confirmation (no backend)
+      alert('Cảm ơn! Chúng tôi sẽ gửi thông báo khi sẵn sàng. (' + email + ')');
+      document.getElementById('emailInput').value = '';
+      return false;
+    }
+
+    function contact(){
+      // open mail client
+      location.href = 'mailto:hello@example.com?subject=Góp ý%20thuật%20toán';
+    }
+
+    function openGit(){
+      // replace with real repo if available
+      window.open('https://github.com/', '_blank');
+    }
+
+    function share(){
+      if(navigator.share){
+        navigator.share({
+          title: 'Thuật toán đang cập nhật',
+          text: 'Tôi đang theo dõi dự án thuật toán — xem tại:',
+          url: location.href
+        }).catch(()=>{});
+      } else {
+        // fallback
+        prompt('Sao chép liên kết để chia sẻ:', location.href);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -44,7 +44,8 @@ def solve_maze(maze, start, end, algo):
     Giải maze bằng thuật toán chỉ định.
     algo có thể là: 'bfs', 'dfs', 'dijkstra', 'astar'
     """
-    algo = algo.lower()
+    print(algo)
+    algo = algo.lower() if algo != None else None
 
     if algo not in SOLVERS:
         raise Exception(f"Thuật toán {algo} không tồn tại")

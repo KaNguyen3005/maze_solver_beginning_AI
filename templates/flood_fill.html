@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link rel="stylesheet" href="/static/css/frameal.css" />
+  <link rel="stylesheet" href="/static/css/main.css" />
+  <link rel="stylesheet" href="/static/css/algorithm.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flood Fill Visualization</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      canvas {
+        border: 1px solid #000;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="tool1">
+      <div class="frame-logo1">
+        <span class="secondtext-tool1">KaTiLa</span>
+        <span class="maintext-tool1">VISUALIZATION</span>
+      </div>
+
+      <nav class="menu">
+        <ul>
+          <li><a href="indexhome.html">Home</a></li>
+          <li><a href="#">Community</a></li>
+          <li class="dropdown">
+            <a href="#">Algorithms ▼</a>
+            <div class="dropdown-content">
+              <a href="Algorithm/overview.html?algo=bfs">BFS</a>
+              <a href="Algorithm/overview.html?algo=dfs">DFS</a>
+              <a href="Algorithm/overview.html?algo=dijkstra">Dijkstra</a>
+              <a href="Algorithm/overview.html?algo=astar">A*</a>
+              <a href="Algorithm/overview.html?algo=forward_chaining"
+                >Forward Chaining</a
+              >
+              <a href="Algorithm/overview.html?algo=minimax">Mini Max</a>
+              <a href="Algorithm/overview.html?algo=ffill">Flood Fill</a>
+            </div>
+          </li>
+          <li><a href="#">History</a></li>
+          <li><a href="#">Docs</a></li>
+          <li><a href="#">Member</a></li>
+        </ul>
+      </nav>
+
+      <div class="frame-icon">
+        <span class="menu_icon">&#9776;</span>
+      </div>
+    </header>
+
+    <header class="tool2">
+      <a id="overview-tab" class="overview active"><span>Overview</span></a>
+      <a id="theory-tab" class="theory"><span>Theory</span></a>
+      <a id="simulation-tab" class="simulation"><span>Simulation</span></a>
+      <a id="stepbystep-tab" class="stepbystep"><span>Step by Step</span></a>
+      <a id="quiz-tab" class="quiz"><span>Quiz</span></a>
+    </header>
+    <div class="frame_al">
+      <h2>Flood Fill Visualization</h2>
+      <div class="frame-wrapper">
+        <canvas id="mazeCanvas" width="400" height="400"></canvas>
+        <br />
+        <button id="generateBtn">Generate Maze</button>
+        <button id="startBtn">Start Flood Fill</button>
+      </div>
+    </div>
+
+    <script>
+      const canvas = document.getElementById("mazeCanvas");
+      const ctx = canvas.getContext("2d");
+      let stopAnimation = false;
+
+      let ROWS = 10,
+        COLS = 10;
+      let CELL_SIZE = canvas.width / COLS;
+      let maze = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+      let startCell = [0, 0];
+
+      function drawMaze(currentMaze = null) {
+        const draw = currentMaze || maze;
+        for (let r = 0; r < ROWS; r++) {
+          for (let c = 0; c < COLS; c++) {
+            if (draw[r][c] === 1) ctx.fillStyle = "black";
+            else if (draw[r][c] === 2) ctx.fillStyle = "skyblue";
+            else ctx.fillStyle = "white";
+            ctx.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+            ctx.strokeRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+          }
+        }
+
+        // 🔸 tô màu ô bắt đầu
+        if (startCell) {
+          const [sr, sc] = startCell;
+          ctx.fillStyle = "orange";
+          ctx.fillRect(sc * CELL_SIZE, sr * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+          ctx.strokeRect(sc * CELL_SIZE, sr * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+        }
+      }
+
+      async function generateMaze() {
+        stopAnimation = true; // 👉 báo hiệu dừng animation
+        const res = await fetch(`/api/generate?rows=${ROWS}&cols=${COLS}`);
+        const data = await res.json();
+        maze = data.maze;
+        drawMaze();
+      }
+
+      async function animateStates(states) {
+        stopAnimation = false;
+        for (const state of states) {
+          if (stopAnimation) break;
+          drawMaze(state.maze);
+          await new Promise((r) => setTimeout(r, 100));
+        }
+      }
+
+      async function startFloodFill() {
+        const res = await fetch("/api/solve", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            maze: maze,
+            start: startCell,
+            end: null,
+            algo: "ffill",
+          }),
+        });
+
+        const data = await res.json();
+        const states = data.states || [];
+        await animateStates(states);
+      }
+
+      document
+        .getElementById("generateBtn")
+        .addEventListener("click", generateMaze);
+      document
+        .getElementById("startBtn")
+        .addEventListener("click", startFloodFill);
+
+      drawMaze();
+    </script>
+  </body>
+</html>

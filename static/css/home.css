@@ -14,6 +14,14 @@ body
             rgba(174, 227, 255, 1));
 }
 
+a {
+    text-decoration: none; /* ép buộc xóa gạch chân */
+    color: black;           /* ép buộc màu chữ */
+    display: block;                    /* nếu muốn link dạng block cho dropdown */
+    padding: 5px 10px;                 /* thêm padding cho dễ click */
+}
+
+
 .tool1 /* narbar */
 {
     position: relative;

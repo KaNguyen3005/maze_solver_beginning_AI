@@ -53,12 +53,15 @@ def generate():
 @app.route('/api/solve', methods=['POST'])
 def solve():
     algo = request.args.get('algo')  # lấy từ query string
+    print(f"Thuật toán được sử dụng,{algo}")
     global maze_data, path_data
     data = request.json
+    if not algo and ("algo" in data.keys()):
+        algo = data["algo"]
     maze_data = data['maze']
     start = tuple(data['start'])
-    end = tuple(data['end'])
-
+    end = tuple(data['end']) if data.get('end') else None
+    
     res =  jsonify(solve_maze(maze_data, start, end, algo))
     return res
 
