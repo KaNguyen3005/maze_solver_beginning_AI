@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VISUALIZATION</title>
+        <link rel="stylesheet" href="../../../static/css/main.css">
+        <link rel="stylesheet" href="../../../static/css/algorithm.css">
+        <link rel="stylesheet" href="../../../static/css/frame.css">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+        <script src="main.js" defer></script>
+        <!-- Google Font: Montserrat for logo text -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header class="tool1">
+            <div class = "frame-logo1">
+                <span class="secondtext-tool1">KaTiLa</span>
+                <span class="maintext-tool1">VISUALIZATION</span>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <li><a href="../indexhome.html">Home</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li class="dropdown">
+                        <a href="#">Algorithms ▼</a>
+                        <div class="dropdown-content">
+                            <a href="../Algorithm/overviewbfs.html">BFS</a>
+                            <a href="../Algorithm/overviewdfs.html">DFS</a>
+                            <a href="../Algorithm/overviewdij.html">Dijkstra</a>
+                            <a href="../Algorithm/overviewa.html">A*</a>
+                            <a href="../Algorithm/overviewfc.html">Foward Chaining</a>
+                            <a href="../Algorithm/overviewminimax.html">Mini Max</a>
+                            <a href="../Algorithm/overviewffill.html">Flood Fill</a>
+                        </div>
+                    </li>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Docs</a></li>
+                    <li><a href="#">Member</a></li>
+                </ul>
+            </nav>
+
+        
+            <div class="frame-icon">
+                <span class = "menu_icon">&#9776;</span>
+            </div>
+        </header>
+
+        <header class="tool2">
+            <a href="../Algorithm/overviewbfs.html" class="overview"><span>Overview</span></a>
+            <a href="../Algorithm/theorybfs.html" class="theory"><span>Theory</span></a>
+            <a href="../Algorithm/simulationbfs.html" class="simulation"><span>Simulation</span></a>
+            <a href="../Algorithm/stepbystepbfs.html" class="stepbystep"><span>Step by Step</span></a>
+            <a href="../Algorithm/quizbfs.html" class="quiz"><span>Quiz</span></a>
+        </header>
+
+        <div class="container">
+            <h1>FOWARD CHAINING</h1>
+            <p>
+            Forward Chaining (suy diễn tiến) là thuật toán suy luận trong hệ chuyên gia (Expert System) và trí tuệ nhân tạo (AI).
+            Thuật toán này bắt đầu từ các dữ kiện (facts) có sẵn, sau đó áp dụng các luật (rules) dạng “IF–THEN” để rút ra các kết luận mới, và tiếp tục mở rộng tri thức cho đến khi đạt được mục tiêu hoặc không còn luật nào có thể áp dụng được.
+            </p>
+            <img src="https://www.tutorialspoint.com/artificial_intelligence/images/forward_chaining.jpg" alt="">
+        </li>
+</ul>
+
+            <h2>Ý tưởng (Idea)</h2>
+            <ul>
+                <li>Thuật toán bắt đầu từ tập dữ kiện ban đầu (Fact Base).</li>
+                <li>Mỗi khi tìm được một luật “IF → THEN” có điều kiện phù hợp với dữ kiện hiện tại, thuật toán sẽ kích hoạt luật đó và thêm kết luận mới vào tập dữ kiện.</li>
+                <li>Quá trình này lặp lại liên tục — giống như “lan truyền” tri thức ra toàn bộ hệ thống — cho đến khi:
+                    <ul>
+                        <li>Mục tiêu cần tìm đã được suy ra, hoặc</li>
+                        <li>Không còn luật nào có thể áp dụng->Đây là kiểu suy luận dựa trên dữ kiện (data-driven reasoning).</li>
+                    </ul>
+                </li>
+
+            </ul>
+            <h2>Mã giả (Pseudocode)</h2>
+            <pre>
+                ForwardChaining(Facts, Rules, Goal):
+                    while True:
+                        new_fact_added = False
+                        for rule in Rules:
+                            if tất cả điều kiện trong rule.IF đều nằm trong Facts 
+                            và rule.THEN chưa có trong Facts:
+                                thêm rule.THEN vào Facts
+                                new_fact_added = True
+                                nếu rule.THEN == Goal:
+                                    return "Đạt mục tiêu"
+                        nếu không có dữ kiện mới được thêm:
+                            break
+                    return "Không thể suy ra mục tiêu"
+            </pre>
+            <ul>
+                <li>Khởi tạo tập dữ kiện ban đầu <b>Facts</b></li>
+                <li>Duyệt qua từng luật trong tập <b>Rules</b></li>
+                <li>Nếu phần điều kiện (“IF”) của luật thỏa mãn dữ kiện hiện tại, thêm kết luận mới (“THEN”) vào Facts.</li>
+                <li>Lặp lại cho đến khi không thể thêm dữ kiện nào khác hoặc đạt được kết luận cần tìm.</li>
+            </ul>
+            
+            <h2>Triển khai bằng các ngôn ngữ phổ biến</h2>
+            <b>Code C++</b>
+            <b>Code Java</b>
+            <pre> </pre>
+            <b>Code Python</b>
+            <pre>
+                facts = ["A"]
+                rules = [
+                    {"if": ["A"], "then": "B"},
+                    {"if": ["B"], "then": "C"},
+                    {"if": ["C"], "then": "D"}
+                ]
+
+                goal = "D"
+
+                while True:
+                    new_fact = False
+                    for rule in rules:
+                        if all(cond in facts for cond in rule["if"]) and rule["then"] not in facts:
+                            facts.append(rule["then"])
+                            new_fact = True
+                            print(f"Suy ra: {rule['then']}")
+                            if rule["then"] == goal:
+                                print("Đạt mục tiêu!")
+                                new_fact = False
+                                break
+                    if not new_fact:
+                        break
+                print("Kết quả:", facts)
+            </pre>
+            
+            <h2>Phân tích độ phức tạp (Complexity Analysis)</h2>
+            <p>Thời gian:
+                <ul>
+                    <li>Phụ thuộc vào số lượng luật (R) và dữ kiện (F).</li>
+                    <li>Trường hợp xấu nhất: O(R × F).</li>
+                    <li>Mỗi luật được kiểm tra qua tất cả dữ kiện hiện có.</li>
+                </ul>
+            </p>
+            <p>Bộ nhớ:
+                <ul>
+                    <li>O(F) — lưu trữ các dữ kiện đã được suy ra.</li>
+                    <li>Có thể tăng nếu hệ thống có nhiều luật chồng chéo.</li>
+                </ul>
+        </ul>
+            
+            <h2>Ứng dụng (Applications)</h2>
+            <p>Một số ứng dụng nổi bật</p>
+            <ul>
+               <li>Hệ chuyên gia y học: chẩn đoán bệnh dựa trên triệu chứng (ví dụ: MYCIN).</li>
+               <li>Chatbot logic: trả lời dựa trên tập luật ngôn ngữ.</li>
+               <li>Hệ thống tư vấn, hỗ trợ ra quyết định.</li>
+               <li>Hệ thống phát hiện tri thức (Knowledge Discovery) – sinh tri thức mới từ dữ kiện.</li>
+               <li>Trí tuệ nhân tạo và học máy – suy luận logic trong robot, game AI.</li>
+            <ul> 
+        </div>
+    </body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VISUALIZATION</title>
+        <link rel="stylesheet" href="../../../static/css/main.css">
+        <link rel="stylesheet" href="../../../static/css/algorithm.css">
+        <link rel="stylesheet" href="../../../static/css/frame.css">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+        <script src="main.js" defer></script>
+        <!-- Google Font: Montserrat for logo text -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header class="tool1">
+            <div class = "frame-logo1">
+                <span class="secondtext-tool1">KaTiLa</span>
+                <span class="maintext-tool1">VISUALIZATION</span>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <li><a href="../indexhome.html">Home</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li class="dropdown">
+                        <a href="#">Algorithms ▼</a>
+                        <div class="dropdown-content">
+                            <a href="../Algorithm/overviewbfs.html">BFS</a>
+                            <a href="../Algorithm/overviewdfs.html">DFS</a>
+                            <a href="../Algorithm/overviewdij.html">Dijkstra</a>
+                            <a href="../Algorithm/overviewa.html">A*</a>
+                            <a href="../Algorithm/overviewfc.html">Foward Chaining</a>
+                            <a href="../Algorithm/overviewminimax.html">Mini Max</a>
+                            <a href="../Algorithm/overviewffill.html">Flood Fill</a>
+                        </div>
+                    </li>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Docs</a></li>
+                    <li><a href="#">Member</a></li>
+                </ul>
+            </nav>
+
+        
+            <div class="frame-icon">
+                <span class = "menu_icon">&#9776;</span>
+            </div>
+        </header>
+
+        <header class="tool2">
+            <a href="../Algorithm/overviewbfs.html" class="overview"><span>Overview</span></a>
+            <a href="../Algorithm/theorybfs.html" class="theory"><span>Theory</span></a>
+            <a href="../Algorithm/simulationbfs.html" class="simulation"><span>Simulation</span></a>
+            <a href="../Algorithm/stepbystepbfs.html" class="stepbystep"><span>Step by Step</span></a>
+            <a href="../Algorithm/quizbfs.html" class="quiz"><span>Quiz</span></a>
+        </header>
+
+        <div class="container">
+            <h1>MINIMAX</h1>
+            <p>
+            Thuật toán MiniMax là một thuật toán ra quyết định được sử dụng trong trí tuệ nhân tạo, đặc biệt trong lý thuyết trò chơi và các trò chơi trên máy tính.
+            Mục tiêu của thuật toán này là giảm thiểu thiệt hại trong trường hợp xấu nhất (nên gọi là “Min”) và tối đa hóa lợi ích tiềm năng (nên gọi là “Max”). 
+            </p>
+            <p>
+            MINIMAX thường được dùng để:
+            </p>
+            <ul style="list-style-type: disc; margin-left: 20px; line-height: 1.6;">
+        <li>
+            <b>Ra quyết định tối ưu:</b> Mini-Max giúp máy tính chọn nước đi tốt nhất 
+            bằng cách mô phỏng mọi khả năng của bản thân và đối thủ.
+        </li>
+        <li>
+            <b>Phân tích chiến lược:</b> Dùng để tìm chiến lược tối ưu trong 
+            <i>trò chơi hai người có tổng bằng 0</i> (zero-sum games).
+        </li>
+        <li>
+            <b>Nền tảng cho các thuật toán AI hiện đại:</b>
+            <ul style="list-style-type: circle; margin-left: 25px; line-height: 1.5;">
+                <li><b>Alpha-Beta Pruning:</b> Cắt bỏ các nhánh không cần thiết, giúp giảm thời gian tính toán.</li>
+                <li><b>Expectiminimax:</b> Mở rộng MiniMax cho các trò chơi có yếu tố ngẫu nhiên (như tung xúc xắc).</li>
+            </ul>
+        </li>
+        <li>
+            <img src="../../../assets/gif/minimaxVisualize.gif" alt="">
+        </li>
+</ul>
+
+            <h2>Ý tưởng (Idea)</h2>
+            <p><b>Bước 1: Tạo cây trò chơi (Game Tree)</b>
+                <ul>
+                    <li>Mục tiêu: Tạo một cấu trúc cây thể hiện tất cả các nước đi có thể có từ trạng thái hiện tại.</li>
+                    <li>Chi tiết:</li>
+                    <ul>
+                        <li>Mỗi nút (node) biểu diễn một trạng thái của trò chơi.</li>
+                        <li>Mỗi cạnh (edge) biểu diễn một nước đi (hành động).</li>
+                    </ul>
+                </ul>
+            </p>
+            <p><b>Bước 2: Đánh giá các trạng thái kết thúc (Terminal States)</b>
+                <ul>
+                    <li>Mục tiêu: Gán giá trị lợi ích (utility value) cho các nút cuối cùng trong cây.</li>
+                    <li>Chi tiết:</li>
+                    <ul>
+                        <li>Giá trị này biểu diễn kết quả của trò chơi: thắng, thua hoặc hòa. </li>
+                    </ul>
+                </ul>
+            </p>
+            <p><b>Bước 3: Lan truyền giá trị lợi ích lên trên cây</b>
+                <ul>
+                    <li>Mục tiêu: Bắt đầu từ các nút cuối, lan truyền ngược các giá trị lên trên cây.</li>
+                    <li>Chi tiết:</li>
+                    <ul>
+                        <li>Nếu là lượt của người chơi Max, chọn giá trị lớn nhất trong các nút con.</li>
+                        <li>Nếu là lượt của người chơi Min, chọn giá trị nhỏ nhất trong các nút con.</li>
+                    </ul>
+                </ul>
+            </p>
+            <h2>Công thức MINIMAX</h2>
+            <ul>
+                <p><b>Lượt của người chơi tối đa (Maximizer):</b></p>
+                <p>$$\mathrm{Max}(s) = \max_{a \in A(s)} \mathrm{Min}(\mathrm{Result}(s, a))$$</p>
+                <p>Trong đó:
+                    <ul>
+                        <li><b>Max(s)</b> Giá trị tối đa mà người chơi Max có thể đạt được từ trạng thái <b>s</b>.</li>
+                        <li><b>A(s)</b> Tập hợp tất cả các hành động có thể từ trạng thái <b>s</b>.</li>
+                        <li><b>Result(s, a)</b> Trạng thái mới sau khi thực hiện hành động <b>a</b> tại trạng thái <b>s</b>.</li>
+                        <li><b>Min(Result(s, a))</b> Giá trị của người chơi Min tại trạng thái kết quả.</li>
+                    </ul>
+                </p>
+            </ul>
+            <ul>
+                <p><b>Lượt của người chơi tối thiểu (Minimizer):</b></p>
+                <p>$$\mathrm{Min}(s) = \min_{a \in A(s)} \mathrm{Max}(\mathrm{Result}(s, a))$$</p>
+                <p>Trong đó:
+                    <ul>
+                        <li><b>Min(s)</b> Giá trị nhỏ nhất mà người chơi Min có thể đạt được từ trạng thái s.</li>
+                        <li>Các ký hiệu khác tương tự như ở trên.</li>
+                    </ul>
+                </p>
+            </ul>
+
+            <h2>Mã giả (Pseudocode)</h2>
+            <pre>
+                def minmax(state, depth, maximizing_player):
+                    if is_terminal(state) or depth == 0:
+                         return utility(state)
+    
+                    if maximizing_player:
+                        max_eval = -infinity
+                        for action in actions(state):
+                             eval = minmax(result(state, action), depth - 1, False)
+                             max_eval = max(max_eval, eval)
+                        return max_eval
+                    else:
+                        min_eval = infinity
+                        for action in actions(state):
+                             eval = minmax(result(state, action), depth - 1, True)
+                             min_eval = min(min_eval, eval)
+                        return min_eval
+            </pre>
+            
+            <h2>Triển khai bằng các ngôn ngữ phổ biến</h2>
+            <b>Code C++</b>
+            <pre>
+                #include <iostream>
+                #include <vector>
+                #include <algorithm>
+                #include <limits>
+
+                using namespace std;
+
+                // Hàm giả định: kiểm tra xem trạng thái đã kết thúc chưa
+                bool isTerminal(int depth) {
+                    return (depth == 0); // ví dụ đơn giản
+                }
+
+                // Hàm giả định: tính giá trị utility (điểm số) của trạng thái hiện tại
+                int utility(int state) {
+                    return state; // ví dụ: giá trị của trạng thái chính là điểm số
+                }
+
+                // Hàm giả định: trả về các hành động có thể thực hiện từ state hiện tại
+                vector<int> actions(int state) {
+                    return { state + 1, state - 1 }; // ví dụ: có thể tăng hoặc giảm 1
+                }
+
+                // Hàm giả định: trả về trạng thái mới sau khi thực hiện hành động
+                int result(int state, int action) {
+                    return action; // ở đây action chính là trạng thái kế tiếp
+                }
+
+                // Thuật toán MiniMax đệ quy
+                int minimax(int state, int depth, bool maximizingPlayer) {
+                    if (isTerminal(depth)) {
+                        return utility(state);
+                    }
+
+                    if (maximizingPlayer) {
+                        int maxEval = numeric_limits<int>::min(); // -∞
+                        for (int action : actions(state)) {
+                            int eval = minimax(result(state, action), depth - 1, false);
+                            maxEval = max(maxEval, eval);
+                        }
+                        return maxEval;
+                    } 
+                    else {
+                        int minEval = numeric_limits<int>::max(); // +∞
+                        for (int action : actions(state)) {
+                            int eval = minimax(result(state, action), depth - 1, true);
+                            minEval = min(minEval, eval);
+                        }
+                        return minEval;
+                    }
+                }
+
+                int main() {
+                    int initialState = 0;
+                    int depth = 3;
+
+                    int bestValue = minimax(initialState, depth, true);
+                    cout << "Giá trị tốt nhất (best value): " << bestValue << endl;
+
+                    return 0;
+                }
+
+            </pre>
+
+            <b>Code Java</b>
+            <pre> </pre>
+            <b>Code Python</b>
+            <pre>   </pre>
+            
+            <h2>Phân tích độ phức tạp (Complexity Analysis)</h2>
+            <p><b>Thời gian (Time Complexity):</b> O(b<sup>d</sup>)</p>
+            <ul>
+                <li><b>b</b>: số lượng nước đi trung bình (branching factor).</li>
+                <li><b>d</b>: độ sâu tối đa của cây trò chơi.</li>
+                <li>Mỗi nút sinh ra trung bình <b>b</b> nút con và cây có độ sâu <b>d</b> → tổng số nút cần duyệt là <b>b<sup>d</sup></b>.</li>
+                <li>Tất cả các trạng thái đều được duyệt → rất tốn thời gian khi <b>d</b> lớn.</li>
+            </ul>
+            <p><b>Không gian (Space Complexity):</b> O(d)</p>
+            <ul>
+                <li>Thuật toán sử dụng đệ quy, cần bộ nhớ ngăn xếp (stack) tỉ lệ với độ sâu <b>d</b>.</li>
+            </ul>
+            <p><b>Chú ý:</b></p>
+            <ul>
+                <li>Khi dùng <b>Alpha–Beta Pruning</b>, số nút cần duyệt có thể giảm đáng kể → trung bình khoảng O(b<sup>d/2</sup>).</li>
+                <li>Hiệu quả cắt tỉa phụ thuộc vào thứ tự duyệt các nước đi.</li>
+            </ul>
+        </ul>
+
+            <h2>Tính chất, đặc điểm & những lưu ý (Properties, Characteristic, Notes)</h2>
+            <p>Mini-Max hoạt động dựa trên tư duy đối kháng giữa hai người chơi:</p>
+            <ul>
+                <li>Một bên cố tối đa hóa lợi ích (Maximizer).</li>
+                <li>Bên còn lại cố tối thiểu hóa thiệt hại (Minimizer).</li>
+            </ul>
+            <p>Thuật toán duyệt toàn bộ cây trò chơi đến độ sâu nhất định (hoặc đến trạng thái kết thúc)→ Đảm bảo tìm được nước đi tối ưu, nếu cả hai người chơi đều chơi tối ưu.</p>
+            <p>Cải tiến thường dùng:</p>
+            <ul>
+                <li>Alpha–Beta Pruning: cắt bỏ các nhánh không cần thiết để tăng hiệu suất.</li>
+                <li>Depth limit: giới hạn độ sâu duyệt cây để giảm chi phí tính toán.</li>
+            </ul>
+            
+            <h2>Ứng dụng (Applications)</h2>
+            <p>Một số ứng dụng nổi bật</p>
+            <ul>
+                <li><b>Trò chơi hai người (Two-player Games):</b>
+                    <ul>
+                        <li>Được dùng rộng rãi trong các trò chơi đối kháng như:
+                            <i>Tic-Tac-Toe, Cờ vua (Chess), Cờ tướng (Chinese Chess), Cờ caro, Cờ vua mini...</i>
+                        </li>
+                        <li>Giúp máy tính phân tích mọi khả năng và chọn <b>nước đi tối ưu</b> để thắng hoặc hòa.</li>
+                    </ul>
+                </li>
+                <li><b>Ra quyết định trong môi trường đối kháng (Adversarial Decision Making):</b>
+                    <ul>
+                        <li>Ứng dụng trong các bài toán mà hai bên có mục tiêu trái ngược nhau, như:
+                            <i>đàm phán, đấu giá, hoặc phân bổ tài nguyên cạnh tranh.</i></li>
+                    </ul>
+                </li>
+
+                <li><b>Nền tảng cho các thuật toán AI nâng cao:</b>
+                    <ul>
+                        <li><b>Alpha–Beta Pruning:</b> tối ưu Mini-Max bằng cách loại bỏ các nhánh không cần thiết.</li>
+                        <li><b>Expectiminimax:</b> mở rộng Mini-Max cho các trò chơi có yếu tố ngẫu nhiên (ví dụ: xúc xắc trong game Backgammon).</li>
+                        <li><b>Monte Carlo Tree Search (MCTS):</b> một biến thể hiện đại kết hợp xác suất và thống kê để cải thiện Mini-Max trong game phức tạp như Go.</li>
+                    </ul>
+                </li>
+
+                <li><b>Huấn luyện và mô phỏng chiến lược AI:</b>
+                    <ul>
+                        <li>Giúp AI học cách phản ứng với hành vi đối thủ trong môi trường mô phỏng.</li>
+                        <li>Được ứng dụng trong lĩnh vực <b>robotics, an ninh mạng, và mô phỏng quân sự</b>.</li>
+                    </ul>
+                </li>
+            <ul> 
+        </div>
+    </body>
+</html>

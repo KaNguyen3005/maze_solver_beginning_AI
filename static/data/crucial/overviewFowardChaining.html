@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VISUALAZITION</title>
+    <link rel="stylesheet" href="../../../static/css/main.css">
+    <link rel="stylesheet" href="../../../static/css/algorithm.css">
+    <link rel="stylesheet" href="../../../static/css/frame.css">
+    <script src="../../scripts/main.js" defer></script>
+    <!-- Google Font: Montserrat for logo text -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="tool1">
+        <div class="frame-logo1">
+            <span class="secondtext-tool1">KaTiLa</span>
+            <span class="maintext-tool1">VISUALIZATION</span>
+        </div>
+
+        <nav class="menu">
+            <ul>
+                <li><a href="../indexhome.html">Home</a></li>
+                <li><a href="#">Community</a></li>
+                <li class="dropdown">
+                    <a href="#">Algorithms ▼</a>
+                    <div class="dropdown-content">
+                        <a href="../Algorithm/overviewbfs.html">BFS</a>
+                        <a href="../Algorithm/overviewdfs.html">DFS</a>
+                        <a href="../Algorithm/overviewdij.html">Dijkstra</a>
+                        <a href="../Algorithm/overviewa.html">A*</a>
+                        <a href="../Algorithm/overviewfc.html">Foward Chaining</a>
+                        <a href="../Algorithm/overviewminimax.html">Mini Max</a>
+                        <a href="../Algorithm/overviewffill.html">Flood Fill</a>
+                    </div>
+                </li>
+                <li><a href="#">History</a></li>
+                <li><a href="#">Docs</a></li>
+                <li><a href="#">Member</a></li>
+            </ul>
+        </nav>
+        <div class="frame-icon">
+            <span class="menu_icon">&#9776;</span>
+        </div>
+    </header>
+    <header class="tool2">
+        <a href="../Algorithm/overviewa.html" class="overview"><span>Overview</span></a>
+        <a href="../Algorithm/theorya.html" class="theory"><span>Theory</span></a>
+        <a href="../Algorithm/simulationa.html" class="simulation"><span>Simulation</span></a>
+        <a href="../Algorithm/stepbystepa.html" class="stepbystep"><span>Step by Step</span></a>
+        <a href="../Algorithm/quiza.html" class="quiz"><span>Quiz</span></a>
+    </header>
+
+
+    <div class="container">
+        <h1>Quá trình phát triển và phân tích ứng dụng của thuật toán FOWARD CHAINING</h1>
+
+        <p>
+            Forward chaining (suy diễn tiến) là một kỹ thuật suy luận dựa trên dữ liệu (data-driven).
+            Phương pháp này bắt đầu từ các dữ kiện (facts) hiện có, sau đó áp dụng các luật (rules) để suy ra dữ kiện mới cho đến khi đạt được mục tiêu.
+            Nó thường được sử dụng trong các tình huống mà tập dữ liệu đầu vào rất lớn, và mục tiêu là rút ra các kết luận từ dữ liệu đó.
+        </p>
+
+        <b>Giai đoạn 1: Hình thành ý tưởng suy diễn tiến</b>
+        <ul>
+            <li>Các nhà nghiên cứu trong lý thuyết logic nhận ra rằng tri thức có thể biểu diễn bằng dạng luật suy diễn.</li>
+            <li>Từ đó xuất hiện mô hình “Rule-Based System” — hệ thống hoạt động bằng cách kiểm tra điều kiện và rút ra kết luận.</li>
+        </ul>
+        <b>Giai đoạn 2: Mô hình hóa dưới dạng thuật toán</b>
+        <ul>
+            <li>Hình thành quy trình 3 bước:
+                <ul>
+                    <li>Khởi tạo tập dữ kiện (Fact Base)</li>
+                    <li>So khớp điều kiện với các luật (Rule Base)</li>
+                    <li>Bổ sung kết luận mới vào tập dữ kiện</li>
+                </ul>
+            </li>
+            <li>Thuật toán bắt đầu được biểu diễn dưới dạng vòng lặp lôgic, giúp máy tính có thể xử lý.</li>
+        </ul>
+
+        <b>Giai đoạn 3: Cải tiến hiệu năng</b>
+        <ul>
+            <li>Khi số lượng luật và dữ kiện tăng, việc so khớp trở nên chậm.</li>
+            <li>Các kỹ thuật Conflict Resolution (giải quyết xung đột luật) và Rule Indexing (chỉ mục hóa luật) ra đời để tăng tốc.</li></li>
+            <li>Hệ thống Rete Algorithm (Charles Forgy, 1979) được phát triển — là một tối ưu của Forward Chaining, giúp xử lý hàng ngàn luật nhanh chóng.</li>
+        </ul>
+
+        <b>Giai đoạn 4: Ứng dụng rộng rãi</b>
+        <ul>
+            <li>Được áp dụng trong:
+                <ul>
+                    <li>Hệ chuyên gia y học (MYCIN)</li>
+                    <li>Chẩn đoán kỹ thuật, tài chính, giáo dục</li>
+                    <li>Chatbot logic và hệ thống hỗ trợ ra quyết định</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
