@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, jsonify, request
-from maze_logic import generate_solvable_maze, solve_maze
+from maze_logic import generate_solvable_maze, solve_maze, is_solvable, generate_solvable_maze_ffill
+
 from minimax_logic import *
 app = Flask(__name__)
 
@@ -42,12 +43,13 @@ def generate():
     global maze_data, path_data
     rows = int(request.args.get('rows', 20))  # mặc định 20 nếu không truyền
     cols = int(request.args.get('cols', 20))
-    maze_data, start, end = generate_solvable_maze(rows, cols)
-    path_data = []
+    algo = request.args.get('algo')  # lấy từ query string
+    maze_data = generate_solvable_maze(rows, cols)
+    print(algo)
+    if not algo:
+        maze_data, start, end = generate_solvable_maze_ffill(rows,cols)
     return jsonify({
         'maze': maze_data,
-        'start': start,
-        'end': end
     })
 
 @app.route('/api/solve', methods=['POST'])
@@ -79,7 +81,7 @@ def api_move():
     Response:
     {
       "move": 4,
-      "tree": { ... }  # the minimax tree starting from current board (player to move = 'O' if bot else deduced)
+      "tree": { ... }  # the    minimax tree starting from current board (player to move = 'O' if bot else deduced)
     }
     """
     data = request.get_json(force=True)

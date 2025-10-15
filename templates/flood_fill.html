@@ -16,6 +16,7 @@
         cursor: pointer;
       }
     </style>
+
   </head>
   <body>
     <header class="tool1">
@@ -69,12 +70,22 @@
         <button id="startBtn">Start Flood Fill</button>
       </div>
     </div>
-
     <script>
+
+
       const canvas = document.getElementById("mazeCanvas");
       const ctx = canvas.getContext("2d");
       let stopAnimation = false;
+      function updateMenuLinks(algo) {
+        const mazeOverviewUrl = new URL(`Algorithm/overview.html?algo=${algo}`, window.location.origin);
+        const mazeTheoryUrl = new URL(`Algorithm/theory.html?algo=${algo}`, window.location.origin);
+        const mazeSimulationUrl =  new URL(`/flood_fill.html`, window.location.origin);
 
+        document.querySelector(".overview").href = mazeOverviewUrl;
+        document.querySelector(".theory").href = mazeTheoryUrl;
+        document.querySelector(".simulation").href = mazeSimulationUrl;
+      }
+      updateMenuLinks("ffill")
       let ROWS = 10,
         COLS = 10;
       let CELL_SIZE = canvas.width / COLS;
@@ -136,6 +147,30 @@
         await animateStates(states);
       }
 
+      canvas.addEventListener("mousedown", (e) => {
+        e.preventDefault(); // ngăn menu chuột phải
+
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+
+        const x = (e.clientX - rect.left) * scaleX;
+        const y = (e.clientY - rect.top) * scaleY;
+
+        const col = Math.floor(x / CELL_SIZE);
+        const row = Math.floor(y / CELL_SIZE);
+
+        if (row < 0 || row >= ROWS || col < 0 || col >= COLS) return;
+
+        // Không cho đặt trên tường
+        if (maze[row][col] === 1) {
+          console.log("Cannot place start on wall!");
+          return;
+        }
+
+        startCell = [row, col];
+        drawMaze();
+      });
       document
         .getElementById("generateBtn")
         .addEventListener("click", generateMaze);
@@ -146,4 +181,5 @@
       drawMaze();
     </script>
   </body>
+<script src="/static/js/theory.js"></script>
 </html>

@@ -16,47 +16,52 @@ let runningDotsInterval = null;
 
 let states = [];
 let currentStateIndex = 0;
-let start = [0, 0];
-let end = [ROWS - 1, COLS - 1];
+let start = null;
+let end = null;
 
 // global maze/path/visited (giữ như bạn có)
 let maze = [];
 let path = [];
 let visited = [];
 let run_time = 0;
+// Sửa hàm drawMaze để vẽ start/end nếu có
 function drawMaze() {
   if (!maze || maze.length === 0) return;
 
   const rows = maze.length;
   const cols = maze[0].length;
-  CELL_SIZE = canvas.width / cols; // đảm bảo kích thước đúng khi vẽ
+  CELL_SIZE = canvas.width / cols;
 
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
-      if (maze[r][c] === 1) {
-        ctx.fillStyle = "black";
-      } else {
-        ctx.fillStyle = "white";
-      }
+      ctx.fillStyle = maze[r][c] === 1 ? "black" : "white";
       ctx.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
       ctx.strokeRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
     }
   }
 
-  // Vẽ start và end (dùng start/end đã cập nhật từ server)
-  ctx.fillStyle = "red";
-  ctx.fillRect(
-    start[1] * CELL_SIZE,
-    start[0] * CELL_SIZE,
-    CELL_SIZE,
-    CELL_SIZE
-  );
-  ctx.fillStyle = "green";
-  ctx.fillRect(end[1] * CELL_SIZE, end[0] * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+  // Vẽ start nếu đã chọn
+  if (start) {
+    ctx.fillStyle = "red";
+    ctx.fillRect(
+      start[1] * CELL_SIZE,
+      start[0] * CELL_SIZE,
+      CELL_SIZE,
+      CELL_SIZE
+    );
+  }
+
+  // Vẽ end nếu đã chọn
+  if (end) {
+    ctx.fillStyle = "green";
+    ctx.fillRect(end[1] * CELL_SIZE, end[0] * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+  }
 }
 
 async function generateMaze() {
   // Lấy mode từ query string
+  stopRunningDots("Idle");
+  solving = false
   const params = new URLSearchParams(window.location.search);
   const mode = params.get("mode") || ""; // có thể "", "step_by_step", ...
 
@@ -65,7 +70,7 @@ async function generateMaze() {
   const cols = mode === "step_by_step" ? COLS_STEP_BY_STEP : COLS;
 
   // Gọi API kèm query params rows & cols
-  const res = await fetch(`/api/generate?rows=${rows}&cols=${cols}`);
+  const res = await fetch(`/api/generate?rows=${rows}&cols=${cols}&algo=${algo}`);
   const data = await res.json();
 
   // Cập nhật maze và kích thước, start/end
@@ -74,8 +79,8 @@ async function generateMaze() {
   end = data.end;
 
   // Nếu server không trả start/end đúng, đặt mặc định theo rows/cols
-  if (!start) start = [0, 0];
-  if (!end) end = [rows - 1, cols - 1];
+  // if (!start) start = [0, 0];
+  // if (!end) end = [rows - 1, cols - 1];
 
   // Cập nhật biến ROWS/COLS thực tế và CELL_SIZE
   // LƯU Ý: nếu bạn muốn giữ ROWS/COLS nguyên tại file (const),
@@ -154,7 +159,8 @@ function formatNodeList(list) {
 function onAlgorithmChange(algo) {
   if (algo === "bfs" || algo == "ffill") dataStructureName = "Queue";
   else if (algo === "dfs") dataStructureName = "Stack";
-  else if (algo === "dijkstra" || algo === "astar") dataStructureName = "Open Set";
+  else if (algo === "dijkstra" || algo === "astar")
+    dataStructureName = "Open Set";
   else dataStructureName = "Frontier"; // fallback
 
   document.getElementById("dataStructureLabel").textContent = dataStructureName;
@@ -209,8 +215,6 @@ function highlightState(state) {
     ctx.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
     ctx.strokeRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
   });
-
-  
 
   // open_set
   open_set.forEach(([r, c]) => {
@@ -283,7 +287,6 @@ async function nextStep() {
   }
 }
 
-
 async function prevStep() {
   if (currentStateIndex > 0) {
     currentStateIndex--; // giảm trước
@@ -295,7 +298,16 @@ async function prevStep() {
   }
 }
 
+// Sửa solveMaze để kiểm tra start/end
 async function solveMaze() {
+  if (!start || !end) {
+    alert("Please select both START and END before solving!");
+    return;
+  }
+
+ solving = true; // bật cờ
+
+
   const params = new URLSearchParams(window.location.search);
   const algo = params.get("algo") || "bfs";
   const mode = params.get("mode") || "normal";
@@ -312,30 +324,24 @@ async function solveMaze() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ maze, start, end }),
   });
+
   const data = await res.json();
-  console.log("dữ liệu server trả về", data);
   path = data.path;
   visited = data.nodes_visited;
   run_time = data.time_taken;
-  nodes_visited = data.nodes_visited;
 
   if (mode === "step_by_step") {
-    // ✅ chỉ set states, không animate
     states = data.states || [];
     currentStateIndex = 0;
-   document.getElementById("prevStepBtn").style.visibility = "visible";
-  document.getElementById("nextStepBtn").style.visibility = "visible";
+    document.getElementById("prevStepBtn").style.visibility = "visible";
+    document.getElementById("nextStepBtn").style.visibility = "visible";
     document.getElementById("nextStepBtn").disabled = states.length === 0;
 
     stopRunningDots(states.length > 0 ? "Ready to step" : "No state found");
   } else {
-    // ✅ như hiện tại
-
     await animateVisited();
     await animatePath();
-    stopRunningDots(
-      path.length > 0 ? "✅ Successes" : "❌ Failed"
-    );
+    stopRunningDots(path.length > 0 ? "✅ Successes" : "❌ Failed");
     updateStats(
       run_time,
       path.length,
@@ -359,7 +365,7 @@ changeSelect.addEventListener("change", (e) => {
   const url = new URL(window.location);
   url.searchParams.set("algo", newAlgo);
   window.history.replaceState(null, "", url);
-   onAlgorithmChange(newAlgo);
+  onAlgorithmChange(newAlgo);
 
   // Reset maze & path
   path = [];
@@ -368,8 +374,6 @@ changeSelect.addEventListener("change", (e) => {
 
   console.log("Query algo đã được đổi thành:", newAlgo);
 });
-
-
 
 window.onload = () => {
   // Lấy algo từ query string
@@ -385,3 +389,58 @@ window.onload = () => {
   // Sau đó generate maze
   generateMaze();
 };
+
+canvas.addEventListener("mousedown", (e) => {
+  e.preventDefault(); // ngăn menu chuột phải
+
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+
+  const x = (e.clientX - rect.left) * scaleX;
+  const y = (e.clientY - rect.top) * scaleY;
+
+  const col = Math.floor(x / (canvas.width / window.ACTUAL_COLS));
+  const row = Math.floor(y / (canvas.height / window.ACTUAL_ROWS));
+
+   if (solving) {
+    console.log("Cannot change start/end while solving!");
+    return;
+  }
+
+  if (
+    row < 0 ||
+    row >= window.ACTUAL_ROWS ||
+    col < 0 ||
+    col >= window.ACTUAL_COLS
+  )
+    return;
+  if (maze[row][col] === 1) {
+    console.log("Cannot place on wall!");
+    return; // không đặt start/end trên tường
+  }
+
+  if (e.button === 0) start = [row, col];
+  else if (e.button === 2) end = [row, col];
+
+  drawMaze();
+});
+
+// Ngăn menu chuột phải hiện ra
+canvas.addEventListener("contextmenu", (e) => e.preventDefault());
+
+function drawStartEnd() {
+  if (start) {
+    ctx.fillStyle = "green";
+    ctx.fillRect(
+      start[1] * CELL_SIZE,
+      start[0] * CELL_SIZE,
+      CELL_SIZE,
+      CELL_SIZE
+    );
+  }
+  if (end) {
+    ctx.fillStyle = "red";
+    ctx.fillRect(end[1] * CELL_SIZE, end[0] * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+  }
+}

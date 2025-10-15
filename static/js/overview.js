@@ -8,9 +8,9 @@ console.log(algo)
 // --- URL setup ---
 let mazeSimulationUrl;
 if (algo === "ffill") {
-  mazeSimulationUrl = new URL(`/flood_fill.html`, window.location.origin);
+  mazeSimulationUrl = new URL(`/flood_fill.html?algo=${algo}`, window.location.origin);
 } else if (algo === "minimax") {
-  mazeSimulationUrl = new URL(`/minimax.html`, window.location.origin);
+  mazeSimulationUrl = new URL(`/minimax.html?algo=${algo}`, window.location.origin);
 } else {
   mazeSimulationUrl = new URL(`/maze.html?algo=${algo}&mode=simulation`, window.location.origin);
 }
@@ -117,7 +117,7 @@ fetch("../static/data/algorithms.json")
   .then((data) => {
     const content = data[algo];
     if (!content) {
-      document.getElementById("algo-title").innerText = "Không tìm thấy nội dung!";
+      document.getElementById("algo-title").innerText = "";
       return;
     }
     document.getElementById("algo-title").innerText = content.title;
